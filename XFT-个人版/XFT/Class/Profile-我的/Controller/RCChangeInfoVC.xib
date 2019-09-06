@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RCChangeInfoVC">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sBS-o2-IzM">
+                    <rect key="frame" x="15" y="64" width="384" height="44"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="修改昵称" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pj7-Lv-Ios">
+                            <rect key="frame" x="10" y="5" width="364" height="34"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="pj7-Lv-Ios" firstAttribute="leading" secondItem="sBS-o2-IzM" secondAttribute="leading" constant="10" id="0y7-f5-wQk"/>
+                        <constraint firstAttribute="trailing" secondItem="pj7-Lv-Ios" secondAttribute="trailing" constant="10" id="eNL-Yx-MUv"/>
+                        <constraint firstAttribute="bottom" secondItem="pj7-Lv-Ios" secondAttribute="bottom" constant="5" id="jZI-uf-Hi3"/>
+                        <constraint firstAttribute="height" constant="44" id="pLT-sj-v4B"/>
+                        <constraint firstItem="pj7-Lv-Ios" firstAttribute="top" secondItem="sBS-o2-IzM" secondAttribute="top" constant="5" id="ySn-Zv-L25"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4-10个字符" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3B-Ej-YKn">
+                    <rect key="frame" x="340.5" y="118" width="58.5" height="13.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="sBS-o2-IzM" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="20" id="NLt-En-jxE"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="W3B-Ej-YKn" secondAttribute="trailing" constant="15" id="Ui7-lQ-YM5"/>
+                <constraint firstItem="W3B-Ej-YKn" firstAttribute="top" secondItem="sBS-o2-IzM" secondAttribute="bottom" constant="10" id="m3R-FM-HJg"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="sBS-o2-IzM" secondAttribute="trailing" constant="15" id="nRr-4p-cWJ"/>
+                <constraint firstItem="sBS-o2-IzM" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="vjr-dz-YUu"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+        </view>
+    </objects>
+</document>

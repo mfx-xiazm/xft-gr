@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="156" id="KGk-i7-Jjw" customClass="RCNoticeCell">
+            <rect key="frame" x="0.0" y="0.0" width="316" height="155"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="316" height="154.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2X-31-UJk">
+                        <rect key="frame" x="15" y="7" width="286" height="140.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="融创九棠府开盘公告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0He-HD-3uT">
+                                <rect key="frame" x="15" y="15" width="147" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尊敬的客户,融创九棠府将于2019年8月5日上午9点在营销大厅现场抽签开盘,请及时前往认购." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="az7-Sm-QPl">
+                                <rect key="frame" x="15" y="44.5" width="256" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fd6-bG-7Ka" userLabel="分割线">
+                                <rect key="frame" x="15" y="108.5" width="256" height="1"/>
+                                <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="kXW-09-h7H"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019-09-01 12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p38-mJ-5Ul">
+                                <rect key="frame" x="15" y="116" width="103" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查看详情&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZj-8c-K0S">
+                                <rect key="frame" x="214" y="116" width="57" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qZj-8c-K0S" secondAttribute="trailing" constant="15" id="1vV-aV-UOh"/>
+                            <constraint firstItem="az7-Sm-QPl" firstAttribute="leading" secondItem="u2X-31-UJk" secondAttribute="leading" constant="15" id="2SD-n0-MwG"/>
+                            <constraint firstItem="fd6-bG-7Ka" firstAttribute="top" secondItem="az7-Sm-QPl" secondAttribute="bottom" constant="10" id="I5t-We-4ZY"/>
+                            <constraint firstAttribute="bottom" secondItem="qZj-8c-K0S" secondAttribute="bottom" constant="10" id="Qia-Xr-Dq0"/>
+                            <constraint firstItem="fd6-bG-7Ka" firstAttribute="leading" secondItem="u2X-31-UJk" secondAttribute="leading" constant="15" id="X2E-Kk-CPH"/>
+                            <constraint firstItem="0He-HD-3uT" firstAttribute="leading" secondItem="u2X-31-UJk" secondAttribute="leading" constant="15" id="cb3-R6-bmg"/>
+                            <constraint firstAttribute="trailing" secondItem="fd6-bG-7Ka" secondAttribute="trailing" constant="15" id="g9T-pJ-BIu"/>
+                            <constraint firstAttribute="trailing" secondItem="az7-Sm-QPl" secondAttribute="trailing" constant="15" id="itl-Ge-bBs"/>
+                            <constraint firstItem="0He-HD-3uT" firstAttribute="top" secondItem="u2X-31-UJk" secondAttribute="top" constant="15" id="mUL-hL-ywb"/>
+                            <constraint firstItem="p38-mJ-5Ul" firstAttribute="leading" secondItem="u2X-31-UJk" secondAttribute="leading" constant="15" id="nIe-oH-GyL"/>
+                            <constraint firstAttribute="bottom" secondItem="p38-mJ-5Ul" secondAttribute="bottom" constant="10" id="vAO-x2-VZs"/>
+                            <constraint firstItem="az7-Sm-QPl" firstAttribute="top" secondItem="0He-HD-3uT" secondAttribute="bottom" constant="10" id="zur-Hd-7eW"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                <real key="value" value="0.10000000000000001"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                <size key="value" width="0.0" height="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="u2X-31-UJk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="4Cr-Ww-KxU"/>
+                    <constraint firstItem="u2X-31-UJk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="4TJ-Ir-5Cy"/>
+                    <constraint firstAttribute="trailing" secondItem="u2X-31-UJk" secondAttribute="trailing" constant="15" id="k5u-yh-SlL"/>
+                    <constraint firstAttribute="bottom" secondItem="u2X-31-UJk" secondAttribute="bottom" constant="7" id="mKl-1a-o3p"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="134.78260869565219" y="150.66964285714286"/>
+        </tableViewCell>
+    </objects>
+</document>

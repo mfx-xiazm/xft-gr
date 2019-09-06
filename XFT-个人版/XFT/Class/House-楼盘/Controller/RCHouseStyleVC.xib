@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RCHouseStyleVC">
+            <connections>
+                <outlet property="tableView" destination="dnd-Ab-eYC" id="Hlp-pf-AM8"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dnd-Ab-eYC">
+                    <rect key="frame" x="0.0" y="44" width="414" height="774"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MU8-jS-xAt">
+                    <rect key="frame" x="0.0" y="818" width="414" height="44"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E77-cO-1os">
+                            <rect key="frame" x="0.0" y="0.0" width="165.5" height="44"/>
+                            <subviews>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Su-39-Cqb">
+                                    <rect key="frame" x="0.0" y="0.0" width="165.5" height="44"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                    <state key="normal" title="联系案场" image="搜索">
+                                        <color key="titleColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="styleToolBtnClicked:" destination="-1" eventType="touchUpInside" id="Xy3-yr-bAf"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="5Su-39-Cqb" secondAttribute="trailing" id="QNb-6d-g2o"/>
+                                <constraint firstItem="5Su-39-Cqb" firstAttribute="top" secondItem="E77-cO-1os" secondAttribute="top" id="Qvq-bI-cXG"/>
+                                <constraint firstAttribute="bottom" secondItem="5Su-39-Cqb" secondAttribute="bottom" id="Vhp-EZ-0Ed"/>
+                                <constraint firstItem="5Su-39-Cqb" firstAttribute="leading" secondItem="E77-cO-1os" secondAttribute="leading" id="dw9-qV-RyF"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="duV-Zl-deX">
+                            <rect key="frame" x="165.5" y="0.0" width="248.5" height="44"/>
+                            <subviews>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2h-TT-nKG">
+                                    <rect key="frame" x="0.0" y="0.0" width="248.5" height="44"/>
+                                    <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                    <state key="normal" title="预约看房"/>
+                                    <connections>
+                                        <action selector="styleToolBtnClicked:" destination="-1" eventType="touchUpInside" id="b0u-Qs-MJO"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="P2h-TT-nKG" secondAttribute="trailing" id="11s-mf-lTM"/>
+                                <constraint firstItem="P2h-TT-nKG" firstAttribute="top" secondItem="duV-Zl-deX" secondAttribute="top" id="Aij-sa-q5p"/>
+                                <constraint firstItem="P2h-TT-nKG" firstAttribute="leading" secondItem="duV-Zl-deX" secondAttribute="leading" id="MPD-yW-4i5"/>
+                                <constraint firstAttribute="bottom" secondItem="P2h-TT-nKG" secondAttribute="bottom" id="xRJ-Lh-CQf"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SY3-W0-fkQ" userLabel="分割线">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                            <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="saQ-zL-zws"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="duV-Zl-deX" firstAttribute="top" secondItem="MU8-jS-xAt" secondAttribute="top" id="3mb-h2-Xig"/>
+                        <constraint firstAttribute="bottom" secondItem="E77-cO-1os" secondAttribute="bottom" id="ASM-dD-Y1u"/>
+                        <constraint firstItem="E77-cO-1os" firstAttribute="top" secondItem="MU8-jS-xAt" secondAttribute="top" id="HwV-Op-aEc"/>
+                        <constraint firstAttribute="trailing" secondItem="SY3-W0-fkQ" secondAttribute="trailing" id="J89-Iu-0w2"/>
+                        <constraint firstItem="SY3-W0-fkQ" firstAttribute="top" secondItem="MU8-jS-xAt" secondAttribute="top" id="SeC-gx-sQo"/>
+                        <constraint firstAttribute="bottom" secondItem="duV-Zl-deX" secondAttribute="bottom" id="Uhj-ML-qlU"/>
+                        <constraint firstItem="E77-cO-1os" firstAttribute="width" secondItem="MU8-jS-xAt" secondAttribute="width" multiplier="2:5" id="XDS-Qb-gL8"/>
+                        <constraint firstItem="SY3-W0-fkQ" firstAttribute="leading" secondItem="MU8-jS-xAt" secondAttribute="leading" id="YPD-wU-gD6"/>
+                        <constraint firstItem="E77-cO-1os" firstAttribute="leading" secondItem="MU8-jS-xAt" secondAttribute="leading" id="Zob-kQ-Oa7"/>
+                        <constraint firstAttribute="height" constant="44" id="ieq-Mg-RUE"/>
+                        <constraint firstAttribute="trailing" secondItem="duV-Zl-deX" secondAttribute="trailing" id="ucT-Rn-QUx"/>
+                        <constraint firstItem="duV-Zl-deX" firstAttribute="leading" secondItem="E77-cO-1os" secondAttribute="trailing" id="vsr-tk-ku7"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="dnd-Ab-eYC" secondAttribute="trailing" id="7K8-SC-ioo"/>
+                <constraint firstItem="dnd-Ab-eYC" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="CBa-9B-rzg"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="MU8-jS-xAt" secondAttribute="bottom" id="RLe-g3-mcu"/>
+                <constraint firstItem="dnd-Ab-eYC" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="T3g-95-VYS"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="MU8-jS-xAt" secondAttribute="trailing" id="lAp-7D-sUY"/>
+                <constraint firstItem="MU8-jS-xAt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oUc-Dj-nju"/>
+                <constraint firstItem="MU8-jS-xAt" firstAttribute="top" secondItem="dnd-Ab-eYC" secondAttribute="bottom" id="xHP-HM-SCx"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="搜索" width="15" height="15"/>
+    </resources>
+</document>

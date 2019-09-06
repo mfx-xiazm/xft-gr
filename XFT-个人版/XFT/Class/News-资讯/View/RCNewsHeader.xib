@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RCNewsHeader">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="169"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGU-A1-SIB" customClass="TYCyclePagerView">
+                    <rect key="frame" x="0.0" y="10" width="414" height="159"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="mGU-A1-SIB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="3Wt-7T-QgF"/>
+                <constraint firstAttribute="trailing" secondItem="mGU-A1-SIB" secondAttribute="trailing" id="JVQ-9G-jvI"/>
+                <constraint firstItem="mGU-A1-SIB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Pbp-Ax-4zj"/>
+                <constraint firstAttribute="bottom" secondItem="mGU-A1-SIB" secondAttribute="bottom" priority="999" id="vPd-UO-ux3"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cycleView" destination="mGU-A1-SIB" id="5gY-pL-2KU"/>
+            </connections>
+            <point key="canvasLocation" x="97.101449275362327" y="266.18303571428572"/>
+        </view>
+    </objects>
+</document>
