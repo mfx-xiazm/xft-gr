@@ -36,13 +36,7 @@
     self.menuView.titleColor = UIColorFromRGB(0x131D2D);
     self.menuView.titleHightLightColor = UIColorFromRGB(0xFF9F08);
 }
-- (IBAction)mapBtnClicked:(id)sender {
-    if (self.filterCall) {
-        self.filterCall(0,0,0);
-    }
-}
-
-
+#pragma mark -- 点击事件
 - (IBAction)filterClicked:(UIButton *)sender {
     if (self.menuView.show) {
         [self.menuView menuHidden];

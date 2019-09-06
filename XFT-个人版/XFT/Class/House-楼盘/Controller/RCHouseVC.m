@@ -7,23 +7,28 @@
 //
 
 #import "RCHouseVC.h"
-#import "RCHouseCell.h"
-#import "RCHouseFilterView.h"
 #import "RCHouseHeader.h"
 #import "RCSearchHouseVC.h"
 #import "RCSearchCityVC.h"
 #import "RCNoticeVC.h"
-#import "RCHouseDetailVC.h"
 #import "RCMapToHouseVC.h"
+#import "RCPageMainTable.h"
+#import "RCHouseChildVC.h"
+#import "RCHouseCategoryView.h"
 
-static NSString *const HouseCell = @"HouseCell";
 @interface RCHouseVC ()<UITableViewDelegate,UITableViewDataSource>
 /** tableView */
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet RCPageMainTable *tableView;
 /* 头视图 */
 @property(nonatomic,strong) RCHouseHeader *header;
 /* 筛选 */
-@property(nonatomic,strong) RCHouseFilterView *filterView;
+@property(nonatomic,strong) RCHouseCategoryView *categoryView;
+/** 子控制器承载scr */
+@property (nonatomic,strong) UIScrollView *scrollView;
+/** 子控制器数组 */
+@property (nonatomic,strong) NSArray *childVCs;
+/** 是否可以滑动 */
+@property(nonatomic,assign)BOOL isCanScroll;
 @end
 
 @implementation RCHouseVC
@@ -31,22 +36,78 @@ static NSString *const HouseCell = @"HouseCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"幸福通"];
+    self.isCanScroll = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MainTableScroll:) name:@"MainTableScroll" object:nil];
     [self setUpNavBar];
     [self setUpTableView];
-    [self setUpTableHeaderView];
 }
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 10.f+170.f+50.f);
+    self.header.frame = CGRectMake(0, -(10.f+170.f+50.f), HX_SCREEN_WIDTH, 10.f+170.f+50.f);
+    self.categoryView.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 60.f);
 }
 -(RCHouseHeader *)header
 {
     if (_header == nil) {
         _header = [RCHouseHeader loadXibView];
         _header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 10.f+170.f+50.f);
+        hx_weakify(self);
+        _header.houseHeaderBtnClicked = ^(NSInteger type, NSInteger index) {
+            if (type == 0) {
+                RCNoticeVC *nvc = [RCNoticeVC new];
+                [weakSelf.navigationController pushViewController:nvc animated:YES];
+            }else{
+                
+            }
+        };
     }
     return _header;
+}
+-(RCHouseCategoryView *)categoryView
+{
+    if (_categoryView == nil) {
+        _categoryView = [RCHouseCategoryView loadXibView];
+        _categoryView.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 60.f);
+        _categoryView.scrollView = self.scrollView;
+        _categoryView.childVCs = self.childVCs;
+        hx_weakify(self);
+        _categoryView.mapToHouseCall = ^{
+            RCMapToHouseVC *hvc = [RCMapToHouseVC new];
+            [weakSelf.navigationController pushViewController:hvc animated:YES];
+        };
+    }
+    return _categoryView;
+}
+-(NSArray *)childVCs
+{
+    if (_childVCs == nil) {
+        NSMutableArray *vcs = [NSMutableArray array];
+        for (int i=0;i<2;i++) {
+            RCHouseChildVC *cvc0 = [RCHouseChildVC new];
+            cvc0.mainTable = self.tableView;
+            [self addChildViewController:cvc0];
+            [vcs addObject:cvc0];
+        }
+        _childVCs = vcs;
+    }
+    return _childVCs;
+}
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] init];
+        _scrollView.frame = CGRectMake(0, 60.f, HX_SCREEN_WIDTH, HX_SCREEN_HEIGHT-self.HXNavBarHeight-self.HXTabBarHeight - 60.f);
+        _scrollView.delegate = self;
+        _scrollView.pagingEnabled = YES;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.contentSize = CGSizeMake(HX_SCREEN_WIDTH*self.childVCs.count, 0);
+        // 加第一个视图
+        UIViewController *targetViewController = self.childVCs.firstObject;
+        targetViewController.view.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, _scrollView.hxn_height);
+        [_scrollView addSubview:targetViewController.view];
+    }
+    return  _scrollView;
 }
 #pragma mark -- 视图相关
 -(void)setUpNavBar
@@ -76,12 +137,12 @@ static NSString *const HouseCell = @"HouseCell";
         // 不要自动调整inset
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    self.tableView.estimatedRowHeight = 100;//预估高度
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 0;//预估高度
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
     
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(10.f+170.f+50.f,0, 0, 0);
+
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -91,42 +152,40 @@ static NSString *const HouseCell = @"HouseCell";
     // 设置背景色为clear
     self.tableView.backgroundColor = [UIColor clearColor];
     
-    // 注册cell
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCHouseCell class]) bundle:nil] forCellReuseIdentifier:HouseCell];
+    self.tableView.tableFooterView = [UIView new];
+    //    hx_weakify(self);
+    //    __weak __typeof(BBPageMainTable *) weakTable = _mainTable;
+    //    _mainTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    //        hx_strongify(weakSelf);
+    //        BBExcellentShopChildVC *cv = strongSelf.childVCs[strongSelf.pageMenu.selectedItemIndex];
+    //        [cv refreshData:weakTable];
+    //    }];
+    //    _mainTable.mj_header.ignoredScrollViewContentInsetTop = (self.type != 2)?(HX_SCREEN_WIDTH*2/5.0 + (HX_SCREEN_WIDTH*4/5.0)*2 +10):(HX_SCREEN_WIDTH*2/5.0 + 10);
+    //    _mainTable.mj_header.automaticallyChangeAlpha = YES;
     
-    [self.view insertSubview:self.tableView atIndex:0];
+    [self.tableView addSubview:self.header];
 }
--(void)setUpTableHeaderView
-{
-    hx_weakify(self);
-    self.header.houseHeaderBtnClicked = ^(NSInteger type, NSInteger index) {
-        hx_strongify(weakSelf);
-        if (type == 0) {
-            RCNoticeVC *nvc = [RCNoticeVC new];
-            [strongSelf.navigationController pushViewController:nvc animated:YES];
+#pragma mark -- 主视图滑动通知处理
+-(void)MainTableScroll:(NSNotification *)user{
+    self.isCanScroll = YES;
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView == self.tableView) {
+        CGFloat tabOffsetY = [self.tableView rectForSection:0].origin.y;
+        CGFloat offsetY = scrollView.contentOffset.y;
+        if (offsetY>=tabOffsetY) {
+            self.isCanScroll = NO;
+            scrollView.contentOffset = CGPointMake(0, 0);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"childScrollCan" object:nil];
         }else{
-            
+            if (!self.isCanScroll) {
+                [scrollView setContentOffset:CGPointZero];
+            }
         }
-    };
-    self.tableView.tableHeaderView = self.header;
+    }
 }
-/**
- 添加刷新控件
- */
--(void)setUpRefresh
-{
-    hx_weakify(self);
-    self.tableView.mj_header.automaticallyChangeAlpha = YES;
-    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-        hx_strongify(weakSelf);
-        [strongSelf.tableView.mj_footer resetNoMoreData];
-        
-    }];
-    //追加尾部刷新
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-//        hx_strongify(weakSelf);
-        
-    }];
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 #pragma mark -- 点击事件
 -(void)cityClicked
@@ -140,63 +199,22 @@ static NSString *const HouseCell = @"HouseCell";
     [self.navigationController pushViewController:hvc animated:YES];
 }
 #pragma mark -- UITableView数据源和代理
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 6;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RCHouseCell *cell = [tableView dequeueReusableCellWithIdentifier:HouseCell forIndexPath:indexPath];
-    //无色
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return self.view.hxn_height;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    // 添加pageView
+    [cell.contentView addSubview:self.scrollView];
+    [cell.contentView addSubview:self.categoryView];
+    
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // 返回这个模型对应的cell高度
-    return 165.f;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 100.f;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (self.filterView) {
-        self.filterView.target = self;
-        self.filterView.tableView = tableView;
-        self.filterView.areas = @[@"全部",@"洪山区",@"武昌区",@"汉口区",@"汉阳区",@"蔡甸区",@"青山区"];
-        self.filterView.wuye = @[@"全部",@"物业1",@"物业3",@"物业3",@"物业4"];
-        self.filterView.huxing = @[@"全部",@"一居室",@"二居室",@"三居室",@"四居室"];
-        self.filterView.mianji = @[@"全部",@"50-80平方",@"80-100平方",@"100-120平方",@"120-150平方"];
-        return self.filterView;
-    }
-    RCHouseFilterView *fv = [RCHouseFilterView loadXibView];
-    fv.hxn_width = HX_SCREEN_WIDTH;
-    fv.hxn_height = 100.f;
-    fv.target = self;
-    fv.tableView = tableView;
-    fv.areas = @[@"全部",@"洪山区",@"武昌区",@"汉口区",@"汉阳区",@"蔡甸区",@"青山区"];
-    fv.wuye = @[@"全部",@"物业1",@"物业3",@"物业3",@"物业4"];
-    fv.huxing = @[@"全部",@"一居室",@"二居室",@"三居室",@"四居室"];
-    fv.mianji = @[@"全部",@"50-80平方",@"80-100平方",@"100-120平方",@"120-150平方"];
-    hx_weakify(self);
-    fv.filterCall = ^(NSInteger type, NSInteger btnTag, NSInteger index) {
-        hx_strongify(weakSelf);
-        if (index == 1) {
-            
-        }else{
-            RCMapToHouseVC *hvc = [RCMapToHouseVC new];
-            [strongSelf.navigationController pushViewController:hvc animated:YES];
-        }
-    };
-    self.filterView = fv;
-    return fv;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    RCHouseDetailVC *dvc = [RCHouseDetailVC new];
-    [self.navigationController pushViewController:dvc animated:YES];
-}
-
 
 @end

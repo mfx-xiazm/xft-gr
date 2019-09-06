@@ -29,7 +29,7 @@
                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GD8-P8-GcK" customClass="SPButton">
                                     <rect key="frame" x="0.0" y="0.0" width="83" height="44"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                    <state key="normal" title="分享" image="搜索">
+                                    <state key="normal" title="转发好友" image="搜索">
                                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
@@ -47,7 +47,7 @@
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8q-Zf-Xhc" customClass="SPButton">
                                     <rect key="frame" x="83" y="0.0" width="82.5" height="44"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                    <state key="normal" title="收藏" image="搜索">
+                                    <state key="normal" title="收藏户型" image="搜索">
                                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
@@ -81,8 +81,8 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r08-2f-e81">
                                     <rect key="frame" x="0.0" y="0.0" width="248.5" height="44"/>
                                     <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <state key="normal" title="报名"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                    <state key="normal" title="查看楼盘详情"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -117,87 +117,11 @@
                         <constraint firstItem="gIT-iF-9tK" firstAttribute="width" secondItem="3Th-Tk-zhx" secondAttribute="width" multiplier="2:5" id="yrd-ur-awh"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdW-ok-Ril">
-                    <rect key="frame" x="0.0" y="818" width="414" height="44"/>
-                    <subviews>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orc-V4-WAb" customClass="SPButton">
-                            <rect key="frame" x="0.0" y="0.0" width="207" height="44"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="收藏" image="搜索">
-                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="imagePosition">
-                                    <integer key="value" value="0"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="imageTitleSpace">
-                                    <real key="value" value="10"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="detailBtnClicked:" destination="-1" eventType="touchUpInside" id="dyA-Zu-3Ox"/>
-                            </connections>
-                        </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enC-0v-nTU" userLabel="分割线">
-                            <rect key="frame" x="206.5" y="10" width="1" height="24"/>
-                            <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="1" id="VzB-Ks-XsT"/>
-                            </constraints>
-                        </view>
-                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfA-Ei-UnF" customClass="SPButton">
-                            <rect key="frame" x="207" y="0.0" width="207" height="44"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="分享" image="搜索">
-                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="imagePosition">
-                                    <integer key="value" value="0"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="imageTitleSpace">
-                                    <real key="value" value="10"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="detailBtnClicked:" destination="-1" eventType="touchUpInside" id="et4-1v-PBD"/>
-                            </connections>
-                        </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDb-b4-Z4e" userLabel="分割线">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
-                            <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="1" id="13I-DX-gnB"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="orc-V4-WAb" secondAttribute="bottom" id="Aqe-U6-GlD"/>
-                        <constraint firstItem="pfA-Ei-UnF" firstAttribute="width" secondItem="orc-V4-WAb" secondAttribute="width" id="DlX-Nt-1im"/>
-                        <constraint firstAttribute="height" constant="44" id="E42-rX-H9c"/>
-                        <constraint firstItem="enC-0v-nTU" firstAttribute="centerX" secondItem="sdW-ok-Ril" secondAttribute="centerX" id="QS9-Me-GRh"/>
-                        <constraint firstAttribute="bottom" secondItem="enC-0v-nTU" secondAttribute="bottom" constant="10" id="S9y-Pl-f9L"/>
-                        <constraint firstItem="enC-0v-nTU" firstAttribute="top" secondItem="sdW-ok-Ril" secondAttribute="top" constant="10" id="SHe-bC-act"/>
-                        <constraint firstItem="pfA-Ei-UnF" firstAttribute="top" secondItem="sdW-ok-Ril" secondAttribute="top" id="ST2-lt-1IK"/>
-                        <constraint firstItem="fDb-b4-Z4e" firstAttribute="top" secondItem="sdW-ok-Ril" secondAttribute="top" id="Sqy-SJ-R9P"/>
-                        <constraint firstAttribute="bottom" secondItem="pfA-Ei-UnF" secondAttribute="bottom" id="Uew-R2-m2p"/>
-                        <constraint firstItem="orc-V4-WAb" firstAttribute="top" secondItem="sdW-ok-Ril" secondAttribute="top" id="X5W-3u-QcK"/>
-                        <constraint firstItem="pfA-Ei-UnF" firstAttribute="leading" secondItem="orc-V4-WAb" secondAttribute="trailing" id="YEI-DY-NDf"/>
-                        <constraint firstAttribute="trailing" secondItem="pfA-Ei-UnF" secondAttribute="trailing" id="gk4-wD-j4U"/>
-                        <constraint firstAttribute="trailing" secondItem="fDb-b4-Z4e" secondAttribute="trailing" id="qtF-jx-2i0"/>
-                        <constraint firstItem="fDb-b4-Z4e" firstAttribute="leading" secondItem="sdW-ok-Ril" secondAttribute="leading" id="rmc-0b-oiL"/>
-                        <constraint firstItem="orc-V4-WAb" firstAttribute="leading" secondItem="sdW-ok-Ril" secondAttribute="leading" id="uQ1-K1-og0"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="sdW-ok-Ril" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="5JK-58-IIv"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="3Th-Tk-zhx" secondAttribute="trailing" id="E3Y-Jr-wPI"/>
                 <constraint firstItem="3Th-Tk-zhx" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="XA4-z9-wEJ"/>
-                <constraint firstItem="sdW-ok-Ril" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="mbP-IB-gnn"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="sdW-ok-Ril" secondAttribute="bottom" id="pWH-AQ-TqL"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="3Th-Tk-zhx" secondAttribute="bottom" id="zlc-HA-Fgo"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

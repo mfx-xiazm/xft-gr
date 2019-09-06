@@ -12,57 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RCHouseFilterView">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eMJ-2G-Ec8">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="56"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="融创新房" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiH-Pe-gIg">
-                            <rect key="frame" x="15" y="16" width="82" height="24"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                            <color key="textColor" white="0.10000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUE-Zj-35I">
-                            <rect key="frame" x="15" y="32" width="82" height="6"/>
-                            <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="6" id="Rvz-KB-rKY"/>
-                            </constraints>
-                        </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfg-ef-S0y">
-                            <rect key="frame" x="365" y="13" width="100" height="30"/>
-                            <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="DYi-Dp-dea"/>
-                                <constraint firstAttribute="width" constant="100" id="Ywb-Ud-lt8"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="地图找房"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
-                                    <real key="value" value="2"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="mapBtnClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="CKH-94-bdp"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="Tfg-ef-S0y" secondAttribute="trailing" constant="15" id="0z0-vj-6TI"/>
-                        <constraint firstItem="lUE-Zj-35I" firstAttribute="top" secondItem="IiH-Pe-gIg" secondAttribute="bottom" constant="-8" id="gOh-x4-iMv"/>
-                        <constraint firstItem="lUE-Zj-35I" firstAttribute="leading" secondItem="IiH-Pe-gIg" secondAttribute="leading" id="glP-9Z-QRj"/>
-                        <constraint firstItem="IiH-Pe-gIg" firstAttribute="centerY" secondItem="eMJ-2G-Ec8" secondAttribute="centerY" id="hfJ-sv-YgQ"/>
-                        <constraint firstItem="lUE-Zj-35I" firstAttribute="trailing" secondItem="IiH-Pe-gIg" secondAttribute="trailing" id="lA1-8g-wip"/>
-                        <constraint firstItem="Tfg-ef-S0y" firstAttribute="centerY" secondItem="eMJ-2G-Ec8" secondAttribute="centerY" id="soM-gd-i3p"/>
-                        <constraint firstItem="IiH-Pe-gIg" firstAttribute="leading" secondItem="eMJ-2G-Ec8" secondAttribute="leading" constant="15" id="uzM-e9-Omn"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PA7-QZ-K08">
-                    <rect key="frame" x="0.0" y="56" width="480" height="44"/>
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7n3-Y9-RP8">
                             <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
@@ -201,7 +155,6 @@
                         <constraint firstItem="EHg-Cs-R1b" firstAttribute="leading" secondItem="naB-X5-V1s" secondAttribute="trailing" id="7Ju-Ul-aXz"/>
                         <constraint firstItem="7n3-Y9-RP8" firstAttribute="leading" secondItem="PA7-QZ-K08" secondAttribute="leading" id="KT5-3R-aaJ"/>
                         <constraint firstAttribute="trailing" secondItem="EHg-Cs-R1b" secondAttribute="trailing" id="KzR-US-HH4"/>
-                        <constraint firstAttribute="height" constant="44" id="LMF-E4-XIl"/>
                         <constraint firstItem="EHg-Cs-R1b" firstAttribute="width" secondItem="7n3-Y9-RP8" secondAttribute="width" id="MhM-Tp-cb4"/>
                         <constraint firstItem="EHg-Cs-R1b" firstAttribute="top" secondItem="PA7-QZ-K08" secondAttribute="top" id="Q9E-h3-cPP"/>
                         <constraint firstItem="IaR-ad-NCb" firstAttribute="width" secondItem="7n3-Y9-RP8" secondAttribute="width" id="XTs-p9-gW1"/>
@@ -217,13 +170,10 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="PA7-QZ-K08" firstAttribute="top" secondItem="eMJ-2G-Ec8" secondAttribute="bottom" id="0cv-a1-xcK"/>
+                <constraint firstItem="PA7-QZ-K08" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8dg-Bh-XM7"/>
                 <constraint firstAttribute="trailing" secondItem="PA7-QZ-K08" secondAttribute="trailing" id="C50-rl-egR"/>
                 <constraint firstAttribute="bottom" secondItem="PA7-QZ-K08" secondAttribute="bottom" id="JO0-Qf-sfg"/>
-                <constraint firstAttribute="trailing" secondItem="eMJ-2G-Ec8" secondAttribute="trailing" id="ifs-gW-ZmU"/>
-                <constraint firstItem="eMJ-2G-Ec8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jtT-br-XqZ"/>
                 <constraint firstItem="PA7-QZ-K08" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="v7N-D5-p1v"/>
-                <constraint firstItem="eMJ-2G-Ec8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wyk-e8-aVe"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
@@ -236,7 +186,7 @@
                 <outlet property="wuyeImg" destination="Cck-aJ-0EZ" id="Tus-uR-CbW"/>
                 <outlet property="wuyeLabel" destination="Fkv-H8-Ksr" id="eRv-2I-Nc5"/>
             </connections>
-            <point key="canvasLocation" x="97.101449275362327" y="62.611607142857139"/>
+            <point key="canvasLocation" x="97.101449275362327" y="47.879464285714285"/>
         </view>
     </objects>
     <resources>
