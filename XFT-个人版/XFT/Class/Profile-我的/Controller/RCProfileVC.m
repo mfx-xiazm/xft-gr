@@ -15,6 +15,9 @@
 #import "RCUpgradeRoleVC.h"
 #import "RCFeedbackVC.h"
 #import "RCAboutUsVC.h"
+#import "RCProfileFooter.h"
+#import "RCHouseLoanVC.h"
+#import "RCProfileQuestionVC.h"
 
 static NSString *const ProfileCell = @"ProfileCell";
 
@@ -24,6 +27,8 @@ static NSString *const ProfileCell = @"ProfileCell";
 @property(nonatomic,strong) RCNavBarView *navBarView;
 /* 头视图 */
 @property(nonatomic,strong) RCProfileHeader *header;
+/* 尾部视图 */
+@property(nonatomic,strong) RCProfileFooter *footer;
 /* titles */
 @property(nonatomic,strong) NSArray *titles;
 /* 关于我们的跳转（隐藏导航栏） */
@@ -53,6 +58,7 @@ static NSString *const ProfileCell = @"ProfileCell";
     [super viewDidLayoutSubviews];
     self.header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 180.f);
     self.navBarView.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, self.HXNavBarHeight);
+    self.footer.hxn_size = CGSizeMake(HX_SCREEN_WIDTH, 180.f);
 }
 -(RCNavBarView *)navBarView
 {
@@ -79,10 +85,24 @@ static NSString *const ProfileCell = @"ProfileCell";
     }
     return _header;
 }
+-(RCProfileFooter *)footer
+{
+    if (_footer == nil) {
+        _footer = [RCProfileFooter loadXibView];
+        _footer.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 120.f);
+        hx_weakify(self);
+        _footer.upRoleCall = ^{
+            // 升级经纪人
+            RCUpgradeRoleVC *rvc = [RCUpgradeRoleVC new];
+            [weakSelf.navigationController pushViewController:rvc animated:YES];
+        };
+    }
+    return _footer;
+}
 -(NSArray *)titles
 {
     if (_titles == nil) {
-        _titles = @[@[@"我的收藏",@"我的预约"],@[@"升级经纪人"],@[@"平台问答",@"反馈与意见",@"关于我们"]];
+        _titles = @[@[@"我的预约到访"],@[@"我的收藏",@"房贷计算器"],@[@"平台问答",@"反馈与意见",@"关于我们"]];
     }
     return _titles;
 }
@@ -112,6 +132,7 @@ static NSString *const ProfileCell = @"ProfileCell";
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCProfileCell class]) bundle:nil] forCellReuseIdentifier:ProfileCell];
     
     self.tableView.tableHeaderView = self.header;
+    self.tableView.tableFooterView = self.footer;
 }
 #pragma mark -- 业务逻辑
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -159,20 +180,22 @@ static NSString *const ProfileCell = @"ProfileCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
+        // 我的预约到访
+    }else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             //我的收藏
             RCProfileCollectVC *cvc = [RCProfileCollectVC  new];
             [self.navigationController pushViewController:cvc animated:YES];
         }else{
-            //我的预约
+            //房贷计算器
+            RCHouseLoanVC *lvc = [RCHouseLoanVC new];
+            [self.navigationController pushViewController:lvc animated:YES];
         }
-    }else if (indexPath.section == 1) {
-        // 升级经纪人
-        RCUpgradeRoleVC *rvc = [RCUpgradeRoleVC new];
-        [self.navigationController pushViewController:rvc animated:YES];
     }else {
         if (indexPath.row == 0) {
             // 平台问答
+            RCProfileQuestionVC *qvc = [RCProfileQuestionVC new];
+            [self.navigationController pushViewController:qvc animated:YES];
         }else if (indexPath.row == 1) {
             // 反馈与意见
             RCFeedbackVC *fvc = [RCFeedbackVC new];

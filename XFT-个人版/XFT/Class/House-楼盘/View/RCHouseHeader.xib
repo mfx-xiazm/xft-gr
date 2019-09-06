@@ -27,28 +27,18 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ckb-ki-Adm">
                             <rect key="frame" x="15" y="5" width="382" height="50"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O7M-xg-Fbf">
-                                    <rect key="frame" x="5" y="7.5" width="35" height="35"/>
-                                    <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="35" id="Hdb-CS-NIX"/>
-                                        <constraint firstAttribute="height" constant="35" id="j4L-Y2-Qbl"/>
-                                    </constraints>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_gonggao" translatesAutoresizingMaskIntoConstraints="NO" id="O7M-xg-Fbf">
+                                    <rect key="frame" x="10" y="12" width="37" height="26"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HFA-jh-k7S">
-                                    <rect key="frame" x="50" y="10" width="282" height="30"/>
+                                    <rect key="frame" x="57" y="10" width="281" height="30"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="eel-PN-0ly"/>
                                     </constraints>
                                 </view>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iWz-nF-aOW">
-                                    <rect key="frame" x="342" y="7.5" width="35" height="35"/>
-                                    <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="35" id="d87-h3-KN7"/>
-                                        <constraint firstAttribute="width" constant="35" id="ggM-X7-kqa"/>
-                                    </constraints>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_next_circle" translatesAutoresizingMaskIntoConstraints="NO" id="iWz-nF-aOW">
+                                    <rect key="frame" x="348" y="13" width="24" height="24"/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KU-NQ-odH">
                                     <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
@@ -65,10 +55,10 @@
                                 <constraint firstItem="iWz-nF-aOW" firstAttribute="leading" secondItem="HFA-jh-k7S" secondAttribute="trailing" constant="10" id="WFx-gb-M8j"/>
                                 <constraint firstItem="5KU-NQ-odH" firstAttribute="leading" secondItem="Ckb-ki-Adm" secondAttribute="leading" id="c9G-FQ-cmT"/>
                                 <constraint firstItem="iWz-nF-aOW" firstAttribute="centerY" secondItem="Ckb-ki-Adm" secondAttribute="centerY" id="oNZ-Ln-SvJ"/>
-                                <constraint firstItem="O7M-xg-Fbf" firstAttribute="leading" secondItem="Ckb-ki-Adm" secondAttribute="leading" constant="5" id="pHk-yX-RcD"/>
+                                <constraint firstItem="O7M-xg-Fbf" firstAttribute="leading" secondItem="Ckb-ki-Adm" secondAttribute="leading" constant="10" id="pHk-yX-RcD"/>
                                 <constraint firstItem="O7M-xg-Fbf" firstAttribute="centerY" secondItem="Ckb-ki-Adm" secondAttribute="centerY" id="qEz-pT-Sv7"/>
                                 <constraint firstItem="HFA-jh-k7S" firstAttribute="leading" secondItem="O7M-xg-Fbf" secondAttribute="trailing" constant="10" id="u2F-I6-20f"/>
-                                <constraint firstAttribute="trailing" secondItem="iWz-nF-aOW" secondAttribute="trailing" constant="5" id="x3S-Ku-D1H"/>
+                                <constraint firstAttribute="trailing" secondItem="iWz-nF-aOW" secondAttribute="trailing" constant="10" id="x3S-Ku-D1H"/>
                                 <constraint firstAttribute="bottom" secondItem="5KU-NQ-odH" secondAttribute="bottom" id="xS9-GC-yUT"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
@@ -117,4 +107,8 @@
             <point key="canvasLocation" x="46.376811594202906" y="244.08482142857142"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_next_circle" width="24" height="24"/>
+        <image name="pic_gonggao" width="37" height="26"/>
+    </resources>
 </document>

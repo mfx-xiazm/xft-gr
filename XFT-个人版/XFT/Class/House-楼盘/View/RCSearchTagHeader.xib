@@ -16,17 +16,25 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="历史访问" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKn-Fk-BaO">
-                    <rect key="frame" x="15" y="14" width="64" height="22.5"/>
+                    <rect key="frame" x="15" y="12.5" width="71" height="25"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDH-U8-9Qz">
-                    <rect key="frame" x="255" y="11.5" width="50" height="27"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDH-U8-9Qz" customClass="SPButton">
+                    <rect key="frame" x="226" y="13" width="79" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="重新定位">
+                    <state key="normal" title="重新定位" image="icon_cxdingwei">
                         <color key="titleColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="imagePosition">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="imageTitleSpace">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="locationClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="s8D-mG-g0K"/>
                     </connections>
@@ -45,4 +53,7 @@
             <point key="canvasLocation" x="-38" y="97"/>
         </collectionReusableView>
     </objects>
+    <resources>
+        <image name="icon_cxdingwei" width="24" height="24"/>
+    </resources>
 </document>

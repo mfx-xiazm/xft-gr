@@ -155,6 +155,7 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if ([kind isEqualToString : UICollectionElementKindSectionHeader]){
         RCSearchTagHeader * headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SearchTagHeader forIndexPath:indexPath];
+        headerView.locationBtn.hidden = YES;
         return headerView;
     }
     return nil;

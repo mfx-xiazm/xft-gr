@@ -24,5 +24,8 @@
     self.starView.tintColor = HXControlBg;
     self.remark.placeholder = @"请输入意见和建议";
 }
+- (IBAction)hiddenSubmitClicked:(UIButton *)sender {
+    sender.selected = !sender.selected;
+}
 
 @end

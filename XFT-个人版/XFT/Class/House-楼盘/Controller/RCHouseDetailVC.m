@@ -119,7 +119,7 @@ static NSString *const HouseStyleCell = @"HouseStyleCell";
 #pragma mark -- 视图配置
 -(void)setUpNavBar
 {
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(shareClicked) nomalImage:HXGetImage(@"搜索") higeLightedImage:HXGetImage(@"搜索") imageEdgeInsets:UIEdgeInsetsZero];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(shareClicked) nomalImage:HXGetImage(@"icon_top_search") higeLightedImage:HXGetImage(@"icon_top_search") imageEdgeInsets:UIEdgeInsetsZero];
 }
 -(void)setUpCycleView
 {

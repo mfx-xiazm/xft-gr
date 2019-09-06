@@ -52,9 +52,9 @@ static NSString *const HouseStyleDetailCell = @"HouseStyleDetailCell";
 }
 -(void)setUpNavBar
 {
-    UIBarButtonItem *shareItem = [UIBarButtonItem itemWithTarget:self action:@selector(shareClicked) nomalImage:HXGetImage(@"搜索") higeLightedImage:HXGetImage(@"搜索") imageEdgeInsets:UIEdgeInsetsZero];
+    UIBarButtonItem *shareItem = [UIBarButtonItem itemWithTarget:self action:@selector(shareClicked) nomalImage:HXGetImage(@"icon_top_search") higeLightedImage:HXGetImage(@"icon_top_search") imageEdgeInsets:UIEdgeInsetsZero];
     
-    UIBarButtonItem *collectItem = [UIBarButtonItem itemWithTarget:self action:@selector(collectClicked) nomalImage:HXGetImage(@"搜索") higeLightedImage:HXGetImage(@"搜索") imageEdgeInsets:UIEdgeInsetsZero];
+    UIBarButtonItem *collectItem = [UIBarButtonItem itemWithTarget:self action:@selector(collectClicked) nomalImage:HXGetImage(@"icon_top_search") higeLightedImage:HXGetImage(@"icon_top_search") imageEdgeInsets:UIEdgeInsetsZero];
     self.navigationItem.rightBarButtonItems = @[shareItem,collectItem];
 }
 -(void)setUpTableView

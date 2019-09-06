@@ -49,7 +49,7 @@
 {
     _categoryView.backgroundColor = [UIColor whiteColor];
     _categoryView.titleLabelZoomEnabled = NO;
-    _categoryView.titles = @[@"楼盘", @"户型", @"资讯", @"活动"];
+    _categoryView.titles = @[@"楼盘", @"户型", @"资讯"];
     _categoryView.titleFont = [UIFont systemFontOfSize:15 weight:UIFontWeightMedium];
     _categoryView.titleColor = UIColorFromRGB(0x666666);
     _categoryView.titleSelectedColor = HXControlBg;

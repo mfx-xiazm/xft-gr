@@ -43,10 +43,10 @@
     [item setTitleTextAttributes:selectedAttrs forState:UIControlStateSelected];
     
     // 添加子控制器
-    [self setupChildVc:[[RCHouseVC alloc] init] title:@"楼盘" image:@"首页" selectedImage:@"首页选中"];
-    [self setupChildVc:[[RCPushVC alloc] init] title:@"推荐" image:@"分类" selectedImage:@"分类选中"];
-    [self setupChildVc:[[RCNewsVC alloc] init] title:@"资讯" image:@"购物车" selectedImage:@"购物车选中"];
-    [self setupChildVc:[[RCStaffVC alloc] init] title:@"我的" image:@"我的" selectedImage:@"我的选中"];
+    [self setupChildVc:[[RCHouseVC alloc] init] title:@"楼盘" image:@"icon_home" selectedImage:@"icon_home_click"];
+    [self setupChildVc:[[RCPushVC alloc] init] title:@"推荐" image:@"icon_tuijian" selectedImage:@"icon_tuijian_click"];
+    [self setupChildVc:[[RCNewsVC alloc] init] title:@"资讯" image:@"icon_information" selectedImage:@"icon_information_click"];
+    [self setupChildVc:[[RCProfileVC alloc] init] title:@"我的" image:@"icon_mine" selectedImage:@"icon_mine_click"];
     
     self.delegate = self;
     

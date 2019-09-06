@@ -29,16 +29,11 @@
                                     <constraint firstAttribute="height" constant="1" id="Drq-yT-aom"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OF9-n0-soZ">
-                                <rect key="frame" x="15" y="7.5" width="25" height="25"/>
-                                <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="LO6-7p-rjX"/>
-                                    <constraint firstAttribute="height" constant="25" id="vLP-Rb-bBB"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_yong" translatesAutoresizingMaskIntoConstraints="NO" id="OF9-n0-soZ">
+                                <rect key="frame" x="15" y="8" width="24" height="24"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000元/套" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaJ-w2-fa0">
-                                <rect key="frame" x="45" y="11.5" width="75" height="17"/>
+                                <rect key="frame" x="44" y="11.5" width="75" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -57,9 +52,9 @@
                                     <constraint firstAttribute="width" constant="85" id="PVz-S5-ntn"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wl6-cd-Oge">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_tx_next" translatesAutoresizingMaskIntoConstraints="NO" id="Wl6-cd-Oge">
                                 <rect key="frame" x="327" y="7.5" width="25" height="25"/>
-                                <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="lIX-oZ-GxD"/>
                                     <constraint firstAttribute="width" constant="25" id="sTw-Mh-X2r"/>
@@ -242,4 +237,8 @@
             <point key="canvasLocation" x="170.28985507246378" y="155.02232142857142"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_tx_next" width="24" height="24"/>
+        <image name="icon_yong" width="24" height="24"/>
+    </resources>
 </document>

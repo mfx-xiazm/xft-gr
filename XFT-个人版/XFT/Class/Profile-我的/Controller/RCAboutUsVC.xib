@@ -24,8 +24,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8W6-2G-6Fi">
                     <rect key="frame" x="35" y="144" width="344" height="430"/>
                     <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_aboutus" translatesAutoresizingMaskIntoConstraints="NO" id="6uf-h8-14Y">
+                            <rect key="frame" x="0.0" y="0.0" width="344" height="430"/>
+                        </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GiW-b1-v9Q">
-                            <rect key="frame" x="40" y="40" width="264" height="264"/>
+                            <rect key="frame" x="55" y="40" width="234" height="234"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="GiW-b1-v9Q" secondAttribute="height" multiplier="1:1" id="70z-4Y-rHU"/>
                             </constraints>
@@ -65,7 +68,7 @@
                                     </state>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="MYf-Ul-hdY" firstAttribute="top" secondItem="WlO-3H-4Id" secondAttribute="top" constant="15" id="4nx-ew-gAL"/>
                                 <constraint firstItem="9oz-yZ-NKJ" firstAttribute="leading" secondItem="WlO-3H-4Id" secondAttribute="leading" id="6Sz-yE-26n"/>
@@ -75,16 +78,20 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="WlO-3H-4Id" firstAttribute="height" secondItem="8W6-2G-6Fi" secondAttribute="height" multiplier="1:5" id="L6l-BX-Oj5"/>
-                        <constraint firstItem="GiW-b1-v9Q" firstAttribute="leading" secondItem="8W6-2G-6Fi" secondAttribute="leading" constant="40" id="Oc9-E0-c0e"/>
+                        <constraint firstItem="GiW-b1-v9Q" firstAttribute="leading" secondItem="8W6-2G-6Fi" secondAttribute="leading" constant="55" id="Oc9-E0-c0e"/>
                         <constraint firstAttribute="trailing" secondItem="WlO-3H-4Id" secondAttribute="trailing" id="QCF-2I-DeV"/>
                         <constraint firstItem="GiW-b1-v9Q" firstAttribute="top" secondItem="8W6-2G-6Fi" secondAttribute="top" constant="40" id="ZlA-XT-hn4"/>
                         <constraint firstAttribute="bottom" secondItem="WlO-3H-4Id" secondAttribute="bottom" id="dhs-D0-i5U"/>
-                        <constraint firstAttribute="trailing" secondItem="GiW-b1-v9Q" secondAttribute="trailing" constant="40" id="kIa-DF-XoX"/>
+                        <constraint firstItem="6uf-h8-14Y" firstAttribute="top" secondItem="8W6-2G-6Fi" secondAttribute="top" id="gxc-DI-zGu"/>
+                        <constraint firstItem="6uf-h8-14Y" firstAttribute="leading" secondItem="8W6-2G-6Fi" secondAttribute="leading" id="iRh-DE-41J"/>
+                        <constraint firstAttribute="trailing" secondItem="GiW-b1-v9Q" secondAttribute="trailing" constant="55" id="kIa-DF-XoX"/>
+                        <constraint firstAttribute="trailing" secondItem="6uf-h8-14Y" secondAttribute="trailing" id="knf-1Z-R5c"/>
                         <constraint firstAttribute="width" secondItem="8W6-2G-6Fi" secondAttribute="height" multiplier="4:5" id="moK-Zv-KgW"/>
                         <constraint firstItem="WlO-3H-4Id" firstAttribute="leading" secondItem="8W6-2G-6Fi" secondAttribute="leading" id="oa0-Cf-Iko"/>
+                        <constraint firstAttribute="bottom" secondItem="6uf-h8-14Y" secondAttribute="bottom" id="wcC-Bg-Amn"/>
                     </constraints>
                 </view>
             </subviews>
@@ -98,4 +105,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="87.723214285714278"/>
         </view>
     </objects>
+    <resources>
+        <image name="background_aboutus" width="300" height="355"/>
+    </resources>
 </document>

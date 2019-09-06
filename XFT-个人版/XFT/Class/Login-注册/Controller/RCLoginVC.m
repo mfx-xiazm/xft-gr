@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *agreeMentTV;
 @property (weak, nonatomic) IBOutlet UIView *codeView;
 @property (weak, nonatomic) IBOutlet UIView *pwdView;
+@property (weak, nonatomic) IBOutlet UIView *accountView;
+@property (weak, nonatomic) IBOutlet UIView *phoneView;
 
 @end
 
@@ -53,15 +55,22 @@
 - (IBAction)loginTypeClicked:(UIButton *)sender {
     sender.selected = !sender.selected;
     if (sender.isSelected) {
+        self.phoneView.hidden = NO;
         self.codeView.hidden = NO;
         self.pwdView.hidden = YES;
+        self.accountView.hidden = YES;
     }else{
+        self.phoneView.hidden = YES;
         self.codeView.hidden = YES;
         self.pwdView.hidden = NO;
+        self.accountView.hidden = NO;
     }
 }
 - (IBAction)getCodeClicked:(UIButton *)sender {
     [sender startWithTime:60 title:@"验证码" countDownTitle:@"s" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
+}
+- (IBAction)agreeBtnClicked:(UIButton *)sender {
+    sender.selected = !sender.selected;
 }
 
 - (IBAction)loginHandleClicked:(UIButton *)sender {

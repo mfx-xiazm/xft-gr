@@ -28,7 +28,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape" translatesAutoresizingMaskIntoConstraints="NO" id="ypg-aU-Ats">
-                                    <rect key="frame" x="94" y="19.5" width="8" height="5"/>
+                                    <rect key="frame" x="94" y="13" width="18" height="18"/>
                                 </imageView>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKq-eV-QSZ">
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
@@ -60,7 +60,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape" translatesAutoresizingMaskIntoConstraints="NO" id="Cck-aJ-0EZ">
-                                    <rect key="frame" x="94" y="19.5" width="8" height="5"/>
+                                    <rect key="frame" x="94" y="13" width="18" height="18"/>
                                 </imageView>
                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAr-bs-Xrm">
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
@@ -92,7 +92,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape" translatesAutoresizingMaskIntoConstraints="NO" id="vvz-EC-78Z">
-                                    <rect key="frame" x="79.5" y="19.5" width="8" height="5"/>
+                                    <rect key="frame" x="79.5" y="13" width="18" height="18"/>
                                 </imageView>
                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5R-1I-xN0">
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
@@ -124,7 +124,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape" translatesAutoresizingMaskIntoConstraints="NO" id="jqv-Yl-IA9">
-                                    <rect key="frame" x="79.5" y="19.5" width="8" height="5"/>
+                                    <rect key="frame" x="79.5" y="13" width="18" height="18"/>
                                 </imageView>
                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6v-0C-ptd">
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
@@ -190,6 +190,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Shape" width="8" height="5"/>
+        <image name="Shape" width="18" height="18"/>
     </resources>
 </document>

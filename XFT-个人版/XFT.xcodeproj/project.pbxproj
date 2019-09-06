@@ -129,6 +129,8 @@
 		9049E72E2322585C0010E5B1 /* RCHouseChildVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9049E72C2322585C0010E5B1 /* RCHouseChildVC.xib */; };
 		9049E731232260CD0010E5B1 /* RCHouseCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9049E730232260CD0010E5B1 /* RCHouseCategoryView.m */; };
 		9049E733232260D50010E5B1 /* RCHouseCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9049E732232260D50010E5B1 /* RCHouseCategoryView.xib */; };
+		9049E736232282260010E5B1 /* RCProfileFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9049E735232282260010E5B1 /* RCProfileFooter.m */; };
+		9049E738232282340010E5B1 /* RCProfileFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9049E737232282340010E5B1 /* RCProfileFooter.xib */; };
 		904C8EC32317D97B007EB77D /* RCMyClientStateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 904C8EC12317D97B007EB77D /* RCMyClientStateCell.m */; };
 		904C8EC42317D97B007EB77D /* RCMyClientStateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 904C8EC22317D97B007EB77D /* RCMyClientStateCell.xib */; };
 		904C8ED12317EA07007EB77D /* RCProfileQuestionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 904C8ECF2317EA07007EB77D /* RCProfileQuestionVC.m */; };
@@ -157,8 +159,6 @@
 		905DBCB023166F9E000C7384 /* RCNewsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 905DBCAF23166F9E000C7384 /* RCNewsHeader.m */; };
 		905DBCB223166FA8000C7384 /* RCNewsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 905DBCB123166FA8000C7384 /* RCNewsHeader.xib */; };
 		905DBCB523167120000C7384 /* RCPageMainTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 905DBCB423167120000C7384 /* RCPageMainTable.m */; };
-		905DBCB92316768E000C7384 /* RCNewsChildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 905DBCB72316768E000C7384 /* RCNewsChildVC.m */; };
-		905DBCBA2316768E000C7384 /* RCNewsChildVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 905DBCB82316768E000C7384 /* RCNewsChildVC.xib */; };
 		9065AFBC2318D1360070FF47 /* RCHouseDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9065AFBA2318D1360070FF47 /* RCHouseDetailInfoCell.m */; };
 		9065AFBD2318D1360070FF47 /* RCHouseDetailInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9065AFBB2318D1360070FF47 /* RCHouseDetailInfoCell.xib */; };
 		9065AFC12318EE1D0070FF47 /* RCHouseRewardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9065AFBF2318EE1D0070FF47 /* RCHouseRewardCell.m */; };
@@ -482,6 +482,9 @@
 		9049E72F232260CD0010E5B1 /* RCHouseCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCHouseCategoryView.h; sourceTree = "<group>"; };
 		9049E730232260CD0010E5B1 /* RCHouseCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCHouseCategoryView.m; sourceTree = "<group>"; };
 		9049E732232260D50010E5B1 /* RCHouseCategoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCHouseCategoryView.xib; sourceTree = "<group>"; };
+		9049E734232282260010E5B1 /* RCProfileFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCProfileFooter.h; sourceTree = "<group>"; };
+		9049E735232282260010E5B1 /* RCProfileFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCProfileFooter.m; sourceTree = "<group>"; };
+		9049E737232282340010E5B1 /* RCProfileFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCProfileFooter.xib; sourceTree = "<group>"; };
 		904C8EC02317D97B007EB77D /* RCMyClientStateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCMyClientStateCell.h; sourceTree = "<group>"; };
 		904C8EC12317D97B007EB77D /* RCMyClientStateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCMyClientStateCell.m; sourceTree = "<group>"; };
 		904C8EC22317D97B007EB77D /* RCMyClientStateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCMyClientStateCell.xib; sourceTree = "<group>"; };
@@ -525,9 +528,6 @@
 		905DBCB123166FA8000C7384 /* RCNewsHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCNewsHeader.xib; sourceTree = "<group>"; };
 		905DBCB323167120000C7384 /* RCPageMainTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCPageMainTable.h; sourceTree = "<group>"; };
 		905DBCB423167120000C7384 /* RCPageMainTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCPageMainTable.m; sourceTree = "<group>"; };
-		905DBCB62316768E000C7384 /* RCNewsChildVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCNewsChildVC.h; sourceTree = "<group>"; };
-		905DBCB72316768E000C7384 /* RCNewsChildVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCNewsChildVC.m; sourceTree = "<group>"; };
-		905DBCB82316768E000C7384 /* RCNewsChildVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCNewsChildVC.xib; sourceTree = "<group>"; };
 		9065AFB92318D1360070FF47 /* RCHouseDetailInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCHouseDetailInfoCell.h; sourceTree = "<group>"; };
 		9065AFBA2318D1360070FF47 /* RCHouseDetailInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCHouseDetailInfoCell.m; sourceTree = "<group>"; };
 		9065AFBB2318D1360070FF47 /* RCHouseDetailInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCHouseDetailInfoCell.xib; sourceTree = "<group>"; };
@@ -1252,9 +1252,6 @@
 				9040F2AE2313F715005E6B2E /* RCNewsVC.h */,
 				9040F2AF2313F715005E6B2E /* RCNewsVC.m */,
 				9040F2B02313F715005E6B2E /* RCNewsVC.xib */,
-				905DBCB62316768E000C7384 /* RCNewsChildVC.h */,
-				905DBCB72316768E000C7384 /* RCNewsChildVC.m */,
-				905DBCB82316768E000C7384 /* RCNewsChildVC.xib */,
 				9088C98B231698660088F986 /* RCNewsDetailVC.h */,
 				9088C98C231698660088F986 /* RCNewsDetailVC.m */,
 				9088C98D231698660088F986 /* RCNewsDetailVC.xib */,
@@ -1750,6 +1747,9 @@
 				9088C99D2316A4490088F986 /* RCProfileHeader.h */,
 				9088C99E2316A4490088F986 /* RCProfileHeader.m */,
 				9088C9A02316A4520088F986 /* RCProfileHeader.xib */,
+				9049E734232282260010E5B1 /* RCProfileFooter.h */,
+				9049E735232282260010E5B1 /* RCProfileFooter.m */,
+				9049E737232282340010E5B1 /* RCProfileFooter.xib */,
 				9088C9982316A0420088F986 /* RCProfileCell.h */,
 				9088C9992316A0420088F986 /* RCProfileCell.m */,
 				9088C99A2316A0420088F986 /* RCProfileCell.xib */,
@@ -1968,6 +1968,7 @@
 				90150C4E2317CAF8006BFA6C /* RCMySalaryCell.xib in Resources */,
 				9065AFBD2318D1360070FF47 /* RCHouseDetailInfoCell.xib in Resources */,
 				904C8EC42317D97B007EB77D /* RCMyClientStateCell.xib in Resources */,
+				9049E738232282340010E5B1 /* RCProfileFooter.xib in Resources */,
 				9049E72E2322585C0010E5B1 /* RCHouseChildVC.xib in Resources */,
 				90683E56231A4AAA00ED9169 /* RCClientDetailVC.xib in Resources */,
 				904C8ED72317EA53007EB77D /* RCProfileQuestionCell.xib in Resources */,
@@ -1990,7 +1991,6 @@
 				900B7A6323161F1500832CDE /* RCNoticeCell.xib in Resources */,
 				9088C98A231686BE0088F986 /* RCNewsCell.xib in Resources */,
 				9040B9F523176819001CC87B /* RCProfileCollectChildVC.xib in Resources */,
-				905DBCBA2316768E000C7384 /* RCNewsChildVC.xib in Resources */,
 				9088C9A12316A4520088F986 /* RCProfileHeader.xib in Resources */,
 				9088C9A62316A93E0088F986 /* RCProfileInfoVC.xib in Resources */,
 				90150C602317D298006BFA6C /* RCMyClientCell.xib in Resources */,
@@ -2203,6 +2203,7 @@
 				90683E8A231A66ED00ED9169 /* UIButton+DCGroup.m in Sources */,
 				9040F2532313A839005E6B2E /* HXNetworkCache.m in Sources */,
 				90683E99231A7A1900ED9169 /* RCChangePwdVC.m in Sources */,
+				9049E736232282260010E5B1 /* RCProfileFooter.m in Sources */,
 				90A705E42317B69D000FD5C1 /* RCStaffVC.m in Sources */,
 				900B7A412314FC5100832CDE /* RCSearchTagCell.m in Sources */,
 				9065AFC12318EE1D0070FF47 /* RCHouseRewardCell.m in Sources */,
@@ -2215,7 +2216,6 @@
 				90A705C823177893000FD5C1 /* RCUpgradeRoleVC.m in Sources */,
 				904C8EE62317F553007EB77D /* RCHouseNewsVC.m in Sources */,
 				90D904E52318C9FD002DD911 /* RCHouseDetailHotCell.m in Sources */,
-				905DBCB92316768E000C7384 /* RCNewsChildVC.m in Sources */,
 				905DBCA223164B1D000C7384 /* RCHouseTagsCell.m in Sources */,
 				9040F2572313A839005E6B2E /* HXCacheTool.m in Sources */,
 				9040B9EF23176536001CC87B /* RCProfileCollectVC.m in Sources */,
