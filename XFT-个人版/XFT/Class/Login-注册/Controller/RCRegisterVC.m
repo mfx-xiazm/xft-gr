@@ -19,7 +19,7 @@
 }
 - (IBAction)registerHandleClicked:(UIButton *)sender {
     if (sender.tag == 1) {
-        FSActionSheet *sheet = [[FSActionSheet alloc] initWithTitle:@"身份类型" delegate:self cancelButtonTitle:@"取消" highlightedButtonTitle:nil otherButtonTitles:@[@"客户",@"业主经纪人",@"员工经纪人",@"普通经纪人"]];
+        FSActionSheet *sheet = [[FSActionSheet alloc] initWithTitle:@"身份类型" delegate:self cancelButtonTitle:@"取消" highlightedButtonTitle:nil otherButtonTitles:@[@"注册为客户随便看看",@"业主经纪人",@"员工经纪人",@"普通经纪人"]];
         [sheet showWithSelectedCompletion:^(NSInteger selectedIndex) {
             HXLog(@"身份-%zd",selectedIndex);
         }];

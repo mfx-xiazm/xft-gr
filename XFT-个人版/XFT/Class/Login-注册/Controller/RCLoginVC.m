@@ -14,6 +14,8 @@
 
 @interface RCLoginVC ()<UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *agreeMentTV;
+@property (weak, nonatomic) IBOutlet UIView *codeView;
+@property (weak, nonatomic) IBOutlet UIView *pwdView;
 
 @end
 
@@ -47,6 +49,19 @@
     _agreeMentTV.delegate = self;
     _agreeMentTV.editable = NO;        //必须禁止输入，否则点击将弹出输入键盘
     _agreeMentTV.scrollEnabled = NO;
+}
+- (IBAction)loginTypeClicked:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.isSelected) {
+        self.codeView.hidden = NO;
+        self.pwdView.hidden = YES;
+    }else{
+        self.codeView.hidden = YES;
+        self.pwdView.hidden = NO;
+    }
+}
+- (IBAction)getCodeClicked:(UIButton *)sender {
+    [sender startWithTime:60 title:@"验证码" countDownTitle:@"s" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
 }
 
 - (IBAction)loginHandleClicked:(UIButton *)sender {
