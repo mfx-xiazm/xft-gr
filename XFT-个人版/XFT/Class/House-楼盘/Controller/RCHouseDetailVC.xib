@@ -100,9 +100,6 @@
                                                     <real key="value" value="5"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="houseCollectClicked:" destination="-1" eventType="touchUpInside" id="Dve-NR-cIq"/>
-                                            </connections>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsj-Q7-i97">
                                             <rect key="frame" x="0.0" y="67.5" width="414" height="36"/>
@@ -445,6 +442,9 @@
                                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0d-dc-bND">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <action selector="houseInfoClicked:" destination="-1" eventType="touchUpInside" id="ngK-bA-l2G"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1039,51 +1039,71 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2bc-gL-ss3">
                     <rect key="frame" x="0.0" y="818" width="414" height="44"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Hy-2g-Izo">
-                            <rect key="frame" x="0.0" y="0.0" width="165.5" height="44"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LtQ-Cu-Azy">
-                                    <rect key="frame" x="0.0" y="0.0" width="165.5" height="44"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
-                                    <state key="normal" title="联系案场" image="搜索">
-                                        <color key="titleColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="houseApointClicked:" destination="-1" eventType="touchUpInside" id="tzi-6A-LbZ"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVR-3l-Heb" customClass="SPButton">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="44"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="LtQ-Cu-Azy" secondAttribute="bottom" id="6qm-b0-H8W"/>
-                                <constraint firstAttribute="trailing" secondItem="LtQ-Cu-Azy" secondAttribute="trailing" id="ET4-cm-AcP"/>
-                                <constraint firstItem="LtQ-Cu-Azy" firstAttribute="leading" secondItem="5Hy-2g-Izo" secondAttribute="leading" id="jzP-IN-lKE"/>
-                                <constraint firstItem="LtQ-Cu-Azy" firstAttribute="top" secondItem="5Hy-2g-Izo" secondAttribute="top" id="pYU-hG-C1I"/>
+                                <constraint firstAttribute="width" constant="80" id="fmq-fY-1dP"/>
                             </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDS-oW-iTb">
-                            <rect key="frame" x="165.5" y="0.0" width="248.5" height="44"/>
-                            <subviews>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIX-zV-ddG">
-                                    <rect key="frame" x="0.0" y="0.0" width="248.5" height="44"/>
-                                    <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                    <state key="normal" title="预约看房"/>
-                                    <connections>
-                                        <action selector="houseApointClicked:" destination="-1" eventType="touchUpInside" id="Amd-1t-Ccr"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <state key="normal" title="转发好友" image="icon_share_friend">
+                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="imagePosition">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="imageTitleSpace">
+                                    <real key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="shareClicked:" destination="-1" eventType="touchUpInside" id="V2T-gU-Wz4"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TI3-Fj-qE2" customClass="SPButton">
+                            <rect key="frame" x="80" y="0.0" width="80" height="44"/>
                             <constraints>
-                                <constraint firstItem="AIX-zV-ddG" firstAttribute="leading" secondItem="qDS-oW-iTb" secondAttribute="leading" id="CMs-wl-f1k"/>
-                                <constraint firstAttribute="bottom" secondItem="AIX-zV-ddG" secondAttribute="bottom" id="LNt-NY-yqb"/>
-                                <constraint firstAttribute="trailing" secondItem="AIX-zV-ddG" secondAttribute="trailing" id="Pd7-OW-qGR"/>
-                                <constraint firstItem="AIX-zV-ddG" firstAttribute="top" secondItem="qDS-oW-iTb" secondAttribute="top" id="PxN-Fs-gXU"/>
+                                <constraint firstAttribute="width" constant="80" id="21w-2V-wgo"/>
                             </constraints>
-                        </view>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <state key="normal" title="收藏户型" image="icon_schx">
+                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="imagePosition">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="imageTitleSpace">
+                                    <real key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="houseCollectClicked:" destination="-1" eventType="touchUpInside" id="ee0-00-xLi"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LtQ-Cu-Azy">
+                            <rect key="frame" x="160" y="5" width="112" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                            <state key="normal" title="免费咨询">
+                                <color key="titleColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layerBoderWidth">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="boderColor">
+                                    <color key="value" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="houseApointClicked:" destination="-1" eventType="touchUpInside" id="tzi-6A-LbZ"/>
+                            </connections>
+                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eK1-bd-JTW" userLabel="分割线">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
                             <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1091,21 +1111,41 @@
                                 <constraint firstAttribute="height" constant="1" id="B9C-kI-RNe"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIX-zV-ddG">
+                            <rect key="frame" x="287" y="5" width="112" height="34"/>
+                            <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="预约看房"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="houseApointClicked:" destination="-1" eventType="touchUpInside" id="Amd-1t-Ccr"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="qDS-oW-iTb" secondAttribute="bottom" id="29w-oD-8ev"/>
-                        <constraint firstAttribute="bottom" secondItem="5Hy-2g-Izo" secondAttribute="bottom" id="4Zc-la-Exu"/>
-                        <constraint firstItem="5Hy-2g-Izo" firstAttribute="leading" secondItem="2bc-gL-ss3" secondAttribute="leading" id="5dT-qb-BHr"/>
-                        <constraint firstItem="qDS-oW-iTb" firstAttribute="top" secondItem="2bc-gL-ss3" secondAttribute="top" id="AbU-Q2-3lI"/>
+                        <constraint firstItem="TI3-Fj-qE2" firstAttribute="leading" secondItem="tVR-3l-Heb" secondAttribute="trailing" id="8Sq-Y0-Ufw"/>
                         <constraint firstAttribute="trailing" secondItem="eK1-bd-JTW" secondAttribute="trailing" id="CZX-ng-oGv"/>
+                        <constraint firstItem="tVR-3l-Heb" firstAttribute="top" secondItem="2bc-gL-ss3" secondAttribute="top" id="Eja-Ds-2RI"/>
                         <constraint firstItem="eK1-bd-JTW" firstAttribute="top" secondItem="2bc-gL-ss3" secondAttribute="top" id="FqQ-6P-bUZ"/>
+                        <constraint firstItem="AIX-zV-ddG" firstAttribute="width" secondItem="LtQ-Cu-Azy" secondAttribute="width" id="IBd-zL-1ke"/>
                         <constraint firstItem="eK1-bd-JTW" firstAttribute="leading" secondItem="2bc-gL-ss3" secondAttribute="leading" id="O9b-aJ-Wlo"/>
-                        <constraint firstItem="5Hy-2g-Izo" firstAttribute="top" secondItem="2bc-gL-ss3" secondAttribute="top" id="XQ3-lE-5qK"/>
-                        <constraint firstItem="qDS-oW-iTb" firstAttribute="leading" secondItem="5Hy-2g-Izo" secondAttribute="trailing" id="Zd5-HR-W14"/>
-                        <constraint firstItem="5Hy-2g-Izo" firstAttribute="width" secondItem="2bc-gL-ss3" secondAttribute="width" multiplier="2:5" id="bdu-HZ-ziN"/>
-                        <constraint firstAttribute="trailing" secondItem="qDS-oW-iTb" secondAttribute="trailing" id="gEx-fj-FKG"/>
+                        <constraint firstItem="LtQ-Cu-Azy" firstAttribute="top" secondItem="2bc-gL-ss3" secondAttribute="top" constant="5" id="V1W-sw-KIf"/>
+                        <constraint firstItem="AIX-zV-ddG" firstAttribute="leading" secondItem="LtQ-Cu-Azy" secondAttribute="trailing" constant="15" id="VUy-Qe-6wt"/>
+                        <constraint firstAttribute="bottom" secondItem="TI3-Fj-qE2" secondAttribute="bottom" id="XSm-Bk-jOn"/>
+                        <constraint firstItem="TI3-Fj-qE2" firstAttribute="top" secondItem="2bc-gL-ss3" secondAttribute="top" id="ekL-Ev-TFN"/>
+                        <constraint firstItem="tVR-3l-Heb" firstAttribute="leading" secondItem="2bc-gL-ss3" secondAttribute="leading" id="hPd-NJ-FF0"/>
+                        <constraint firstAttribute="bottom" secondItem="tVR-3l-Heb" secondAttribute="bottom" id="lqY-a5-3xZ"/>
                         <constraint firstAttribute="height" constant="44" id="mNF-1C-J0z"/>
+                        <constraint firstItem="AIX-zV-ddG" firstAttribute="top" secondItem="2bc-gL-ss3" secondAttribute="top" constant="5" id="qN0-nZ-IB5"/>
+                        <constraint firstAttribute="bottom" secondItem="AIX-zV-ddG" secondAttribute="bottom" constant="5" id="tb0-pM-QDE"/>
+                        <constraint firstAttribute="bottom" secondItem="LtQ-Cu-Azy" secondAttribute="bottom" constant="5" id="ti8-da-S3y"/>
+                        <constraint firstAttribute="trailing" secondItem="AIX-zV-ddG" secondAttribute="trailing" constant="15" id="vDf-wp-JRe"/>
+                        <constraint firstItem="LtQ-Cu-Azy" firstAttribute="leading" secondItem="TI3-Fj-qE2" secondAttribute="trailing" id="vHi-pr-1rq"/>
                     </constraints>
                 </view>
             </subviews>
@@ -1120,10 +1160,12 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="a8G-2n-Mc1" secondAttribute="trailing" id="wYM-pY-PD1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="237.68115942028987" y="547.09821428571422"/>
+            <point key="canvasLocation" x="237.68115942028987" y="546.42857142857144"/>
         </view>
     </objects>
     <resources>
+        <image name="icon_schx" width="24" height="24"/>
+        <image name="icon_share_friend" width="24" height="24"/>
         <image name="搜索" width="15" height="15"/>
     </resources>
 </document>

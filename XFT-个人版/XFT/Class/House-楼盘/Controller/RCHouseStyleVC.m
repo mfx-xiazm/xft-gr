@@ -29,7 +29,6 @@ static NSString *const HouseStyleDetailCell = @"HouseStyleDetailCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"户型详情"];
-    [self setUpNavBar];
     [self setUpTableView];
 }
 -(void)viewDidLayoutSubviews
@@ -49,13 +48,6 @@ static NSString *const HouseStyleDetailCell = @"HouseStyleDetailCell";
         };
     }
     return _header;
-}
--(void)setUpNavBar
-{
-    UIBarButtonItem *shareItem = [UIBarButtonItem itemWithTarget:self action:@selector(shareClicked) nomalImage:HXGetImage(@"icon_top_search") higeLightedImage:HXGetImage(@"icon_top_search") imageEdgeInsets:UIEdgeInsetsZero];
-    
-    UIBarButtonItem *collectItem = [UIBarButtonItem itemWithTarget:self action:@selector(collectClicked) nomalImage:HXGetImage(@"icon_top_search") higeLightedImage:HXGetImage(@"icon_top_search") imageEdgeInsets:UIEdgeInsetsZero];
-    self.navigationItem.rightBarButtonItems = @[shareItem,collectItem];
 }
 -(void)setUpTableView
 {
@@ -85,7 +77,7 @@ static NSString *const HouseStyleDetailCell = @"HouseStyleDetailCell";
     self.tableView.tableHeaderView = self.header;
 }
 #pragma mark -- 点击事件
--(void)shareClicked
+-(IBAction)shareClicked:(UIButton *)sender
 {
     RCShareView *share = [RCShareView loadXibView];
     share.hxn_width = HX_SCREEN_WIDTH;
@@ -108,7 +100,7 @@ static NSString *const HouseStyleDetailCell = @"HouseStyleDetailCell";
     self.zh_popupController.layoutType = zhPopupLayoutTypeBottom;
     [self.zh_popupController presentContentView:share duration:0.25 springAnimated:NO];
 }
--(void)collectClicked
+-(IBAction)collectClicked:(UIButton *)sender
 {
     HXLog(@"收藏");
 }

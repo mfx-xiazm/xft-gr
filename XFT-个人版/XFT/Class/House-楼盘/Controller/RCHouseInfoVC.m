@@ -1,31 +1,27 @@
 //
-//  RCHouseHotChildVC.m
+//  RCHouseInfoVC.m
 //  XFT
 //
-//  Created by 夏增明 on 2019/8/29.
+//  Created by 夏增明 on 2019/9/6.
 //  Copyright © 2019 夏增明. All rights reserved.
 //
 
-#import "RCHouseHotChildVC.h"
-#import "RCHouseHotCell.h"
+#import "RCHouseInfoVC.h"
+#import "RCHouseDetailInfoCell.h"
 
-static NSString *const HouseHotCell = @"HouseHotCell";
-
-@interface RCHouseHotChildVC ()<UITableViewDelegate,UITableViewDataSource>
+static NSString *const HouseDetailInfoCell = @"HouseDetailInfoCell";
+@interface RCHouseInfoVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
-@implementation RCHouseHotChildVC
+@implementation RCHouseInfoVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationItem setTitle:@"楼盘详情"];
     [self setUpTableView];
-}
--(void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    self.view.hxn_width = HX_SCREEN_WIDTH;
+    [self setUpTableHeaderView];
 }
 -(void)setUpTableView
 {
@@ -37,7 +33,7 @@ static NSString *const HouseHotCell = @"HouseHotCell";
         // 不要自动调整inset
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    self.tableView.estimatedRowHeight = 0;//预估高度
+    self.tableView.rowHeight = UITableViewAutomaticDimension;//预估高度
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
     
@@ -52,27 +48,39 @@ static NSString *const HouseHotCell = @"HouseHotCell";
     self.tableView.backgroundColor = [UIColor clearColor];
     
     // 注册cell
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCHouseHotCell class]) bundle:nil] forCellReuseIdentifier:HouseHotCell];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCHouseDetailInfoCell class]) bundle:nil] forCellReuseIdentifier:HouseDetailInfoCell];
+}
+-(void)setUpTableHeaderView
+{
+    UIView *header = [UIView new];
+    header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 60);
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.font = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
+    label.text = @"武汉融公馆楼盘";
+    label.hxn_x = 15.f;
+    label.hxn_y = 15.f;
+    label.hxn_width = HX_SCREEN_WIDTH - 15*2;
+    [label sizeToFit];
+    [header addSubview:label];
+    
+    self.tableView.tableHeaderView = header;
 }
 #pragma mark -- UITableView数据源和代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 10;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RCHouseHotCell *cell = [tableView dequeueReusableCellWithIdentifier:HouseHotCell forIndexPath:indexPath];
+    RCHouseDetailInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:HouseDetailInfoCell forIndexPath:indexPath];
     //无色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // 返回这个模型对应的cell高度
-    return 60.f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
 }
+
 
 @end

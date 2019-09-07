@@ -28,6 +28,7 @@
 #import "RCRoleProtocolVC.h"
 #import "RCNewsDetailVC.h"
 #import "zhAlertView.h"
+#import "RCHouseInfoVC.h"
 
 static NSString *const HouseDetailHotCell = @"HouseDetailHotCell";
 static NSString *const HouseDetailInfoCell = @"HouseDetailInfoCell";
@@ -64,7 +65,6 @@ static NSString *const HouseStyleCell = @"HouseStyleCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"楼盘详情"];
-    [self setUpNavBar];
     [self setUpCycleView];
     [self setUpCollectionView];
     [self setUpTableView];
@@ -117,10 +117,6 @@ static NSString *const HouseStyleCell = @"HouseStyleCell";
 }
 
 #pragma mark -- 视图配置
--(void)setUpNavBar
-{
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(shareClicked) nomalImage:HXGetImage(@"icon_top_search") higeLightedImage:HXGetImage(@"icon_top_search") imageEdgeInsets:UIEdgeInsetsZero];
-}
 -(void)setUpCycleView
 {
     self.cycleView.isInfiniteLoop = YES;
@@ -212,7 +208,7 @@ static NSString *const HouseStyleCell = @"HouseStyleCell";
     [self.houseNewsTableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCHouseDetailNewsCell class]) bundle:nil] forCellReuseIdentifier:HouseDetailNewsCell];
 }
 #pragma mark -- 点击事件
--(void)shareClicked
+-(IBAction)shareClicked:(UIButton *)sender
 {
     RCShareView *share = [RCShareView loadXibView];
     share.hxn_width = HX_SCREEN_WIDTH;
@@ -242,6 +238,11 @@ static NSString *const HouseStyleCell = @"HouseStyleCell";
     RCHouseHotVC *hvc = [RCHouseHotVC new];
     [self.navigationController pushViewController:hvc animated:YES];
 }
+- (IBAction)houseInfoClicked:(UIButton *)sender {
+    RCHouseInfoVC *ivc = [RCHouseInfoVC new];
+    [self.navigationController pushViewController:ivc animated:YES];
+}
+
 - (IBAction)upRoleClicked:(UIButton *)sender {
     RCRoleProtocolVC *rvc = [RCRoleProtocolVC new];
     [self.navigationController pushViewController:rvc animated:YES];

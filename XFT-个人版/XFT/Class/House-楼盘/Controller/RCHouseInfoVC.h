@@ -1,8 +1,8 @@
 //
-//  RCHouseHotChildVC.h
+//  RCHouseInfoVC.h
 //  XFT
 //
-//  Created by 夏增明 on 2019/8/29.
+//  Created by 夏增明 on 2019/9/6.
 //  Copyright © 2019 夏增明. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RCHouseHotChildVC : HXBaseViewController
+@interface RCHouseInfoVC : HXBaseViewController
 
 @end
 
