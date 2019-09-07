@@ -8,9 +8,8 @@
 
 #import "RCPushHouseFilterView.h"
 #import "HXDropMenuView.h"
-#import <JXCategoryView.h>
-@interface RCPushHouseFilterView ()<HXDropMenuDelegate,HXDropMenuDataSource,JXCategoryViewDelegate>
-@property (weak, nonatomic) IBOutlet JXCategoryTitleView *categoryView;
+
+@interface RCPushHouseFilterView ()<HXDropMenuDelegate,HXDropMenuDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *areaLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *areaImg;
@@ -37,18 +36,6 @@
     self.menuView.delegate = self;
     self.menuView.titleColor = UIColorFromRGB(0x131D2D);
     self.menuView.titleHightLightColor = UIColorFromRGB(0xFF9F08);
-    
-    self.categoryView.backgroundColor = [UIColor whiteColor];
-    self.categoryView.averageCellSpacingEnabled = NO;
-    self.categoryView.titles = @[@"新房", @"公寓"];
-    self.categoryView.titleColor = [UIColor lightGrayColor];
-    self.categoryView.titleSelectedColor = UIColorFromRGB(0xFF9F08);
-    self.categoryView.delegate = self;
-    
-    JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-    lineView.verticalMargin = 10;
-    lineView.indicatorColor = UIColorFromRGB(0xFF9F08);
-    self.categoryView.indicators = @[lineView];
 }
 
 - (IBAction)filterClicked:(UIButton *)sender {
@@ -70,22 +57,13 @@
         self.menuView.transformImageView = self.mianjiImg;
         self.menuView.titleLabel = self.mianjiLabel;
     }
-    
-    if (self.tableView.contentOffset.y < (70.f)) {
-        //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        self.tableView.contentOffset = CGPointMake(0, (70.f));
-        //        hx_weakify(self);
-        //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.menuView menuShowInSuperView:self.target.view];
-        //        });
-    }else{
-        [self.menuView menuShowInSuperView:self.target.view];
-    }
+
+    [self.menuView menuShowInSuperView:self.target.view];
 }
 
 #pragma mark -- menuDelegate
 - (CGPoint)menu_positionInSuperView {
-    return CGPointMake(0, 100);
+    return CGPointMake(0, 44);
 }
 -(NSString *)menu_titleForRow:(NSInteger)row {
     if (self.selectBtn.tag == 1) {
@@ -113,11 +91,5 @@
     if (self.pushHouseFilterCall) {
         self.pushHouseFilterCall(self.selectBtn.tag, indexPath.row);
     }
-}
-
-#pragma mark - JXCategoryViewDelegate
-- (void)categoryView:(JXCategoryBaseView *)categoryView didClickSelectedItemAtIndex:(NSInteger)index {
-    //这里关心点击选中的回调！！！
-    
 }
 @end

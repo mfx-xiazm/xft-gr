@@ -23,7 +23,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UR2-Pe-DnS">
-                                <rect key="frame" x="15" y="13" width="68" height="18"/>
+                                <rect key="frame" x="15" y="13" width="80" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="2MJ-7N-bR9"/>
+                                </constraints>
                                 <attributedString key="attributedText">
                                     <fragment content="电话号码">
                                         <attributes>
@@ -43,7 +46,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入电话号码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7mg-2d-tXl">
-                                <rect key="frame" x="93" y="2" width="182" height="40"/>
+                                <rect key="frame" x="105" y="2" width="170" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="z0M-vr-hAC"/>
                                 </constraints>
@@ -53,12 +56,11 @@
                             </textField>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vp0-ru-3MK">
                                 <rect key="frame" x="275" y="7" width="30" height="30"/>
-                                <color key="backgroundColor" red="0.92549019610000005" green="0.078431372550000003" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="DOy-qs-Fyu"/>
                                     <constraint firstAttribute="height" constant="30" id="UpC-2w-zw0"/>
                                 </constraints>
-                                <state key="normal" title="-"/>
+                                <state key="normal" image="icon_del"/>
                                 <connections>
                                     <action selector="cutBtnClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="51V-m0-8Md"/>
                                 </connections>
@@ -96,4 +98,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_del" width="24" height="24"/>
+    </resources>
 </document>

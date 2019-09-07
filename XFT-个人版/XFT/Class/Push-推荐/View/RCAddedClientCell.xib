@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="RCAddedClientCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQb-4g-hgg">
+                        <rect key="frame" x="15" y="5" width="261" height="33.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已添加" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPR-d8-N0L">
+                                <rect key="frame" x="12" y="8" width="46" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张辉-15327427571" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mjn-4q-P3t">
+                                <rect key="frame" x="100" y="8" width="132" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <color key="textColor" white="0.10000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_next" translatesAutoresizingMaskIntoConstraints="NO" id="Bre-ih-TI3">
+                                <rect key="frame" x="237" y="11" width="12" height="12"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Bre-ih-TI3" firstAttribute="leading" secondItem="Mjn-4q-P3t" secondAttribute="trailing" constant="5" id="LLa-oz-GvU"/>
+                            <constraint firstItem="Mjn-4q-P3t" firstAttribute="centerY" secondItem="oQb-4g-hgg" secondAttribute="centerY" id="PO1-LH-urx"/>
+                            <constraint firstItem="Bre-ih-TI3" firstAttribute="centerY" secondItem="oQb-4g-hgg" secondAttribute="centerY" id="TUX-Tr-mdx"/>
+                            <constraint firstItem="aPR-d8-N0L" firstAttribute="leading" secondItem="oQb-4g-hgg" secondAttribute="leading" constant="12" id="els-da-AI0"/>
+                            <constraint firstAttribute="trailing" secondItem="Bre-ih-TI3" secondAttribute="trailing" constant="12" id="vn5-s3-Qbp"/>
+                            <constraint firstItem="aPR-d8-N0L" firstAttribute="centerY" secondItem="oQb-4g-hgg" secondAttribute="centerY" id="xlq-75-xrk"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
+                                <real key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uiP-2u-8SP">
+                        <rect key="frame" x="286" y="10" width="24" height="24"/>
+                        <state key="normal" image="icon_del_tuijian"/>
+                        <connections>
+                            <action selector="cutClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cEe-r6-cde"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="oQb-4g-hgg" secondAttribute="bottom" constant="5" id="5tQ-w1-MF0"/>
+                    <constraint firstItem="oQb-4g-hgg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="HgB-K6-ydW"/>
+                    <constraint firstAttribute="trailing" secondItem="uiP-2u-8SP" secondAttribute="trailing" constant="10" id="Ir2-S0-GC8"/>
+                    <constraint firstItem="uiP-2u-8SP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XiY-zJ-e2x"/>
+                    <constraint firstItem="uiP-2u-8SP" firstAttribute="leading" secondItem="oQb-4g-hgg" secondAttribute="trailing" constant="10" id="ulk-RU-yOF"/>
+                    <constraint firstItem="oQb-4g-hgg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ypq-ji-pxu"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_del_tuijian" width="24" height="24"/>
+        <image name="icon_next" width="12" height="12"/>
+    </resources>
+</document>

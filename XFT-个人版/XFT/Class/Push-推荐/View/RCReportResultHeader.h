@@ -1,8 +1,8 @@
 //
-//  RCPushHouseHeader.h
+//  RCReportResultHeader.h
 //  XFT
 //
-//  Created by 夏增明 on 2019/8/28.
+//  Created by 夏增明 on 2019/9/5.
 //  Copyright © 2019 夏增明. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RCPushHouseHeader : UIView
+@interface RCReportResultHeader : UIView
 
 @end
 

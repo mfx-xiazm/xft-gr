@@ -9,7 +9,6 @@
 #import "RCPushHouseVC.h"
 #import "RCHouseCell.h"
 #import "RCPushHouseFilterView.h"
-#import "RCPushHouseHeader.h"
 #import "RCHouseDetailVC.h"
 
 static NSString *const HouseCell = @"HouseCell";
@@ -18,8 +17,6 @@ static NSString *const HouseCell = @"HouseCell";
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 /* 筛选 */
 @property(nonatomic,strong) RCPushHouseFilterView *filterView;
-/* 头部视图 */
-@property(nonatomic,strong) RCPushHouseHeader *header;
 @end
 
 @implementation RCPushHouseVC
@@ -29,19 +26,10 @@ static NSString *const HouseCell = @"HouseCell";
     
     [self setUpNavBar];
     [self setUpTableView];
-    [self setUpTableHeaderView];
 }
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 70);
-}
--(RCPushHouseHeader *)header
-{
-    if (_header == nil) {
-        _header = [RCPushHouseHeader loadXibView];
-    }
-    return _header;
 }
 #pragma mark -- 视图相关
 -(void)setUpNavBar
@@ -78,10 +66,6 @@ static NSString *const HouseCell = @"HouseCell";
     // 注册cell
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCHouseCell class]) bundle:nil] forCellReuseIdentifier:HouseCell];
 }
--(void)setUpTableHeaderView
-{
-    self.tableView.tableHeaderView = self.header;
-}
 #pragma mark -- 点击事件
 -(void)sureClickd
 {
@@ -106,7 +90,7 @@ static NSString *const HouseCell = @"HouseCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 100.f;
+    return 44.f;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
