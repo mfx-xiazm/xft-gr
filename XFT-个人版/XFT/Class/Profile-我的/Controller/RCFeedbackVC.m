@@ -21,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"意见反馈"];
-    self.starView.tintColor = HXControlBg;
     self.remark.placeholder = @"请输入意见和建议";
 }
 - (IBAction)hiddenSubmitClicked:(UIButton *)sender {

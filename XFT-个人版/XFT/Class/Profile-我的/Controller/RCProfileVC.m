@@ -18,6 +18,7 @@
 #import "RCProfileFooter.h"
 #import "RCHouseLoanVC.h"
 #import "RCProfileQuestionVC.h"
+#import "RCMyAppointVC.h"
 
 static NSString *const ProfileCell = @"ProfileCell";
 
@@ -182,6 +183,8 @@ static NSString *const ProfileCell = @"ProfileCell";
 {
     if (indexPath.section == 0) {
         // 我的预约到访
+        RCMyAppointVC *avc = [RCMyAppointVC new];
+        [self.navigationController pushViewController:avc animated:YES];
     }else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             //我的收藏
