@@ -19,6 +19,7 @@ static NSString *const ClientNoteCell = @"ClientNoteCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationItem setTitle:@"客户轨迹"];
     [self setUpTableView];
 }
 -(void)viewDidLayoutSubviews
@@ -63,8 +64,9 @@ static NSString *const ClientNoteCell = @"ClientNoteCell";
     RCClientNoteCell *cell = [tableView dequeueReusableCellWithIdentifier:ClientNoteCell forIndexPath:indexPath];
     //无色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.topLine.hidden = !indexPath.row;
+    cell.num.text = [NSString stringWithFormat:@"%zd",indexPath.row+1];
     cell.buttomLine.hidden = (indexPath.row == 3)?YES:NO;
+    cell.tabImg.image = indexPath.row ?HXGetImage(@"circle_jindu"):HXGetImage(@"circle_jindu_yellow");
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

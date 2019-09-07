@@ -86,13 +86,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VB0-92-tdf">
-                                <rect key="frame" x="303" y="27" width="20" height="20"/>
-                                <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="Ph2-fa-wVd"/>
-                                    <constraint firstAttribute="height" constant="20" id="daa-fd-KQC"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_next" translatesAutoresizingMaskIntoConstraints="NO" id="VB0-92-tdf">
+                                <rect key="frame" x="311" y="31" width="12" height="12"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发展时间:2019-08-01 12:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2iL-sl-sr5">
                                 <rect key="frame" x="74" y="64" width="249" height="14"/>
@@ -116,22 +111,29 @@
                                             <constraint firstAttribute="height" constant="1" id="Lod-2y-uzd"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yo6-gr-fW3">
+                                        <rect key="frame" x="12" y="8" width="89" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="7天后失效" image="icon_erweima_kehu">
+                                            <color key="titleColor" red="0.92549019610000005" green="0.078431372550000003" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwg-Gx-QXU">
-                                        <rect key="frame" x="15" y="5" width="95" height="30"/>
+                                        <rect key="frame" x="15" y="5" width="80" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="5Lf-AW-jDn"/>
-                                            <constraint firstAttribute="width" constant="95" id="RN8-V5-tsS"/>
+                                            <constraint firstAttribute="width" constant="80" id="RN8-V5-tsS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="报备该客户">
-                                            <color key="titleColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="推荐客户">
+                                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layerBoderWidth">
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="boderColor">
-                                                <color key="value" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
                                                 <real key="value" value="15"/>
@@ -139,29 +141,32 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euP-Zr-10m">
-                                        <rect key="frame" x="248" y="5" width="30" height="30"/>
-                                        <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="251" y="5" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="iiQ-vX-Gyl"/>
                                             <constraint firstAttribute="height" constant="30" id="nf8-fx-IhR"/>
                                         </constraints>
+                                        <state key="normal" image="icon_sc_36"/>
+                                        <state key="selected" image="icon_sc_36_yellow"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfL-Tb-6AC">
-                                        <rect key="frame" x="293" y="5" width="30" height="30"/>
-                                        <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="296" y="5" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="dDV-1d-GWO"/>
                                             <constraint firstAttribute="height" constant="30" id="pYM-xM-JqK"/>
                                         </constraints>
+                                        <state key="normal" image="icon_phone _36"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="dfL-Tb-6AC" secondAttribute="trailing" constant="15" id="0OV-o4-Tr9"/>
+                                    <constraint firstAttribute="trailing" secondItem="dfL-Tb-6AC" secondAttribute="trailing" constant="12" id="0OV-o4-Tr9"/>
+                                    <constraint firstItem="yo6-gr-fW3" firstAttribute="centerY" secondItem="gdN-Oh-txB" secondAttribute="centerY" id="69l-GI-r5R"/>
                                     <constraint firstAttribute="height" constant="40" id="Ofn-ha-rPG"/>
                                     <constraint firstItem="dfL-Tb-6AC" firstAttribute="leading" secondItem="euP-Zr-10m" secondAttribute="trailing" constant="15" id="SYl-Vy-BzH"/>
                                     <constraint firstItem="euP-Zr-10m" firstAttribute="centerY" secondItem="gdN-Oh-txB" secondAttribute="centerY" id="T56-I0-mBv"/>
                                     <constraint firstItem="qwg-Gx-QXU" firstAttribute="leading" secondItem="gdN-Oh-txB" secondAttribute="leading" constant="15" id="VR3-0v-SUi"/>
+                                    <constraint firstItem="yo6-gr-fW3" firstAttribute="leading" secondItem="gdN-Oh-txB" secondAttribute="leading" constant="12" id="bs2-pW-sSe"/>
                                     <constraint firstItem="dfL-Tb-6AC" firstAttribute="centerY" secondItem="gdN-Oh-txB" secondAttribute="centerY" id="eie-ui-BM9"/>
                                     <constraint firstAttribute="trailing" secondItem="eZO-Mm-eDm" secondAttribute="trailing" id="kxO-47-dRU"/>
                                     <constraint firstItem="qwg-Gx-QXU" firstAttribute="centerY" secondItem="gdN-Oh-txB" secondAttribute="centerY" id="okd-en-4UP"/>
@@ -224,7 +229,18 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="codeBtn" destination="yo6-gr-fW3" id="KT0-Pd-4Bc"/>
+                <outlet property="pushBtn" destination="qwg-Gx-QXU" id="IRE-pQ-WLf"/>
+            </connections>
             <point key="canvasLocation" x="-18.840579710144929" y="106.13839285714285"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_erweima_kehu" width="24" height="24"/>
+        <image name="icon_next" width="12" height="12"/>
+        <image name="icon_phone _36" width="24" height="24"/>
+        <image name="icon_sc_36" width="24" height="24"/>
+        <image name="icon_sc_36_yellow" width="24" height="24"/>
+    </resources>
 </document>

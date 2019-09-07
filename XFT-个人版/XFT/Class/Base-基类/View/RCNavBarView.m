@@ -10,7 +10,6 @@
 
 @interface RCNavBarView ()
 @property (weak, nonatomic) IBOutlet UIView *bgView;
-
 @end
 @implementation RCNavBarView
 
@@ -18,17 +17,18 @@
 {
     [super awakeFromNib];
     self.backBtn.tintColor = [UIColor whiteColor];
+    self.moreBtn.tintColor = [UIColor whiteColor];
     self.bgView.alpha = 0;
-    self.titleL.hidden = YES;
+//    self.titleL.hidden = YES;
 }
 
 - (void)changeColor:(UIColor *)color offsetHeight:(CGFloat)height withOffsetY:(CGFloat)offsetY {
     
-    if (offsetY<=0) {
-        self.titleL.hidden = YES;
-    }else{
-        self.titleL.hidden = NO;
-    }
+//    if (offsetY<=0) {
+//        self.titleL.hidden = YES;
+//    }else{
+//        self.titleL.hidden = NO;
+//    }
     
     if (offsetY < 0) {
         //下拉时导航栏隐藏
@@ -43,6 +43,7 @@
         CGFloat blue = 1 + (69/255.0 - 1) * scale;
         
         self.backBtn.tintColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
+        self.moreBtn.tintColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
         self.titleL.textColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
         
         self.bgView.alpha = scale;
@@ -53,4 +54,10 @@
         self.navBackCall();
     }
 }
+- (IBAction)moreClicked:(UIButton *)sender {
+    if (self.navMoreCall) {
+        self.navMoreCall();
+    }
+}
+
 @end

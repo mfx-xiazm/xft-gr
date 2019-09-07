@@ -45,9 +45,21 @@
                         <constraint firstAttribute="height" constant="44" id="4vK-Jt-hpx"/>
                         <constraint firstAttribute="width" constant="44" id="j4k-iN-Keu"/>
                     </constraints>
-                    <state key="normal" image="返回"/>
+                    <state key="normal" image="icon_wback"/>
                     <connections>
                         <action selector="backClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="R0l-YP-Msz"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyA-fh-aoi">
+                    <rect key="frame" x="370" y="30" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="5d2-cs-fLD"/>
+                        <constraint firstAttribute="height" constant="44" id="fCJ-Ql-k7r"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="icon_nes_mine"/>
+                    <connections>
+                        <action selector="moreClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="Aa8-OX-gPV"/>
                     </connections>
                 </button>
             </subviews>
@@ -59,20 +71,24 @@
                 <constraint firstItem="lsA-Ia-ffZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="E36-dS-LUY"/>
                 <constraint firstAttribute="bottom" secondItem="lsA-Ia-ffZ" secondAttribute="bottom" id="Fv1-wK-WPc"/>
                 <constraint firstAttribute="trailing" secondItem="qcZ-jd-TGj" secondAttribute="trailing" constant="59" id="PaU-3b-ckt"/>
+                <constraint firstAttribute="bottom" secondItem="vyA-fh-aoi" secondAttribute="bottom" id="Q39-4a-gVP"/>
                 <constraint firstItem="lsA-Ia-ffZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="V4D-M5-wkO"/>
                 <constraint firstItem="qcZ-jd-TGj" firstAttribute="centerY" secondItem="fu5-aK-S7l" secondAttribute="centerY" id="X38-81-7o2"/>
+                <constraint firstAttribute="trailing" secondItem="vyA-fh-aoi" secondAttribute="trailing" id="no7-g2-x3Q"/>
                 <constraint firstAttribute="bottom" secondItem="fu5-aK-S7l" secondAttribute="bottom" id="yY6-GH-2pq"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="backBtn" destination="fu5-aK-S7l" id="5HQ-z1-e3E"/>
                 <outlet property="bgView" destination="lsA-Ia-ffZ" id="ghS-cJ-uZy"/>
+                <outlet property="moreBtn" destination="vyA-fh-aoi" id="4CA-fG-ITU"/>
                 <outlet property="titleL" destination="qcZ-jd-TGj" id="ZZn-da-h8M"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="389.0625"/>
         </view>
     </objects>
     <resources>
-        <image name="返回" width="11" height="20"/>
+        <image name="icon_nes_mine" width="24" height="24"/>
+        <image name="icon_wback" width="11" height="20"/>
     </resources>
 </document>

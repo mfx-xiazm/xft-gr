@@ -22,7 +22,7 @@ static NSString *const NoticeCell = @"NoticeCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = HXGlobalBg;
-    [self.navigationItem setTitle:@"公告"];
+    [self.navigationItem setTitle:self.navTitle];
     [self setUpTableView];
     [self setUpEmptyView];
 }

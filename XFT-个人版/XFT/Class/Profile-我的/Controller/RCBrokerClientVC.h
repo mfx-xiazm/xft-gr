@@ -1,8 +1,8 @@
 //
-//  RCClientInfoVC.h
+//  RCBrokerClientVC.h
 //  XFT
 //
-//  Created by 夏增明 on 2019/8/31.
+//  Created by 夏增明 on 2019/9/7.
 //  Copyright © 2019 夏增明. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RCClientInfoVC : HXBaseViewController
+@interface RCBrokerClientVC : HXBaseViewController
 
 @end
 

@@ -25,7 +25,7 @@
 #import "RCHouseLoanVC.h"
 #import "RCHouseStyleVC.h"
 #import "RCHouseNearbyVC.h"
-#import "RCUpgradeRoleVC.h"
+#import "RCRoleProtocolVC.h"
 #import "RCNewsDetailVC.h"
 #import "zhAlertView.h"
 
@@ -243,7 +243,7 @@ static NSString *const HouseStyleCell = @"HouseStyleCell";
     [self.navigationController pushViewController:hvc animated:YES];
 }
 - (IBAction)upRoleClicked:(UIButton *)sender {
-    RCUpgradeRoleVC *rvc = [RCUpgradeRoleVC new];
+    RCRoleProtocolVC *rvc = [RCRoleProtocolVC new];
     [self.navigationController pushViewController:rvc animated:YES];
 }
 - (IBAction)houseNewsClicked:(UIButton *)sender {

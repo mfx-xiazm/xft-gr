@@ -12,7 +12,7 @@
 #import "RCProfileHeader.h"
 #import "RCProfileInfoVC.h"
 #import "RCProfileCollectVC.h"
-#import "RCUpgradeRoleVC.h"
+#import "RCRoleProtocolVC.h"
 #import "RCFeedbackVC.h"
 #import "RCAboutUsVC.h"
 #import "RCProfileFooter.h"
@@ -67,6 +67,7 @@ static NSString *const ProfileCell = @"ProfileCell";
         _navBarView.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, self.HXNavBarHeight);
         _navBarView.backBtn.hidden = YES;
         _navBarView.titleL.text = @"我的";
+        _navBarView.titleL.hidden = NO;
         _navBarView.titleL.textAlignment = NSTextAlignmentCenter;
     }
     return _navBarView;
@@ -93,7 +94,7 @@ static NSString *const ProfileCell = @"ProfileCell";
         hx_weakify(self);
         _footer.upRoleCall = ^{
             // 升级经纪人
-            RCUpgradeRoleVC *rvc = [RCUpgradeRoleVC new];
+            RCRoleProtocolVC *rvc = [RCRoleProtocolVC new];
             [weakSelf.navigationController pushViewController:rvc animated:YES];
         };
     }

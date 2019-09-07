@@ -11,8 +11,6 @@
 @interface RCStaffHeader ()
 @property (weak, nonatomic) IBOutlet UILabel *totalSalary;
 @property (weak, nonatomic) IBOutlet UILabel *canCashSalary;
-@property (weak, nonatomic) IBOutlet UILabel *cashIngSalary;
-
 @end
 @implementation RCStaffHeader
 
@@ -23,13 +21,11 @@
 - (IBAction)hiddenSalaryClicked:(UIButton *)sender {
     sender.selected = !sender.selected;
     if (sender.isSelected) {
-        self.totalSalary.text = @"5900";
-        self.canCashSalary.text = @"3833";
-        self.cashIngSalary.text = @"1990";
-    }else{
         self.totalSalary.text = @"***";
         self.canCashSalary.text = @"***";
-        self.cashIngSalary.text = @"***";
+    }else{
+        self.totalSalary.text = @"5900";
+        self.canCashSalary.text = @"3833";
     }
 }
 

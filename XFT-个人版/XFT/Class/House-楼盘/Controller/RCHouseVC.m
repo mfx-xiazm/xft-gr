@@ -56,6 +56,7 @@
         _header.houseHeaderBtnClicked = ^(NSInteger type, NSInteger index) {
             if (type == 0) {
                 RCNoticeVC *nvc = [RCNoticeVC new];
+                nvc.navTitle = @"公告";
                 [weakSelf.navigationController pushViewController:nvc animated:YES];
             }else{
                 

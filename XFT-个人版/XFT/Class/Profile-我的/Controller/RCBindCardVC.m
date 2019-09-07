@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationItem setTitle:@"绑定银行卡"];
+    [self.navigationItem setTitle:@"实名认证"];
 }
 
 

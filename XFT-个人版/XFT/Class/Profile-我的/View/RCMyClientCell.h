@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RCMyClientCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *pushBtn;
+@property (weak, nonatomic) IBOutlet UIButton *codeBtn;
 
 @end
 

@@ -18,6 +18,9 @@
 #import "RCMyClientVC.h"
 #import "RCProfileQuestionVC.h"
 #import "RCBindCardVC.h"
+#import "RCNoticeVC.h"
+#import "RCMyBrokerVC.h"
+#import "RCHouseLoanVC.h"
 
 static NSString *const ProfileCell = @"ProfileCell";
 
@@ -29,8 +32,6 @@ static NSString *const ProfileCell = @"ProfileCell";
 @property(nonatomic,strong) RCStaffHeader *header;
 /* titles */
 @property(nonatomic,strong) NSArray *titles;
-/* 关于我们的跳转（隐藏导航栏） */
-@property(nonatomic,assign) BOOL isAboutUs;
 
 @end
 
@@ -44,18 +45,17 @@ static NSString *const ProfileCell = @"ProfileCell";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.isAboutUs = NO;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:self.isAboutUs animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 600.f);
+    self.header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 640.f);
     self.navBarView.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, self.HXNavBarHeight);
 }
 -(RCNavBarView *)navBarView
@@ -65,7 +65,15 @@ static NSString *const ProfileCell = @"ProfileCell";
         _navBarView.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, self.HXNavBarHeight);
         _navBarView.backBtn.hidden = YES;
         _navBarView.titleL.text = @"我的";
+        _navBarView.titleL.hidden = NO;
         _navBarView.titleL.textAlignment = NSTextAlignmentCenter;
+        _navBarView.moreBtn.hidden = NO;
+        hx_weakify(self);
+        _navBarView.navMoreCall = ^{
+            RCNoticeVC *nvc = [RCNoticeVC new];
+            nvc.navTitle = @"站内信";
+            [weakSelf.navigationController pushViewController:nvc animated:YES];
+        };
     }
     return _navBarView;
 }
@@ -74,7 +82,7 @@ static NSString *const ProfileCell = @"ProfileCell";
 {
     if (_header == nil) {
         _header = [RCStaffHeader loadXibView];
-        _header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 600.f);
+        _header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 640.f);
         hx_weakify(self);
         _header.staffHeaderBtnCall = ^(NSInteger index) {
             if (index == 1) {
@@ -90,7 +98,8 @@ static NSString *const ProfileCell = @"ProfileCell";
                 RCMyClientVC *cvc = [RCMyClientVC new];
                 [weakSelf.navigationController pushViewController:cvc animated:YES];
             }else{
-                
+                RCMyBrokerVC *bvc = [RCMyBrokerVC new];
+                [weakSelf.navigationController pushViewController:bvc animated:YES];
             }
         };
     }
@@ -99,7 +108,7 @@ static NSString *const ProfileCell = @"ProfileCell";
 -(NSArray *)titles
 {
     if (_titles == nil) {
-        _titles = @[@[@"我的收藏",@"我的预约"],@[@"平台问答",@"反馈与意见",@"关于我们"]];
+        _titles = @[@[@"我的收藏",@"房贷计算器"],@[@"平台问答",@"反馈与意见"]];
     }
     return _titles;
 }
@@ -181,22 +190,19 @@ static NSString *const ProfileCell = @"ProfileCell";
             RCProfileCollectVC *cvc = [RCProfileCollectVC  new];
             [self.navigationController pushViewController:cvc animated:YES];
         }else{
-            //我的预约
+            //房贷计算器
+            RCHouseLoanVC *lvc = [RCHouseLoanVC new];
+            [self.navigationController pushViewController:lvc animated:YES];
         }
     }else {
         if (indexPath.row == 0) {
             // 平台问答
             RCProfileQuestionVC *qvc = [RCProfileQuestionVC new];
             [self.navigationController pushViewController:qvc animated:YES];
-        }else if (indexPath.row == 1) {
+        }else {
             // 反馈与意见
             RCFeedbackVC *fvc = [RCFeedbackVC new];
             [self.navigationController pushViewController:fvc animated:YES];
-        }else{
-            // 关于我们
-            self.isAboutUs = YES;
-            RCAboutUsVC *uvc = [RCAboutUsVC new];
-            [self.navigationController pushViewController:uvc animated:YES];
         }
     }
 }

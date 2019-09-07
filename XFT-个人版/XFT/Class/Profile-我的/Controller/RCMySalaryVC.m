@@ -65,7 +65,7 @@ static NSString *const MySalaryCell = @"MySalaryCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // 返回这个模型对应的cell高度
-    return 95.f;
+    return 115.f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

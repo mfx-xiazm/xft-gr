@@ -46,7 +46,7 @@
     [self setupChildVc:[[RCHouseVC alloc] init] title:@"楼盘" image:@"icon_home" selectedImage:@"icon_home_click"];
     [self setupChildVc:[[RCPushVC alloc] init] title:@"推荐" image:@"icon_tuijian" selectedImage:@"icon_tuijian_click"];
     [self setupChildVc:[[RCNewsVC alloc] init] title:@"资讯" image:@"icon_information" selectedImage:@"icon_information_click"];
-    [self setupChildVc:[[RCProfileVC alloc] init] title:@"我的" image:@"icon_mine" selectedImage:@"icon_mine_click"];
+    [self setupChildVc:[[RCStaffVC alloc] init] title:@"我的" image:@"icon_mine" selectedImage:@"icon_mine_click"];
     
     self.delegate = self;
     

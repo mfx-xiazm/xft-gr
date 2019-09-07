@@ -9,7 +9,7 @@
 #import "RCMyClientVC.h"
 #import "RCMyClientCell.h"
 #import "RCMyClientStateCell.h"
-#import "RCClientDetailVC.h"
+#import "RCClientNoteVC.h"
 
 static NSString *const MyClientCell = @"MyClientCell";
 static NSString *const MyClientStateCell = @"MyClientStateCell";
@@ -96,6 +96,13 @@ static NSString *const MyClientStateCell = @"MyClientStateCell";
         RCMyClientCell *cell = [tableView dequeueReusableCellWithIdentifier:MyClientCell forIndexPath:indexPath];
         //无色
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (indexPath.row % 2) {
+            cell.pushBtn.hidden = YES;
+            cell.codeBtn.hidden = NO;
+        }else{
+            cell.pushBtn.hidden = NO;
+            cell.codeBtn.hidden = YES;
+        }
         return cell;
     }
 }
@@ -103,14 +110,14 @@ static NSString *const MyClientStateCell = @"MyClientStateCell";
 {
     // 返回这个模型对应的cell高度
     if (tableView == self.leftTableView) {
-        return 80.f;
+        return 75.f;
     }else{
         return 180.f;
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RCClientDetailVC *dvc = [RCClientDetailVC  new];
+    RCClientNoteVC *dvc = [RCClientNoteVC  new];
     [self.navigationController pushViewController:dvc animated:YES];
 }
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RCBrokerClientVC">
+            <connections>
+                <outlet property="leftTableView" destination="Jm8-ws-flg" id="e7I-s0-aS3"/>
+                <outlet property="tableView" destination="cwa-5p-wvO" id="3pX-b9-CXr"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jm8-ws-flg">
+                    <rect key="frame" x="0.0" y="44" width="80" height="818"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="OBx-f7-1xz"/>
+                    </constraints>
+                </tableView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cwa-5p-wvO">
+                    <rect key="frame" x="80" y="44" width="334" height="818"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="cwa-5p-wvO" firstAttribute="leading" secondItem="Jm8-ws-flg" secondAttribute="trailing" id="7Y5-G1-zfY"/>
+                <constraint firstItem="Jm8-ws-flg" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="HEZ-Jh-jus"/>
+                <constraint firstItem="cwa-5p-wvO" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="LT2-V0-OYL"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="Jm8-ws-flg" secondAttribute="bottom" id="Q1K-df-02t"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="cwa-5p-wvO" secondAttribute="bottom" id="Wlh-2B-Kg4"/>
+                <constraint firstItem="Jm8-ws-flg" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="gED-fh-dNE"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="cwa-5p-wvO" secondAttribute="trailing" id="lvU-Ub-eKP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="47.826086956521742" y="35.491071428571423"/>
+        </view>
+    </objects>
+</document>
