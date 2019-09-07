@@ -250,6 +250,8 @@
 		90B8B46623239AA5008A9E13 /* RCVisitCommentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90B8B46423239AA5008A9E13 /* RCVisitCommentVC.xib */; };
 		90B8B46B23239AD2008A9E13 /* RCMyAppointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8B46923239AD2008A9E13 /* RCMyAppointCell.m */; };
 		90B8B46C23239AD2008A9E13 /* RCMyAppointCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90B8B46A23239AD2008A9E13 /* RCMyAppointCell.xib */; };
+		90B8B4702323ABD5008A9E13 /* RCPushClientEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8B46E2323ABD5008A9E13 /* RCPushClientEditVC.m */; };
+		90B8B4712323ABD5008A9E13 /* RCPushClientEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90B8B46F2323ABD5008A9E13 /* RCPushClientEditVC.xib */; };
 		90D2DE0423192D2A00363EBE /* RCLoanDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2DE0223192D2A00363EBE /* RCLoanDetailVC.m */; };
 		90D2DE0523192D2A00363EBE /* RCLoanDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D2DE0323192D2A00363EBE /* RCLoanDetailVC.xib */; };
 		90D2DE0823192D4500363EBE /* RCLoanDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2DE0723192D4500363EBE /* RCLoanDetailHeader.m */; };
@@ -697,6 +699,9 @@
 		90B8B46823239AD2008A9E13 /* RCMyAppointCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCMyAppointCell.h; sourceTree = "<group>"; };
 		90B8B46923239AD2008A9E13 /* RCMyAppointCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCMyAppointCell.m; sourceTree = "<group>"; };
 		90B8B46A23239AD2008A9E13 /* RCMyAppointCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCMyAppointCell.xib; sourceTree = "<group>"; };
+		90B8B46D2323ABD5008A9E13 /* RCPushClientEditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCPushClientEditVC.h; sourceTree = "<group>"; };
+		90B8B46E2323ABD5008A9E13 /* RCPushClientEditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCPushClientEditVC.m; sourceTree = "<group>"; };
+		90B8B46F2323ABD5008A9E13 /* RCPushClientEditVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCPushClientEditVC.xib; sourceTree = "<group>"; };
 		90D2DE0123192D2A00363EBE /* RCLoanDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCLoanDetailVC.h; sourceTree = "<group>"; };
 		90D2DE0223192D2A00363EBE /* RCLoanDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCLoanDetailVC.m; sourceTree = "<group>"; };
 		90D2DE0323192D2A00363EBE /* RCLoanDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCLoanDetailVC.xib; sourceTree = "<group>"; };
@@ -1341,6 +1346,9 @@
 				900B7A652316255F00832CDE /* RCPushHouseVC.h */,
 				900B7A662316255F00832CDE /* RCPushHouseVC.m */,
 				900B7A672316255F00832CDE /* RCPushHouseVC.xib */,
+				90B8B46D2323ABD5008A9E13 /* RCPushClientEditVC.h */,
+				90B8B46E2323ABD5008A9E13 /* RCPushClientEditVC.m */,
+				90B8B46F2323ABD5008A9E13 /* RCPushClientEditVC.xib */,
 				90B8B45223239260008A9E13 /* RCHouseAdviserVC.h */,
 				90B8B45323239260008A9E13 /* RCHouseAdviserVC.m */,
 				90B8B45423239260008A9E13 /* RCHouseAdviserVC.xib */,
@@ -2113,6 +2121,7 @@
 				900B7A422314FC5100832CDE /* RCSearchTagCell.xib in Resources */,
 				904C8ED22317EA07007EB77D /* RCProfileQuestionVC.xib in Resources */,
 				908585E623235B8D00FF75B4 /* RCMyBrokerCell.xib in Resources */,
+				90B8B4712323ABD5008A9E13 /* RCPushClientEditVC.xib in Resources */,
 				908585E123235B5400FF75B4 /* RCMyBrokerVC.xib in Resources */,
 				90B8B46C23239AD2008A9E13 /* RCMyAppointCell.xib in Resources */,
 				908585D42323596800FF75B4 /* RCClientNoteCell.xib in Resources */,
@@ -2313,6 +2322,7 @@
 				90150C522317CD69006BFA6C /* RCCashDetailVC.m in Sources */,
 				9040F23A2313A839005E6B2E /* CAAnimation+WAnimation.m in Sources */,
 				900B7A0523140A0400832CDE /* RCForgetPwdVC.m in Sources */,
+				90B8B4702323ABD5008A9E13 /* RCPushClientEditVC.m in Sources */,
 				900B7A6D231626CD00832CDE /* RCPushHouseFilterView.m in Sources */,
 				904C8ED62317EA53007EB77D /* RCProfileQuestionCell.m in Sources */,
 				900B7A462315029E00832CDE /* RCSearchTagHeader.m in Sources */,

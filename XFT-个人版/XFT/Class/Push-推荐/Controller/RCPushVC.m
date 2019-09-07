@@ -16,6 +16,7 @@
 #import "RCAddedClientCell.h"
 #import "RCReportResultVC.h"
 #import "RCHouseAdviserVC.h"
+#import "RCPushClientEditVC.h"
 
 static NSString *const AddPhoneCell = @"AddPhoneCell";
 static NSString *const HouseTagsCell = @"HouseTagsCell";
@@ -69,6 +70,7 @@ static NSString *const AddedClientCell = @"AddedClientCell";
 }
 -(void)setUpTableView
 {
+    self.clientTableView.estimatedRowHeight = 0;
     self.clientTableView.estimatedSectionHeaderHeight = 0;
     self.clientTableView.estimatedSectionFooterHeight = 0;
     self.clientTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -221,7 +223,10 @@ static NSString *const AddedClientCell = @"AddedClientCell";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (tableView == self.clientTableView) {
+        RCPushClientEditVC *evc = [RCPushClientEditVC new];
+        [self.navigationController pushViewController:evc animated:YES];
+    }
 }
 
 
