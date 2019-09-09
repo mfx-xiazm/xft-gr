@@ -19,13 +19,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="76" height="67"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Ar-xX-ZPC">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarholder" translatesAutoresizingMaskIntoConstraints="NO" id="8Ar-xX-ZPC">
                         <rect key="frame" x="0.0" y="0.0" width="76" height="67"/>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                 </subviews>
             </view>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="8Ar-xX-ZPC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="GOr-hx-Oqd"/>
                 <constraint firstAttribute="trailing" secondItem="8Ar-xX-ZPC" secondAttribute="trailing" id="KKH-PI-ExO"/>
@@ -40,4 +40,7 @@
             <point key="canvasLocation" x="155.07246376811597" y="119.53125"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="avatarholder" width="66" height="66"/>
+    </resources>
 </document>

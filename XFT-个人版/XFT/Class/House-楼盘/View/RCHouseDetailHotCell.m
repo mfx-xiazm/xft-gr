@@ -16,12 +16,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.image.layer.cornerRadius = (HX_SCREEN_WIDTH-15.f*7)/6/2.0;
-    self.image.layer.masksToBounds = YES;
 }
 
 -(void)layoutSubviews
 {
     [super layoutSubviews];
+    self.image.layer.cornerRadius = self.hxn_width/2.0;
+    self.image.layer.masksToBounds = YES;
+    self.image.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.image.layer.borderWidth = 1.f;
 }
 @end

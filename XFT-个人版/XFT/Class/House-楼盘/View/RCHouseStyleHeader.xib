@@ -28,14 +28,14 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpE-xX-4RC">
-                                    <rect key="frame" x="226" y="0.0" width="115" height="44"/>
+                                    <rect key="frame" x="221" y="0.0" width="120" height="44"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="115" id="OAD-dt-Npb"/>
+                                        <constraint firstAttribute="width" constant="120" id="OAD-dt-Npb"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
-                                    <state key="normal" title="算价清单1份" image="搜索">
+                                    <inset key="titleEdgeInsets" minX="2" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2" maxY="0.0"/>
+                                    <state key="normal" title="算价清单1份" image="icon_calculator_fy">
                                         <color key="titleColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
@@ -306,6 +306,6 @@
         </view>
     </objects>
     <resources>
-        <image name="搜索" width="15" height="15"/>
+        <image name="icon_calculator_fy" width="24" height="24"/>
     </resources>
 </document>
