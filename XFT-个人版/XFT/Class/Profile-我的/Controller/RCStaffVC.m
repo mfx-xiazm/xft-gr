@@ -32,7 +32,8 @@ static NSString *const ProfileCell = @"ProfileCell";
 @property(nonatomic,strong) RCStaffHeader *header;
 /* titles */
 @property(nonatomic,strong) NSArray *titles;
-
+/* 关于我们的跳转（隐藏导航栏） */
+@property(nonatomic,assign) BOOL isAboutUs;
 @end
 
 @implementation RCStaffVC
@@ -45,17 +46,18 @@ static NSString *const ProfileCell = @"ProfileCell";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.isAboutUs = NO;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self.navigationController setNavigationBarHidden:self.isAboutUs animated:animated];
 }
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 640.f);
+    self.header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 660.f);
     self.navBarView.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, self.HXNavBarHeight);
 }
 -(RCNavBarView *)navBarView
@@ -82,7 +84,7 @@ static NSString *const ProfileCell = @"ProfileCell";
 {
     if (_header == nil) {
         _header = [RCStaffHeader loadXibView];
-        _header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 640.f);
+        _header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 660.f);
         hx_weakify(self);
         _header.staffHeaderBtnCall = ^(NSInteger index) {
             if (index == 1) {
@@ -97,9 +99,14 @@ static NSString *const ProfileCell = @"ProfileCell";
             }else if (index == 4) {
                 RCMyClientVC *cvc = [RCMyClientVC new];
                 [weakSelf.navigationController pushViewController:cvc animated:YES];
-            }else{
+            }else if (index == 5) {
                 RCMyBrokerVC *bvc = [RCMyBrokerVC new];
                 [weakSelf.navigationController pushViewController:bvc animated:YES];
+            }else{
+                weakSelf.isAboutUs = YES;
+                RCAboutUsVC *uvc = [RCAboutUsVC new];
+                uvc.navTitle = @"发展经纪人";
+                [weakSelf.navigationController pushViewController:uvc animated:YES];
             }
         };
     }

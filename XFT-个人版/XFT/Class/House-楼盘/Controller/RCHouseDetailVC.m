@@ -85,8 +85,13 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
     [self setUpTableView];
     // 地图
     [self.mapSuperView addSubview:self.mapView];
-    // 设置地图中心点
-    self.mapView.centerCoordinate = CLLocationCoordinate2DMake(30.4865508426, 114.3347167969);
+
+    MAPointAnnotation *a1 = [[MAPointAnnotation alloc] init];
+    a1.coordinate = CLLocationCoordinate2DMake(30.4865508426, 114.3347167969);
+    a1.title      = @"幸福里项目基地";
+
+    [self.mapView addAnnotation:a1];// 打标记
+    [self.mapView showAnnotations:@[a1] animated:YES];//自动设置地图以显示标记点
 }
 -(MAMapView *)mapView
 {
@@ -95,10 +100,6 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
         _mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _mapView.zoomLevel = 13;
         _mapView.delegate = self;
-        MAPointAnnotation *a1 = [[MAPointAnnotation alloc] init];
-        a1.coordinate = CLLocationCoordinate2DMake(30.4865508426, 114.3347167969);
-        a1.title      = @"幸福里项目基地";
-        [_mapView addAnnotation:a1];
     }
     return _mapView;
 }
@@ -353,7 +354,7 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
         [self.zh_popupController presentContentView:alert duration:0.25 springAnimated:NO];
     }
 }
-#pragma mark - Map Delegate
+#pragma mark -- AMap Delegate
 /*!
  @brief 根据anntation生成对应的View
  @param mapView 地图View
@@ -369,7 +370,7 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
             annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
                                                           reuseIdentifier:pointReuseIndetifier];
         }
-        annotationView.image = [UIImage imageNamed:@"mappin"];
+        annotationView.image = [UIImage imageNamed:@"icon_loupan"];
         annotationView.canShowCallout               = YES;
         //设置中心点偏移，使得标注底部中间点成为经纬度对应点
         //annotationView.centerOffset = CGPointMake(0, -18);
@@ -377,6 +378,23 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
     }
     
     return nil;
+}
+/*!
+ @brief 当选中一个annotation views时调用此接口
+ @param mapView 地图View
+ @param view 选中的annotation views
+ */
+- (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view {
+    view.image = [UIImage imageNamed:@"icon_loupan_click"];
+}
+
+/*!
+ @brief 当取消选中一个annotation views时调用此接口
+ @param mapView 地图View
+ @param view 取消选中的annotation views
+ */
+- (void)mapView:(MAMapView *)mapView didDeselectAnnotationView:(MAAnnotationView *)view {
+    view.image = [UIImage imageNamed:@"icon_loupan"];
 }
 #pragma mark -- JXCategoryView代理
 /**

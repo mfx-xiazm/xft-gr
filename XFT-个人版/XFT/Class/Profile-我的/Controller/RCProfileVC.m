@@ -208,6 +208,7 @@ static NSString *const ProfileCell = @"ProfileCell";
             // 关于我们
             self.isAboutUs = YES;
             RCAboutUsVC *uvc = [RCAboutUsVC new];
+            uvc.navTitle = @"关于我们";
             [self.navigationController pushViewController:uvc animated:YES];
         }
     }

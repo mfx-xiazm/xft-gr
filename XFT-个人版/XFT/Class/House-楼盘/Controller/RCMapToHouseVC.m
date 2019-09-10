@@ -8,21 +8,20 @@
 
 #import "RCMapToHouseVC.h"
 #import <MAMapKit/MAMapKit.h>
-#import "RCCityToHouseVC.h"
+#import "RCCustomAnnotationView.h"
+#import <zhPopupController.h>
+#import "RCCityToHouseView.h"
+#import <IQKeyboardManager.h>
+#import "RCCustomAnnotation.h"
+#import "RCMapToHouseView.h"
 
-#define Y1               150
-//#define Y2               self.view.frame.size.height - 250
-#define Y3               self.view.frame.size.height - 64
-
-@interface RCMapToHouseVC ()<MAMapViewDelegate,UIGestureRecognizerDelegate>
-/** 城市选择 */
-@property (nonatomic, strong) RCCityToHouseVC  *vc;
-/** 用来显示阴影的view，里面装的是 self.vc.view也就是城市选择控制器的view */
-@property (nonatomic, strong) UIView  *shadowView;
+@interface RCMapToHouseVC ()<MAMapViewDelegate>
 /** 地图 */
 @property (nonatomic, strong) MAMapView *mapView;
 /* 导航栏 */
 @property(nonatomic,strong) UIView *navBarView;
+/* 定位城市 */
+@property(nonatomic,strong) UIButton *loacationBtn;
 @end
 
 @implementation RCMapToHouseVC
@@ -31,11 +30,15 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [[IQKeyboardManager sharedManager] setEnable:NO];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,21 +48,28 @@
     
     [self.view addSubview:self.navBarView];
     
-    [self addChildViewController:self.vc];
-    [self.shadowView addSubview:self.vc.view];
-    [self.view addSubview:self.shadowView];
+    [self.view addSubview:self.loacationBtn];
+    // 打标记点
+    NSMutableArray *tempArr = [NSMutableArray array];
+    CLLocationCoordinate2D coordinates[6] = {
+        {30.4865508426, 114.3347167969},
+        {30.4855508426, 114.3347167969},
+        {30.4865508426, 114.3327167969},
+        {30.4845508426, 114.3337167969},
+        {30.4845508426, 114.3317167969},
+        {30.4837508426, 114.3289167969}};
     
-    hx_weakify(self);
-    [self.vc didClickTextField:^{
-        [UIView animateWithDuration:0.4 animations:^{
-            weakSelf.shadowView.frame = CGRectMake(0, Y1, HX_SCREEN_WIDTH, [UIScreen mainScreen].bounds.size.height);
-        }completion:^(BOOL finished) {
-            // 呼出键盘。  一定要在动画结束后调用，否则会出错
-            [weakSelf.vc.searchHeader.searchBar becomeFirstResponder];
-        }];
-        // 更新offsetY
-        weakSelf.vc.offsetY = weakSelf.shadowView.frame.origin.y;
-    }];
+    for (int i = 0; i < 6; ++i) {
+        RCCustomAnnotation *a1 = [[RCCustomAnnotation alloc] init];
+        a1.coordinate = coordinates[i];
+        a1.title      = [NSString stringWithFormat:@"武汉融公馆%d", i];
+        a1.subtitle = @"12000/平";
+        a1.otherMsg = @"58-142m";
+        a1.contentId = [NSString stringWithFormat:@"%d",i];
+        [tempArr addObject:a1];
+    }
+    [self.mapView addAnnotations:tempArr];// 打标记
+    [self.mapView showAnnotations:tempArr animated:YES];//自动设置地图以显示标记点
 }
 -(void)viewDidLayoutSubviews
 {
@@ -67,8 +77,23 @@
     self.mapView.frame = self.view.bounds;
     
     self.navBarView.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, self.HXNavBarHeight);
-
-    self.shadowView.frame = CGRectMake(0, Y3, self.view.frame.size.width, self.view.frame.size.height);
+    
+    [self.loacationBtn setTitle:@"武汉" forState:UIControlStateNormal];
+    [self.loacationBtn sizeToFit];
+    self.loacationBtn.frame = CGRectMake(15.f, self.HXNavBarHeight + 15.f, self.loacationBtn.hxn_width+20.f, 35.f);
+}
+-(UIButton *)loacationBtn
+{
+    if (_loacationBtn == nil) {
+        _loacationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_loacationBtn setBackgroundColor:HXControlBg];
+        _loacationBtn.layer.cornerRadius = 6.f;
+        _loacationBtn.layer.masksToBounds = YES;
+        _loacationBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_loacationBtn setImage:HXGetImage(@"btn_place") forState:UIControlStateNormal];
+        [_loacationBtn addTarget:self action:@selector(locationClicked:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _loacationBtn;
 }
 #pragma mark - 懒加载
 -(UIView *)navBarView
@@ -93,36 +118,6 @@
     }
     return _navBarView;
 }
--(RCCityToHouseVC *)vc
-{
-    if (!_vc) {
-        _vc = [[RCCityToHouseVC alloc] init];
-        
-        // -------------- 添加手势 轻扫手势  -----------
-        UISwipeGestureRecognizer *swipe1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-        swipe1.direction = UISwipeGestureRecognizerDirectionDown ; // 设置手势方向
-        swipe1.delegate = self;
-        [_vc.collectionView addGestureRecognizer:swipe1];
-        
-        UISwipeGestureRecognizer *swipe2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-        swipe2.direction = UISwipeGestureRecognizerDirectionUp; // 设置手势方向
-        swipe2.delegate = self;
-        [_vc.collectionView addGestureRecognizer:swipe2];
-    }
-    return _vc;
-}
--(UIView *)shadowView
-{
-    if (!_shadowView) {
-        _shadowView = [[UIView alloc] init];
-        _shadowView.frame = CGRectMake(0, Y3, HX_SCREEN_WIDTH, self.view.frame.size.height);
-        _shadowView.layer.shadowColor = [UIColor blackColor].CGColor;
-        _shadowView.layer.shadowRadius = 6;
-        _shadowView.layer.shadowOffset = CGSizeMake(0, 0);
-        _shadowView.layer.shadowOpacity = 0.1;
-    }
-    return _shadowView;
-}
 -(MAMapView *)mapView
 {
     if (_mapView == nil) {
@@ -130,74 +125,113 @@
         _mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _mapView.zoomLevel = 13;
         _mapView.delegate = self;
-        _mapView.showsUserLocation = YES;
-        _mapView.userTrackingMode = MAUserTrackingModeFollow;
+        //_mapView.showsUserLocation = YES;
+        //_mapView.userTrackingMode = MAUserTrackingModeFollow;
     }
     return _mapView;
-}
-#pragma mark -- 手势处理
-// 城市列表可滑动时，swipe默认不再响应 所以要打开
-- (void)swipe:(UISwipeGestureRecognizer *)swipe
-{
-    float stopY = 0;     // 停留的位置
-    float animateY = 0;  // 做弹性动画的Y
-    float margin = 10;   // 动画的幅度
-    //float offsetY = self.shadowView.frame.origin.y; // 这是上一次Y的位置
-    if (swipe.direction == UISwipeGestureRecognizerDirectionDown) {
-        // 向下轻扫
-        // 当vc.table滑到头 且是下滑时，让vc.table禁止滑动
-        if (self.vc.collectionView.contentOffset.y == 0) {
-            self.vc.collectionView.scrollEnabled = NO;
-        }
-        
-        // 停在y3的位置
-        stopY = Y3;
-
-        animateY = stopY + margin;
-    }
-    if (swipe.direction == UISwipeGestureRecognizerDirectionUp) {
-        // 向上轻扫
-        // 停在y1的位置
-        stopY = Y1;
-        // 当停在Y1位置 且是上划时，让vc.table不再禁止滑动
-        self.vc.collectionView.scrollEnabled = YES;
-     
-        animateY = stopY - margin;
-    }
-    
-    hx_weakify(self);
-    [UIView animateWithDuration:0.4 animations:^{
-        weakSelf.shadowView.frame = CGRectMake(0, animateY, HX_SCREEN_WIDTH, [UIScreen mainScreen].bounds.size.height);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^{
-            weakSelf.shadowView.frame = CGRectMake(0, stopY, HX_SCREEN_WIDTH, [UIScreen mainScreen].bounds.size.height);
-        }];
-    }];
-    // 记录shadowView在第一个视图中的位置
-    self.vc.offsetY = stopY;
-}
-/**
- 返回值为NO  swipe不响应手势 collectionView响应手势
- 返回值为YES swipe、collectionView也会响应手势, 但是把collectionView的scrollEnabled为No就不会响应table了
- */
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    // 触摸事件，一响应 就把searchBar的键盘收起来
-    // 收起键盘
-
-    // 当table Enabled且offsetY不为0时，让swipe响应
-    if (self.vc.collectionView.scrollEnabled == YES && self.vc.collectionView.contentOffset.y != 0) {
-        return NO;
-    }
-    if (self.vc.collectionView.scrollEnabled == YES) {
-        return YES;
-    }
-
-    return NO;
 }
 #pragma mark -- 点击事件
 -(void)backClicked
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+-(void)locationClicked:(UIButton *)sender
+{
+    RCCityToHouseView *hvc = [RCCityToHouseView loadXibView];
+    hvc.hxn_size = CGSizeMake(HX_SCREEN_WIDTH, HX_SCREEN_HEIGHT - 160);
+    hx_weakify(self);
+    hvc.didSelectCityCall = ^{
+        [weakSelf.zh_popupController dismissWithDuration:0.25 springAnimated:NO];
+    };
+    self.zh_popupController = [[zhPopupController alloc] init];
+    self.zh_popupController.offsetSpacingOfKeyboard = -270.f;//这里应该是键盘的高度，在这里只给一个大概值
+    self.zh_popupController.maskAlpha = 0.f;
+    self.zh_popupController.layoutType = zhPopupLayoutTypeBottom;
+    [self.zh_popupController presentContentView:hvc duration:0.25 springAnimated:NO];
+}
+-(void)showHouseInfoView
+{
+    RCMapToHouseView *hvc = [RCMapToHouseView loadXibView];
+    hvc.hxn_size = CGSizeMake(HX_SCREEN_WIDTH, HX_SCREEN_HEIGHT*3/5);
+    
+    self.zh_popupController = [[zhPopupController alloc] init];
+    self.zh_popupController.maskAlpha = 0.f;
+    self.zh_popupController.layoutType = zhPopupLayoutTypeBottom;
+    [self.zh_popupController presentContentView:hvc duration:0.25 springAnimated:NO];
+    
+    // 选中打点代码
+    //    MAPointAnnotation *a1 = [[MAPointAnnotation alloc] init];
+    //    a1.coordinate = CLLocationCoordinate2DMake(30.4839508426, 114.3299167969);
+    //    a1.title      = @"公交站";
+    //    [self.mapView addAnnotation:a1];
+}
+#pragma mark -- AMap Delegate
+/*!
+ @brief 根据anntation生成对应的View
+ @param mapView 地图View
+ @param annotation 指定的标注
+ @return 生成的标注View
+ */
+- (MAAnnotationView*)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MAUserLocation class]]) {
+        return nil;
+    }
+    
+    if ([annotation isKindOfClass:[RCCustomAnnotation class]]) {
+        static NSString *customReuseIndetifier = @"customReuseIndetifier";
+        RCCustomAnnotationView *annotationView = (RCCustomAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:customReuseIndetifier];
+        if (annotationView == nil){
+            annotationView = [[RCCustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:customReuseIndetifier];
+        }
+        hx_weakify(self);
+        annotationView.callOutViewClicked = ^{
+            [weakSelf showHouseInfoView];
+        };
+        annotationView.image = [UIImage imageNamed:@"icon_loupan"];
+        annotationView.canShowCallout               = NO;
+        annotationView.annotation = annotation;
+        //设置中心点偏移，使得标注底部中间点成为经纬度对应点
+        //annotationView.centerOffset = CGPointMake(0, -18);
+        return annotationView;
+    }else if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
+        static NSString *pointReuseIndetifier = @"pointReuseIndetifier";
+        MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndetifier];
+        if (annotationView == nil){
+            annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndetifier];
+        }
+        annotationView.image = [UIImage imageNamed:@"icon_place"];
+        annotationView.canShowCallout               = YES;
+        //设置中心点偏移，使得标注底部中间点成为经纬度对应点
+        //annotationView.centerOffset = CGPointMake(0, -18);
+        return annotationView;
+    }
+    
+    return nil;
+}
+/*!
+ @brief 当选中一个annotation views时调用此接口
+ @param mapView 地图View
+ @param view 选中的annotation views
+ */
+- (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view {
+    if ([view.annotation isKindOfClass:[RCCustomAnnotation class]]) {
+        view.image = [UIImage imageNamed:@"icon_loupan_click"];
+        RCCustomAnnotation *annotation = (RCCustomAnnotation *)view.annotation;
+        HXLog(@"选中的楼盘事件id-%@",annotation.contentId);
+    }else{
+        HXLog(@"附件周边点击");
+    }
+}
+
+/*!
+ @brief 当取消选中一个annotation views时调用此接口
+ @param mapView 地图View
+ @param view 取消选中的annotation views
+ */
+- (void)mapView:(MAMapView *)mapView didDeselectAnnotationView:(MAAnnotationView *)view {
+    if ([view.annotation isKindOfClass:[RCCustomAnnotation class]]) {
+        view.image = [UIImage imageNamed:@"icon_loupan"];
+    }
+}
+
 @end
