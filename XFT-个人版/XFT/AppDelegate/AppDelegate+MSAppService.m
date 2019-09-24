@@ -13,7 +13,7 @@
 #import <UMShare/UMShare.h>
 #import <UMCommon/UMCommon.h>
 #import "RCLoginVC.h"
-#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <QMapKit/QMapKit.h>
 
 @implementation AppDelegate (MSAppService)
 
@@ -26,8 +26,8 @@
 //    
 //    [self configUSharePlatforms];
     
-    /* ————— 高德 ————— */
-    [AMapServices sharedServices].apiKey = HXMapKey;
+    /* ————— 腾讯地图 ————— */
+    [QMapServices sharedServices].APIKey = HXQMapKey;
 }
 -(void)configUSharePlatforms
 {

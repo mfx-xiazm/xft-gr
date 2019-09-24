@@ -6,12 +6,12 @@
 //  Copyright © 2019 夏增明. All rights reserved.
 //
 
-#import <MAMapKit/MAMapKit.h>
+#import <QMapKit/QMapKit.h>
 #import "RCCustomCalloutView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^callOutViewClicked)(void);
-@interface RCCustomAnnotationView : MAAnnotationView
+@interface RCCustomAnnotationView : QAnnotationView
 @property (nonatomic, readonly) RCCustomCalloutView *calloutView;
 /* 被点击 */
 @property(nonatomic,copy) callOutViewClicked callOutViewClicked;

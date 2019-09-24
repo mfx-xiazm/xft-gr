@@ -7,19 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MAMapKit/MAMapKit.h>
+#import <QMapKit/QMapKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RCCustomAnnotation : NSObject <MAAnnotation>///遵守协议
-///标注view中心坐标
+@interface RCCustomAnnotation : NSObject <QAnnotation>///遵守协议
+/**
+ *  @brief  经纬度
+ */
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 
-///annotation标题
-@property (nonatomic, copy) NSString *title;
+/**
+ *  @brief  标题
+ */
+@property (copy) NSString *title;
 
-///annotation副标题
-@property (nonatomic, copy) NSString *subtitle;
+/**
+ *  @brief  副标题
+ */
+@property (copy) NSString *subtitle;
 
 ///annotation图片
 @property (nonatomic, strong) UIImage *image;

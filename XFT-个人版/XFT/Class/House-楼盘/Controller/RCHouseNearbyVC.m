@@ -7,20 +7,20 @@
 //
 
 #import "RCHouseNearbyVC.h"
-#import <MAMapKit/MAMapKit.h>
+#import <QMapKit/QMapKit.h>
 #import "RCHouseNearbyDetailVC.h"
 
 #define Y1               150
 //#define Y2               self.view.frame.size.height - 250
 #define Y3               self.view.frame.size.height - 75
 
-@interface RCHouseNearbyVC ()<MAMapViewDelegate,UIGestureRecognizerDelegate>
+@interface RCHouseNearbyVC ()<UIGestureRecognizerDelegate,QMapViewDelegate>
 /** 城市选择 */
 @property (nonatomic, strong) RCHouseNearbyDetailVC  *vc;
 /** 用来显示阴影的view，里面装的是 self.vc.view也就是城市选择控制器的view */
 @property (nonatomic, strong) UIView  *shadowView;
 /** 地图 */
-@property (nonatomic, strong) MAMapView *mapView;
+@property (nonatomic, strong) QMapView *mapView;
 /* 导航栏 */
 @property(nonatomic,strong) UIView *navBarView;
 
@@ -111,15 +111,15 @@
     }
     return _shadowView;
 }
--(MAMapView *)mapView
+-(QMapView *)mapView
 {
     if (_mapView == nil) {
-        _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
+        _mapView = [[QMapView alloc] initWithFrame:self.view.bounds];
         _mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _mapView.zoomLevel = 13;
         _mapView.delegate = self;
         _mapView.showsUserLocation = YES;
-        _mapView.userTrackingMode = MAUserTrackingModeFollow;
+        _mapView.userTrackingMode = QUserTrackingModeFollow;
     }
     return _mapView;
 }

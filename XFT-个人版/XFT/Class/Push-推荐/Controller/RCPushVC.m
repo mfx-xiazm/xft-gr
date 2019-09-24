@@ -111,7 +111,8 @@ static NSString *const AddedClientCell = @"AddedClientCell";
     [self.navigationController pushViewController:hvc animated:YES];
     [self.houses addObjectsFromArray:@[@"",@"",@""]];
     self.houseViewHeight.constant = 50.f+60.f;
-    hx_weakify(self); dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    hx_weakify(self);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf.collectionView reloadData];
     });
 }

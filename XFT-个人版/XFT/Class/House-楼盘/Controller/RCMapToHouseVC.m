@@ -7,17 +7,17 @@
 //
 
 #import "RCMapToHouseVC.h"
-#import <MAMapKit/MAMapKit.h>
 #import "RCCustomAnnotationView.h"
 #import <zhPopupController.h>
 #import "RCCityToHouseView.h"
 #import <IQKeyboardManager.h>
 #import "RCCustomAnnotation.h"
 #import "RCMapToHouseView.h"
+#import <QMapKit/QMapKit.h>
 
-@interface RCMapToHouseVC ()<MAMapViewDelegate>
+@interface RCMapToHouseVC ()<QMapViewDelegate>
 /** 地图 */
-@property (nonatomic, strong) MAMapView *mapView;
+@property (nonatomic, strong) QMapView *mapView;
 /* 导航栏 */
 @property(nonatomic,strong) UIView *navBarView;
 /* 定位城市 */
@@ -69,7 +69,8 @@
         [tempArr addObject:a1];
     }
     [self.mapView addAnnotations:tempArr];// 打标记
-    [self.mapView showAnnotations:tempArr animated:YES];//自动设置地图以显示标记点
+    
+    [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(30.4865508426, 114.3327167969) animated:YES];
 }
 -(void)viewDidLayoutSubviews
 {
@@ -118,15 +119,16 @@
     }
     return _navBarView;
 }
--(MAMapView *)mapView
+-(QMapView *)mapView
 {
     if (_mapView == nil) {
-        _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
+        _mapView = [[QMapView alloc] initWithFrame:self.view.bounds];
         _mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _mapView.zoomLevel = 13;
+        _mapView.zoomLevel = 15;
+        _mapView.showsCompass = YES;
         _mapView.delegate = self;
-        //_mapView.showsUserLocation = YES;
-        //_mapView.userTrackingMode = MAUserTrackingModeFollow;
+        //        [_mapView setShowsUserLocation:YES];
+        //        _mapView.userTrackingMode = QUserTrackingModeFollow;
     }
     return _mapView;
 }
@@ -160,20 +162,21 @@
     [self.zh_popupController presentContentView:hvc duration:0.25 springAnimated:NO];
     
     // 选中打点代码
-    //    MAPointAnnotation *a1 = [[MAPointAnnotation alloc] init];
-    //    a1.coordinate = CLLocationCoordinate2DMake(30.4839508426, 114.3299167969);
-    //    a1.title      = @"公交站";
-    //    [self.mapView addAnnotation:a1];
+    QPointAnnotation *a1 = [[QPointAnnotation alloc] init];
+    a1.coordinate = CLLocationCoordinate2DMake(30.4839508426, 114.3299167969);
+    a1.title      = @"公交站";
+    [self.mapView addAnnotation:a1];
 }
 #pragma mark -- AMap Delegate
-/*!
- @brief 根据anntation生成对应的View
- @param mapView 地图View
- @param annotation 指定的标注
- @return 生成的标注View
+/**
+ * @brief 根据anntation生成对应的View
+ * @param mapView 地图View
+ * @param annotation 指定的标注
+ * @return 生成的标注View
  */
-- (MAAnnotationView*)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation {
-    if ([annotation isKindOfClass:[MAUserLocation class]]) {
+- (QAnnotationView *)mapView:(QMapView *)mapView viewForAnnotation:(id <QAnnotation>)annotation;
+{
+    if ([annotation isKindOfClass:[QUserLocation class]]) {
         return nil;
     }
     
@@ -187,33 +190,37 @@
         annotationView.callOutViewClicked = ^{
             [weakSelf showHouseInfoView];
         };
+        annotationView.calloutOffset = CGPointMake(8, 0);
         annotationView.image = [UIImage imageNamed:@"icon_loupan"];
         annotationView.canShowCallout               = NO;
         annotationView.annotation = annotation;
-        //设置中心点偏移，使得标注底部中间点成为经纬度对应点
-        //annotationView.centerOffset = CGPointMake(0, -18);
+        
         return annotationView;
-    }else if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
+    }else if ([annotation isKindOfClass:[QPointAnnotation class]]) {
         static NSString *pointReuseIndetifier = @"pointReuseIndetifier";
-        MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndetifier];
-        if (annotationView == nil){
-            annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndetifier];
+        QAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndetifier];
+        if (annotationView == nil) {
+            annotationView = [[QAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndetifier];
         }
-        annotationView.image = [UIImage imageNamed:@"icon_place"];
-        annotationView.canShowCallout               = YES;
-        //设置中心点偏移，使得标注底部中间点成为经纬度对应点
-        //annotationView.centerOffset = CGPointMake(0, -18);
+        // 可拖拽.
+        annotationView.draggable = NO;
+        //显示气泡
+        [annotationView setCanShowCallout:YES];
+        //设置图标
+        [annotationView setImage:[UIImage imageNamed:@"icon_place"]];
+        
         return annotationView;
     }
     
     return nil;
 }
-/*!
- @brief 当选中一个annotation views时调用此接口
- @param mapView 地图View
- @param view 选中的annotation views
+/**
+ * @brief  当选中一个annotation view时，调用此接口
+ * @param mapView 地图View
+ * @param view 选中的annotation view
  */
-- (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view {
+- (void)mapView:(QMapView *)mapView didSelectAnnotationView:(QAnnotationView *)view
+{
     if ([view.annotation isKindOfClass:[RCCustomAnnotation class]]) {
         view.image = [UIImage imageNamed:@"icon_loupan_click"];
         RCCustomAnnotation *annotation = (RCCustomAnnotation *)view.annotation;
@@ -223,12 +230,13 @@
     }
 }
 
-/*!
- @brief 当取消选中一个annotation views时调用此接口
- @param mapView 地图View
- @param view 取消选中的annotation views
+/**
+ * @brief  当取消选中一个annotation view时，调用此接口
+ * @param mapView 地图View
+ * @param view 取消选中的annotation view
  */
-- (void)mapView:(MAMapView *)mapView didDeselectAnnotationView:(MAAnnotationView *)view {
+- (void)mapView:(QMapView *)mapView didDeselectAnnotationView:(QAnnotationView *)view
+{
     if ([view.annotation isKindOfClass:[RCCustomAnnotation class]]) {
         view.image = [UIImage imageNamed:@"icon_loupan"];
     }
