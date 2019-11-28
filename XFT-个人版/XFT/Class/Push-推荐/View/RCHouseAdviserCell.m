@@ -7,9 +7,13 @@
 //
 
 #import "RCHouseAdviserCell.h"
+#import "RCHouseAdviser.h"
 
 @interface RCHouseAdviserCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *tagImg;
+@property (weak, nonatomic) IBOutlet UIImageView *headPic;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *notName;
 
 @end
 @implementation RCHouseAdviserCell
@@ -18,11 +22,21 @@
     [super awakeFromNib];
     // Initialization code
 }
-
+-(void)setAdviser:(RCHouseAdviser *)adviser
+{
+    _adviser = adviser;
+    if (_adviser.isNotAdviser) {
+        self.notName.hidden = NO;
+    }else{
+        self.notName.hidden = YES;
+        [self.headPic sd_setImageWithURL:[NSURL URLWithString:_adviser.headpic] placeholderImage:HXGetImage(@"pic_header")];
+           self.name.text = _adviser.accName;
+    }
+    self.tagImg.image = _adviser.isSelected ? HXGetImage(@"icon_choose_click") : HXGetImage(@"icon_choose");
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    self.tagImg.image = selected ? HXGetImage(@"icon_choose_click") : HXGetImage(@"icon_choose");
 }
 
 @end

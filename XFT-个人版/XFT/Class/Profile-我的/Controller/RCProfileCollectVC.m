@@ -35,9 +35,9 @@
 {
     if (_childVCs == nil) {
         NSMutableArray *vcs = [NSMutableArray array];
-        for (int i=0;i<4;i++) {
+        for (int i=0;i<self.categoryView.titles.count;i++) {
             RCProfileCollectChildVC *cvc0 = [RCProfileCollectChildVC new];
-            cvc0.collectType = i;
+            cvc0.collectType = i+1;
             [self addChildViewController:cvc0];
             [vcs addObject:cvc0];
         }

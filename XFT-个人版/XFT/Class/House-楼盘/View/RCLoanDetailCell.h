@@ -10,8 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class RCCalculateResultMonthModel;
 @interface RCLoanDetailCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *singleLoanView;
+@property (weak, nonatomic) IBOutlet UIView *mixLoanView;
 
+/* 期数 */
+@property(nonatomic,strong) RCCalculateResultMonthModel *month;
+
+/* 期数 */
+@property(nonatomic,strong) RCCalculateResultMonthModel *zmonth;
 @end
 
 NS_ASSUME_NONNULL_END

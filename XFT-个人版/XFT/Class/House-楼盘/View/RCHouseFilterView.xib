@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,7 +26,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape" translatesAutoresizingMaskIntoConstraints="NO" id="ypg-aU-Ats">
-                                    <rect key="frame" x="94" y="13" width="18" height="18"/>
+                                    <rect key="frame" x="89" y="13" width="18" height="18"/>
                                 </imageView>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKq-eV-QSZ">
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
@@ -44,7 +42,7 @@
                                 <constraint firstAttribute="trailing" secondItem="gKq-eV-QSZ" secondAttribute="trailing" id="ENR-Oc-7VZ"/>
                                 <constraint firstItem="gKq-eV-QSZ" firstAttribute="top" secondItem="7n3-Y9-RP8" secondAttribute="top" id="NLw-lb-4r4"/>
                                 <constraint firstItem="tXz-Pn-BbG" firstAttribute="width" relation="lessThanOrEqual" secondItem="7n3-Y9-RP8" secondAttribute="width" multiplier="7:10" id="OGz-kn-r2x"/>
-                                <constraint firstItem="ypg-aU-Ats" firstAttribute="leading" secondItem="tXz-Pn-BbG" secondAttribute="trailing" constant="5" id="clW-OV-c78"/>
+                                <constraint firstItem="ypg-aU-Ats" firstAttribute="leading" secondItem="tXz-Pn-BbG" secondAttribute="trailing" id="clW-OV-c78"/>
                                 <constraint firstItem="gKq-eV-QSZ" firstAttribute="leading" secondItem="7n3-Y9-RP8" secondAttribute="leading" id="edT-yO-jWj"/>
                                 <constraint firstItem="tXz-Pn-BbG" firstAttribute="centerX" secondItem="7n3-Y9-RP8" secondAttribute="centerX" id="kxb-68-qOe"/>
                                 <constraint firstAttribute="bottom" secondItem="gKq-eV-QSZ" secondAttribute="bottom" id="r3o-Bh-Naa"/>
@@ -60,7 +58,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape" translatesAutoresizingMaskIntoConstraints="NO" id="Cck-aJ-0EZ">
-                                    <rect key="frame" x="94" y="13" width="18" height="18"/>
+                                    <rect key="frame" x="89" y="13" width="18" height="18"/>
                                 </imageView>
                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAr-bs-Xrm">
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
@@ -75,7 +73,7 @@
                                 <constraint firstAttribute="trailing" secondItem="nAr-bs-Xrm" secondAttribute="trailing" id="Ar0-re-vS9"/>
                                 <constraint firstAttribute="bottom" secondItem="nAr-bs-Xrm" secondAttribute="bottom" id="Oho-qH-DKb"/>
                                 <constraint firstItem="Fkv-H8-Ksr" firstAttribute="centerX" secondItem="IaR-ad-NCb" secondAttribute="centerX" id="ekb-PN-L2c"/>
-                                <constraint firstItem="Cck-aJ-0EZ" firstAttribute="leading" secondItem="Fkv-H8-Ksr" secondAttribute="trailing" constant="5" id="f5m-aY-JB0"/>
+                                <constraint firstItem="Cck-aJ-0EZ" firstAttribute="leading" secondItem="Fkv-H8-Ksr" secondAttribute="trailing" id="f5m-aY-JB0"/>
                                 <constraint firstItem="nAr-bs-Xrm" firstAttribute="top" secondItem="IaR-ad-NCb" secondAttribute="top" id="i4V-cK-akt"/>
                                 <constraint firstItem="nAr-bs-Xrm" firstAttribute="leading" secondItem="IaR-ad-NCb" secondAttribute="leading" id="nRz-yP-X4X"/>
                                 <constraint firstItem="Fkv-H8-Ksr" firstAttribute="width" relation="lessThanOrEqual" secondItem="IaR-ad-NCb" secondAttribute="width" multiplier="7:10" id="pbC-5l-eXK"/>
@@ -92,7 +90,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape" translatesAutoresizingMaskIntoConstraints="NO" id="vvz-EC-78Z">
-                                    <rect key="frame" x="79.5" y="13" width="18" height="18"/>
+                                    <rect key="frame" x="74.5" y="13" width="18" height="18"/>
                                 </imageView>
                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5R-1I-xN0">
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
@@ -108,7 +106,7 @@
                                 <constraint firstItem="QeI-AE-CDz" firstAttribute="centerX" secondItem="naB-X5-V1s" secondAttribute="centerX" id="Ufq-W0-9lz"/>
                                 <constraint firstItem="u5R-1I-xN0" firstAttribute="top" secondItem="naB-X5-V1s" secondAttribute="top" id="ffJ-Uu-sfI"/>
                                 <constraint firstItem="QeI-AE-CDz" firstAttribute="centerY" secondItem="naB-X5-V1s" secondAttribute="centerY" id="k3l-0x-ABf"/>
-                                <constraint firstItem="vvz-EC-78Z" firstAttribute="leading" secondItem="QeI-AE-CDz" secondAttribute="trailing" constant="5" id="lbw-Zk-BsT"/>
+                                <constraint firstItem="vvz-EC-78Z" firstAttribute="leading" secondItem="QeI-AE-CDz" secondAttribute="trailing" id="lbw-Zk-BsT"/>
                                 <constraint firstItem="u5R-1I-xN0" firstAttribute="leading" secondItem="naB-X5-V1s" secondAttribute="leading" id="lrZ-7M-FX2"/>
                                 <constraint firstItem="QeI-AE-CDz" firstAttribute="width" relation="lessThanOrEqual" secondItem="naB-X5-V1s" secondAttribute="width" multiplier="7:10" id="pFM-hc-pc7"/>
                                 <constraint firstItem="vvz-EC-78Z" firstAttribute="centerY" secondItem="naB-X5-V1s" secondAttribute="centerY" id="tIP-2a-dON"/>
@@ -124,7 +122,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape" translatesAutoresizingMaskIntoConstraints="NO" id="jqv-Yl-IA9">
-                                    <rect key="frame" x="79.5" y="13" width="18" height="18"/>
+                                    <rect key="frame" x="74.5" y="13" width="18" height="18"/>
                                 </imageView>
                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6v-0C-ptd">
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
@@ -139,7 +137,7 @@
                                 <constraint firstItem="jqv-Yl-IA9" firstAttribute="centerY" secondItem="EHg-Cs-R1b" secondAttribute="centerY" id="9jB-gw-XQl"/>
                                 <constraint firstItem="vFH-dG-4Kn" firstAttribute="width" relation="lessThanOrEqual" secondItem="EHg-Cs-R1b" secondAttribute="width" multiplier="7:10" id="EmU-7z-U00"/>
                                 <constraint firstItem="vFH-dG-4Kn" firstAttribute="centerY" secondItem="EHg-Cs-R1b" secondAttribute="centerY" id="Fhw-fx-hzk"/>
-                                <constraint firstItem="jqv-Yl-IA9" firstAttribute="leading" secondItem="vFH-dG-4Kn" secondAttribute="trailing" constant="5" id="Kn5-UM-zOe"/>
+                                <constraint firstItem="jqv-Yl-IA9" firstAttribute="leading" secondItem="vFH-dG-4Kn" secondAttribute="trailing" id="Kn5-UM-zOe"/>
                                 <constraint firstItem="b6v-0C-ptd" firstAttribute="leading" secondItem="EHg-Cs-R1b" secondAttribute="leading" id="Yxh-oQ-7wE"/>
                                 <constraint firstItem="vFH-dG-4Kn" firstAttribute="centerX" secondItem="EHg-Cs-R1b" secondAttribute="centerX" id="eOW-ut-9e7"/>
                                 <constraint firstItem="b6v-0C-ptd" firstAttribute="top" secondItem="EHg-Cs-R1b" secondAttribute="top" id="jFA-Js-N7D"/>

@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class RCHouseStyle;
+typedef void(^jisuanCall)(void);
 @interface RCHouseStyleCell : UICollectionViewCell
-
+/* 户型 */
+@property(nonatomic,assign) RCHouseStyle *style;
+/* 计算 */
+@property(nonatomic,copy) jisuanCall jisuanCall;
 @end
 
 NS_ASSUME_NONNULL_END

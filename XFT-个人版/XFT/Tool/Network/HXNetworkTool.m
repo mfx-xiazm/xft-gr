@@ -171,34 +171,40 @@ static NSArray *_filtrationCacheKey;
     
     NSString *appendUrl =  action?[NSString stringWithFormat:@"%@%@",URL,action]:URL;
 
-    NSMutableDictionary *tempAarameters = nil;
-    if (parameters) {
-        tempAarameters = [NSMutableDictionary dictionaryWithDictionary:(NSDictionary *)parameters];
-        tempAarameters[@"version"] = @"V3";
-    }
+//    if (![MSUserManager sharedInstance].isLogined) {
+//        [_sessionManager.requestSerializer setValue:@"{\"domain\":\"agent-app-ios\"}" forHTTPHeaderField:@"UserAccessInfo"];
+//    }else{
+//        [_sessionManager.requestSerializer setValue:[MSUserManager sharedInstance].curUserInfo.userAccessStr forHTTPHeaderField:@"UserAccessInfo"];
+//    }
+//    [_sessionManager.requestSerializer setValue:[MSUserManager sharedInstance].curUserInfo.token forHTTPHeaderField:@"Authorization"];
+
+    // 61b0c7709cd442dfad0dfa4adcf1f7d2
+    // fba54210f87d4852b83fd57547501b8b
+    [_sessionManager.requestSerializer setValue:@"{\"domain\":\"agent-app-ios\",\"loginId\":\"fba54210f87d4852b83fd57547501b8b\"}" forHTTPHeaderField:@"UserAccessInfo"];
+
+    [_sessionManager.requestSerializer setValue:@"Bearer:eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbklkIjoiNjFiMGM3NzA5Y2Q0NDJkZmFkMGRmYTRhZGNmMWY3ZDIiLCJpc3MiOiJodHRwOi8veWR4cy5zdW5hYy5jb20iLCJleHAiOjE1NzU1MzAyNTIsImlhdCI6MTU3NDkyNTQ1Mn0.WpimsMMSlljYp0ktDCJrVijfNaHSqKl99CqEsamtoPXwHwHXEj7HbwoY8oMrnFeqvYrY44VAgb1hkvAew52w9A" forHTTPHeaderField:@"Authorization"];
+    
     //读取缓存
     responseCache!=nil ? responseCache([HXNetworkCache httpCacheForURL:appendUrl parameters:parameters filtrationCacheKey:_filtrationCacheKey]) : nil;
     
-    NSURLSessionTask *sessionTask = [_sessionManager POST:appendUrl parameters:tempAarameters?tempAarameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    NSURLSessionTask *sessionTask = [_sessionManager POST:appendUrl parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (_isOpenLog) {HXLog(@"responseObject = %@",responseObject);}
         [[self allSessionTask] removeObject:task];
-
-//        if ([responseObject[@"status"] integerValue] == 2) {// 登录状态失效
+        
+//        if ([responseObject[@"code"] integerValue] == -6 || [responseObject[@"code"] integerValue] == -7) {// 登录状态失效
 //            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [JMNotifyView showNotify:@"登录状态已过期，请重新登录"];
+//                [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"登录状态过期，请重新登录"];
 //            });
-//
-//            // 退出IM
-////            [[SPKitExample sharedInstance] exampleLogout];
 //
 //            [[MSUserManager sharedInstance] logout:nil];//退出
 //
-//            BBLoginVC *lvc = [BBLoginVC new];
+//            RCLoginVC *lvc = [RCLoginVC new];
 //            HXNavigationController *nav = [[HXNavigationController alloc] initWithRootViewController:lvc];
 //            [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+//
 //            //推出主界面出来
 //            CATransition *ca = [CATransition animation];
 //            ca.type = @"movein";
@@ -273,6 +279,14 @@ static NSArray *_filtrationCacheKey;
                                   failure:(HXHttpRequestFailed)failure {
     
     NSString *appendUrl =  action?[NSString stringWithFormat:@"%@%@",URL,action]:URL;
+   
+    [_sessionManager.requestSerializer setValue:[MSUserManager sharedInstance].curUserInfo.userAccessStr forHTTPHeaderField:@"UserAccessInfo"];
+    [_sessionManager.requestSerializer setValue:[MSUserManager sharedInstance].curUserInfo.token forHTTPHeaderField:@"Authorization"];
+    // 61b0c7709cd442dfad0dfa4adcf1f7d2
+    // fba54210f87d4852b83fd57547501b8b
+//    [_sessionManager.requestSerializer setValue:@"{\"domain\":\"agent-app-ios\",\"loginId\":\"fba54210f87d4852b83fd57547501b8b\"}" forHTTPHeaderField:@"UserAccessInfo"];
+//
+//    [_sessionManager.requestSerializer setValue:@"Bearer:eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbklkIjoiNGU1ZDc0ZWRlYzUxNGFkNTk1MDRiZmI3Y2QxMTkyMzAiLCJpc3MiOiJodHRwOi8veWR4cy5zdW5hYy5jb20iLCJleHAiOjE1NzQ5MjU0NTIsImlhdCI6MTU3NDMyMDY1Mn0.TIXxVzABVxMmAGkn3O6ne8LvtCLZ0mZZMIgcKJTgDq0uwaRaG5xD4FGeQTk1WLlvyloWXc4cymJnaG0trUWrIg" forHTTPHeaderField:@"Authorization"];
     
     NSURLSessionTask *sessionTask = [_sessionManager POST:appendUrl parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
@@ -379,7 +393,9 @@ static NSArray *_filtrationCacheKey;
 + (void)initialize {
     _sessionManager = [AFHTTPSessionManager manager];
     _sessionManager.requestSerializer.timeoutInterval = 30.f;
-    _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html", @"text/json", @"text/plain", @"text/javascript", @"text/xml", @"image/*", nil]; 
+    [_sessionManager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    _sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
+    _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html", @"text/json", @"text/plain", @"text/javascript", @"text/xml", @"image/*", nil];
     // 打开状态栏的等待菊花
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 }

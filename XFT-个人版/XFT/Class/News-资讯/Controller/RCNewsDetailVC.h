@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RCNewsDetailVC : HXBaseViewController
-
+/* 资讯id */
+@property(nonatomic,copy) NSString *uuid;
 @end
 
 NS_ASSUME_NONNULL_END

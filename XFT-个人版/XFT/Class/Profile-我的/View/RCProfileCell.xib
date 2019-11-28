@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,11 +14,11 @@
             <rect key="frame" x="0.0" y="0.0" width="340" height="62"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="340" height="61.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="340" height="62"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vag-uc-zbT">
-                        <rect key="frame" x="0.0" y="0.0" width="340" height="61.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="340" height="62"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的收藏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfV-0D-i57">
                                 <rect key="frame" x="15" y="22" width="310" height="18"/>
@@ -28,11 +26,17 @@
                                 <color key="textColor" red="0.074509803920000006" green="0.1137254902" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNs-MO-vON">
+                                <rect key="frame" x="298" y="22" width="10" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_next" translatesAutoresizingMaskIntoConstraints="NO" id="Qgs-dL-hQm">
                                 <rect key="frame" x="313" y="25" width="12" height="12"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eii-CP-j2D" userLabel="分割线">
-                                <rect key="frame" x="12" y="60.5" width="316" height="1"/>
+                                <rect key="frame" x="12" y="61" width="316" height="1"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="VTN-gl-Nrh"/>
@@ -44,6 +48,8 @@
                             <constraint firstAttribute="trailing" secondItem="Qgs-dL-hQm" secondAttribute="trailing" constant="15" id="Ct6-Ea-qu5"/>
                             <constraint firstAttribute="bottom" secondItem="eii-CP-j2D" secondAttribute="bottom" id="Hbv-zh-IUO"/>
                             <constraint firstAttribute="trailing" secondItem="eii-CP-j2D" secondAttribute="trailing" constant="12" id="Hwe-h9-tmv"/>
+                            <constraint firstItem="Qgs-dL-hQm" firstAttribute="leading" secondItem="oNs-MO-vON" secondAttribute="trailing" constant="5" id="NxI-he-Gdf"/>
+                            <constraint firstItem="oNs-MO-vON" firstAttribute="centerY" secondItem="Vag-uc-zbT" secondAttribute="centerY" id="TF3-wD-bk6"/>
                             <constraint firstItem="Qgs-dL-hQm" firstAttribute="centerY" secondItem="Vag-uc-zbT" secondAttribute="centerY" id="bFt-SS-tpf"/>
                             <constraint firstItem="sfV-0D-i57" firstAttribute="centerY" secondItem="Vag-uc-zbT" secondAttribute="centerY" id="pw8-Q5-Hqf"/>
                             <constraint firstItem="sfV-0D-i57" firstAttribute="leading" secondItem="Vag-uc-zbT" secondAttribute="leading" constant="15" id="uCz-11-Ggi"/>
@@ -62,6 +68,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="name" destination="sfV-0D-i57" id="4BH-i5-xyM"/>
+                <outlet property="num" destination="oNs-MO-vON" id="ZEM-r4-fAH"/>
             </connections>
             <point key="canvasLocation" x="26.086956521739133" y="124.55357142857142"/>
         </tableViewCell>

@@ -9,7 +9,7 @@
 #import "RCCustomAnnotationView.h"
 #import "RCCustomAnnotation.h"
 
-#define kCalloutWidth       180.0
+#define kCalloutWidth       160.0
 #define kCalloutHeight      90.0
 
 @interface RCCustomAnnotationView ()<RCCustomCalloutViewDelegate>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RCMyAppointFooter">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qrv-2L-drg">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnu-wR-1Wf">
+                            <rect key="frame" x="15" y="10" width="384" height="40"/>
+                            <attributedString key="attributedText">
+                                <fragment content="您有一份案场回访调查表待完成,我们需要您的建议">
+                                    <attributes>
+                                        <color key="NSColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <font key="NSFont" size="15" name=".PingFangSC-Regular"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment content=" ">
+                                    <attributes>
+                                        <color key="NSColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <font key="NSFont" metaFont="system" size="15"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment content="和监督。">
+                                    <attributes>
+                                        <color key="NSColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <font key="NSFont" size="15" name=".PingFangSC-Regular"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGJ-62-Htx">
+                            <rect key="frame" x="319" y="58" width="80" height="30"/>
+                            <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="8Qu-L0-J06"/>
+                                <constraint firstAttribute="height" constant="30" id="mOA-vc-dNq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="去完成">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
+                                    <real key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="doneClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="NXu-Ie-1lE"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="wnu-wR-1Wf" firstAttribute="leading" secondItem="Qrv-2L-drg" secondAttribute="leading" constant="15" id="1dZ-p8-q1l"/>
+                        <constraint firstAttribute="trailing" secondItem="wnu-wR-1Wf" secondAttribute="trailing" constant="15" id="APN-RB-V0o"/>
+                        <constraint firstAttribute="trailing" secondItem="DGJ-62-Htx" secondAttribute="trailing" constant="15" id="WwR-km-r9x"/>
+                        <constraint firstItem="DGJ-62-Htx" firstAttribute="top" secondItem="wnu-wR-1Wf" secondAttribute="bottom" constant="8" id="hTw-dO-rqS"/>
+                        <constraint firstItem="wnu-wR-1Wf" firstAttribute="top" secondItem="Qrv-2L-drg" secondAttribute="top" constant="10" id="qUr-Ac-r0W"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Qrv-2L-drg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5gt-C0-0PP"/>
+                <constraint firstAttribute="bottom" secondItem="Qrv-2L-drg" secondAttribute="bottom" constant="10" id="bwm-9f-p5m"/>
+                <constraint firstItem="Qrv-2L-drg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cnv-02-q2i"/>
+                <constraint firstAttribute="trailing" secondItem="Qrv-2L-drg" secondAttribute="trailing" id="g7I-5y-XZY"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="89.855072463768124" y="227.34375"/>
+        </view>
+    </objects>
+</document>

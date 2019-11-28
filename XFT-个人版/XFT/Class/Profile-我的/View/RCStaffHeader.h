@@ -10,10 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class RCMineNum;
 typedef void(^staffHeaderBtnCall)(NSInteger index);
 @interface RCStaffHeader : UIView
 /* 头视图点击 */
 @property(nonatomic,copy) staffHeaderBtnCall staffHeaderBtnCall;
+/* 各个数量 */
+@property(nonatomic,strong) RCMineNum *mineNum;
 @end
 
 NS_ASSUME_NONNULL_END

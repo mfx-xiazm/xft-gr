@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class RCMyClient;
 @interface RCBrokerClientCell : UITableViewCell
-
+/* 客户 */
+@property(nonatomic,strong) RCMyClient *client;
 @end
 
 NS_ASSUME_NONNULL_END

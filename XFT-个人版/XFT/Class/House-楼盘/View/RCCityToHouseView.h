@@ -9,10 +9,19 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^didSelectCityCall)(void);
+@class RCOpenCity,RCCityToHouseView;
+
+@protocol RCCityToHouseViewDelegate <NSObject>
+-(void)cityView:(RCCityToHouseView *)view didSearchReturn:(NSString *)keyword;//被点击
+-(void)cityView:(RCCityToHouseView *)view didClickedCity:(RCOpenCity *)city;//被点击
+
+@end
 @interface RCCityToHouseView : UIView
-/* 选中城市 */
-@property(nonatomic,copy) didSelectCityCall didSelectCityCall;
+/** 城市 */
+@property (nonatomic,strong) NSArray *citys;
+
+@property(nonatomic,weak) id<RCCityToHouseViewDelegate> delegate;
+
 @end
 
 NS_ASSUME_NONNULL_END

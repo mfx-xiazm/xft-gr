@@ -54,14 +54,28 @@ static BOOL sx_disableFixSpace = NO;
 -(void)sx_layoutSubviews{
     [self sx_layoutSubviews];
     
-    if (deviceVersion >= 11 && !sx_disableFixSpace) {//需要调节
-        self.layoutMargins = UIEdgeInsetsZero;
+//    if (deviceVersion >= 11 && !sx_disableFixSpace) {//需要调节
+//        self.layoutMargins = UIEdgeInsetsZero;
+//        CGFloat space = sx_defaultFixSpace;
+//        for (UIView *subview in self.subviews) {
+//            if ([NSStringFromClass(subview.class) containsString:@"ContentView"]) {
+//                subview.layoutMargins = UIEdgeInsetsMake(0, space, 0, space);//可修正iOS11之后的偏移
+//                break;
+//            }
+//        }
+//    }
+    for (UIView *subview in self.subviews) {
         CGFloat space = sx_defaultFixSpace;
-        for (UIView *subview in self.subviews) {
-            if ([NSStringFromClass(subview.class) containsString:@"ContentView"]) {
+        if ([NSStringFromClass([subview class]) containsString:@"_UINavigationBarContentView"]) {
+            if ([UIDevice currentDevice].systemVersion.floatValue >= 13.0) {
+                UIEdgeInsets margins = subview.layoutMargins;
+                subview.frame = CGRectMake(-space, -margins.top, space + subview.frame.size.width + space, margins.top + margins.bottom + subview.frame.size.height);
+            } else if ([UIDevice currentDevice].systemVersion.floatValue >= 11.0) {
                 subview.layoutMargins = UIEdgeInsetsMake(0, space, 0, space);//可修正iOS11之后的偏移
-                break;
+            } else{
+                subview.layoutMargins = UIEdgeInsetsZero;
             }
+            break;
         }
     }
 }

@@ -24,7 +24,7 @@ CGFloat const kFSActionSheetSectionHeight = 10; ///< 分区间距
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, weak)   UILabel *titleLabel;
-
+@property (nonatomic, copy) NSString *currentButtontitle;
 @property (nonatomic, strong) NSLayoutConstraint *heightConstraint; ///< 内容高度约束
 
 @end
@@ -44,9 +44,11 @@ static NSString * const kFSActionSheetCellIdentifier = @"kFSActionSheetCellIdent
 }
 
 /*! @brief 单文本选项快速初始化 */
-- (instancetype)initWithTitle:(NSString *)title delegate:(id<FSActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle highlightedButtonTitle:(NSString *)highlightedButtonTitle otherButtonTitles:(NSArray<NSString *> *)otherButtonTitles
+- (instancetype)initWithTitle:(NSString *)title delegate:(id<FSActionSheetDelegate>)delegate currentButtonTitle:(NSString *)currentButtonTitle cancelButtonTitle:(NSString *)cancelButtonTitle highlightedButtonTitle:(NSString *)highlightedButtonTitle otherButtonTitles:(NSArray<NSString *> *)otherButtonTitles
 {
     if (!(self = [super init])) return nil;
+    
+    self.currentButtontitle = currentButtonTitle;
     
     [self commonInit];
     
@@ -445,12 +447,15 @@ static NSString * const kFSActionSheetCellIdentifier = @"kFSActionSheetCellIdent
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FSActionSheetCell *cell = [tableView dequeueReusableCellWithIdentifier:kFSActionSheetCellIdentifier];
+    cell.currentButtontitle = self.currentButtontitle;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FSActionSheetCell *sheetCell = (FSActionSheetCell *)cell;
+    sheetCell.currentButtontitle = self.currentButtontitle;
+
     if (indexPath.section == 0) {
         sheetCell.item = _items[indexPath.row];
         sheetCell.hideTopLine = NO;

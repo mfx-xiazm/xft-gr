@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +20,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZG-l5-9WA">
                         <rect key="frame" x="0.0" y="0.0" width="154" height="228"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T9x-CJ-ExH">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T9x-CJ-ExH">
                                 <rect key="frame" x="0.0" y="0.0" width="154" height="154"/>
                                 <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -58,19 +56,23 @@
                                 <color key="textColor" red="0.92549019610000005" green="0.078431372550000003" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_calculator_fy" translatesAutoresizingMaskIntoConstraints="NO" id="s7o-Ok-yR6">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkQ-9b-lJ6">
                                 <rect key="frame" x="125" y="199" width="24" height="24"/>
-                            </imageView>
+                                <state key="normal" image="icon_calculator_fy"/>
+                                <connections>
+                                    <action selector="jisuanClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="dbi-UZ-MlV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="T9x-CJ-ExH" firstAttribute="leading" secondItem="PZG-l5-9WA" secondAttribute="leading" id="EQT-6p-IMJ"/>
                             <constraint firstAttribute="trailing" secondItem="0RA-gt-yh1" secondAttribute="trailing" constant="10" id="Gjw-I8-IfS"/>
                             <constraint firstItem="0RA-gt-yh1" firstAttribute="top" secondItem="KDF-aU-Jyy" secondAttribute="bottom" constant="5" id="Kbj-SO-fGv"/>
+                            <constraint firstAttribute="trailing" secondItem="dkQ-9b-lJ6" secondAttribute="trailing" constant="5" id="LrU-J6-ZPO"/>
                             <constraint firstItem="T9x-CJ-ExH" firstAttribute="top" secondItem="PZG-l5-9WA" secondAttribute="top" id="RDr-wp-mSB"/>
+                            <constraint firstAttribute="bottom" secondItem="dkQ-9b-lJ6" secondAttribute="bottom" constant="5" id="Sed-vX-JCU"/>
                             <constraint firstAttribute="trailing" secondItem="T9x-CJ-ExH" secondAttribute="trailing" id="Sek-L4-Flh"/>
-                            <constraint firstAttribute="trailing" secondItem="s7o-Ok-yR6" secondAttribute="trailing" constant="5" id="VgF-MU-YKD"/>
-                            <constraint firstAttribute="bottom" secondItem="s7o-Ok-yR6" secondAttribute="bottom" constant="5" id="WaT-Pr-A17"/>
                             <constraint firstAttribute="trailing" secondItem="KDF-aU-Jyy" secondAttribute="trailing" constant="10" id="cDi-ft-RNi"/>
                             <constraint firstItem="0RA-gt-yh1" firstAttribute="leading" secondItem="PZG-l5-9WA" secondAttribute="leading" constant="10" id="k2j-1o-5ZV"/>
                             <constraint firstItem="Eqv-Jw-nIb" firstAttribute="leading" secondItem="PZG-l5-9WA" secondAttribute="leading" constant="10" id="m4f-P5-hct"/>
@@ -98,6 +100,10 @@
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="154" height="228"/>
             <connections>
+                <outlet property="housePic" destination="T9x-CJ-ExH" id="V2v-IN-6e8"/>
+                <outlet property="price" destination="Eqv-Jw-nIb" id="e9i-1N-jMU"/>
+                <outlet property="roomArea" destination="0RA-gt-yh1" id="19B-Xi-oaC"/>
+                <outlet property="styleName" destination="KDF-aU-Jyy" id="4Nc-z7-hJ2"/>
                 <outlet property="styleTag" destination="cxO-vm-t0H" id="8hy-KZ-UsD"/>
             </connections>
             <point key="canvasLocation" x="-62.318840579710148" y="66.294642857142861"/>

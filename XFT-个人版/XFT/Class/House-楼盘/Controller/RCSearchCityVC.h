@@ -9,9 +9,10 @@
 #import "HXBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^changeCityCall)(NSString *city);
 @interface RCSearchCityVC : HXBaseViewController
-
+/* 改变城市 */
+@property(nonatomic,copy) changeCityCall changeCityCall;
 @end
 
 NS_ASSUME_NONNULL_END

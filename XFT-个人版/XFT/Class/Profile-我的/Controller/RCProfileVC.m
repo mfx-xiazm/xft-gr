@@ -19,6 +19,9 @@
 #import "RCHouseLoanVC.h"
 #import "RCProfileQuestionVC.h"
 #import "RCMyAppointVC.h"
+#import "HXNavigationController.h"
+#import "RCLoginVC.h"
+#import "RCMineNum.h"
 
 static NSString *const ProfileCell = @"ProfileCell";
 
@@ -34,6 +37,8 @@ static NSString *const ProfileCell = @"ProfileCell";
 @property(nonatomic,strong) NSArray *titles;
 /* 关于我们的跳转（隐藏导航栏） */
 @property(nonatomic,assign) BOOL isAboutUs;
+/* 个人数量信息 */
+@property(nonatomic,strong) RCMineNum *mineNum;
 @end
 
 @implementation RCProfileVC
@@ -48,6 +53,10 @@ static NSString *const ProfileCell = @"ProfileCell";
     [super viewWillAppear:animated];
     self.isAboutUs = NO;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    if ([MSUserManager sharedInstance].isLogined) {
+        [self getMineDataRequest];
+    }
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -81,8 +90,20 @@ static NSString *const ProfileCell = @"ProfileCell";
         _header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 180.f);
         hx_weakify(self);
         _header.profileHeaderClicked = ^{
-            RCProfileInfoVC *ivc = [RCProfileInfoVC new];
-            [weakSelf.navigationController pushViewController:ivc animated:YES];
+            if ([MSUserManager sharedInstance].isLogined) {
+                RCProfileInfoVC *ivc = [RCProfileInfoVC new];
+                [weakSelf.navigationController pushViewController:ivc animated:YES];
+            }else{
+                RCLoginVC *lvc = [RCLoginVC new];
+                lvc.isInnerLogin = YES;
+                HXNavigationController *nav = [[HXNavigationController alloc] initWithRootViewController:lvc];
+                if (@available(iOS 13.0, *)) {
+                    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+                    /*当该属性为 false 时，用户下拉可以 dismiss 控制器，为 true 时，下拉不可以 dismiss控制器*/
+                    nav.modalInPresentation = YES;
+                }
+                [weakSelf presentViewController:nav animated:YES completion:nil];
+            }
         };
     }
     return _header;
@@ -104,7 +125,7 @@ static NSString *const ProfileCell = @"ProfileCell";
 -(NSArray *)titles
 {
     if (_titles == nil) {
-        _titles = @[@[@"我的预约到访"],@[@"我的收藏",@"房贷计算器"],@[@"平台问答",@"反馈与意见",@"关于我们"]];
+        _titles = [MSUserManager sharedInstance].isLogined? @[@[@"我的预约到访"],@[@"我的收藏",@"房贷计算器"],@[@"平台问答",@"反馈与意见"]]:@[@[@"房贷计算器"],@[@"平台问答",@"反馈与意见"]];
     }
     return _titles;
 }
@@ -134,7 +155,28 @@ static NSString *const ProfileCell = @"ProfileCell";
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCProfileCell class]) bundle:nil] forCellReuseIdentifier:ProfileCell];
     
     self.tableView.tableHeaderView = self.header;
-    self.tableView.tableFooterView = self.footer;
+    if ([MSUserManager sharedInstance].isLogined) {
+        self.tableView.tableFooterView = self.footer;
+    }
+}
+#pragma mark -- 个人中心页面数据请求
+-(void)getMineDataRequest
+{
+    hx_weakify(self);
+    [HXNetworkTool POST:HXRC_M_URL action:@"sys/sys/agent/myIndexNum" parameters:@{} success:^(id responseObject) {
+        hx_strongify(weakSelf);
+        if ([responseObject[@"code"] integerValue] == 0) {
+            strongSelf.mineNum = [RCMineNum yy_modelWithDictionary:responseObject[@"data"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                strongSelf.header.mineNum = strongSelf.mineNum;
+                [strongSelf.tableView reloadData];
+            });
+        }else{
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+    }];
 }
 #pragma mark -- 业务逻辑
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -173,6 +215,25 @@ static NSString *const ProfileCell = @"ProfileCell";
     //无色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name.text = self.titles[indexPath.section][indexPath.row];
+    if ([MSUserManager sharedInstance].isLogined) {
+        cell.num.hidden = NO;
+        if (indexPath.section == 0) {
+            // 我的预约到访
+            cell.num.text = self.mineNum.seeNUM;
+        }else if (indexPath.section == 1) {
+            if (indexPath.row == 0) {
+                //我的收藏
+                cell.num.text = self.mineNum.collNUM;
+            }else{
+                //房贷计算器
+                cell.num.text = @"";
+            }
+        }else{
+            cell.num.text = @"";
+        }
+    }else{
+        cell.num.hidden = YES;
+    }
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -181,35 +242,47 @@ static NSString *const ProfileCell = @"ProfileCell";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        // 我的预约到访
-        RCMyAppointVC *avc = [RCMyAppointVC new];
-        [self.navigationController pushViewController:avc animated:YES];
-    }else if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            //我的收藏
-            RCProfileCollectVC *cvc = [RCProfileCollectVC  new];
-            [self.navigationController pushViewController:cvc animated:YES];
-        }else{
+    if ([MSUserManager sharedInstance].isLogined) {
+        if (indexPath.section == 0) {
+            // 我的预约到访
+            RCMyAppointVC *avc = [RCMyAppointVC new];
+            [self.navigationController pushViewController:avc animated:YES];
+        }else if (indexPath.section == 1) {
+            if (indexPath.row == 0) {
+                //我的收藏
+                RCProfileCollectVC *cvc = [RCProfileCollectVC  new];
+                [self.navigationController pushViewController:cvc animated:YES];
+            }else{
+                //房贷计算器
+                RCHouseLoanVC *lvc = [RCHouseLoanVC new];
+                [self.navigationController pushViewController:lvc animated:YES];
+            }
+        }else {
+            if (indexPath.row == 0) {
+                // 平台问答
+                RCProfileQuestionVC *qvc = [RCProfileQuestionVC new];
+                [self.navigationController pushViewController:qvc animated:YES];
+            }else {
+                // 反馈与意见
+                RCFeedbackVC *fvc = [RCFeedbackVC new];
+                [self.navigationController pushViewController:fvc animated:YES];
+            }
+        }
+    }else{
+        if (indexPath.section == 0) {
             //房贷计算器
             RCHouseLoanVC *lvc = [RCHouseLoanVC new];
             [self.navigationController pushViewController:lvc animated:YES];
-        }
-    }else {
-        if (indexPath.row == 0) {
-            // 平台问答
-            RCProfileQuestionVC *qvc = [RCProfileQuestionVC new];
-            [self.navigationController pushViewController:qvc animated:YES];
-        }else if (indexPath.row == 1) {
-            // 反馈与意见
-            RCFeedbackVC *fvc = [RCFeedbackVC new];
-            [self.navigationController pushViewController:fvc animated:YES];
-        }else{
-            // 关于我们
-            self.isAboutUs = YES;
-            RCAboutUsVC *uvc = [RCAboutUsVC new];
-            uvc.navTitle = @"关于我们";
-            [self.navigationController pushViewController:uvc animated:YES];
+        }else {
+            if (indexPath.row == 0) {
+                // 平台问答
+                RCProfileQuestionVC *qvc = [RCProfileQuestionVC new];
+                [self.navigationController pushViewController:qvc animated:YES];
+            }else{
+                // 反馈与意见
+                RCFeedbackVC *fvc = [RCFeedbackVC new];
+                [self.navigationController pushViewController:fvc animated:YES];
+            }
         }
     }
 }

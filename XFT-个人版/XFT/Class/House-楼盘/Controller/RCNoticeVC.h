@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RCNoticeVC : HXBaseViewController
 /* 标题 */
 @property(nonatomic,copy) NSString *navTitle;
+/* 是否是站内信 */
+@property(nonatomic,assign) BOOL isInnerMsg;
 @end
 
 NS_ASSUME_NONNULL_END

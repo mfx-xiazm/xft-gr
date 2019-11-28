@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RCHouseChildVC : HXBaseViewController
 /* 主视图table */
 @property(nonatomic,weak) RCPageMainTable *mainTable;
+/* 楼盘类型 */
+@property(nonatomic,copy) NSString *proType;
 @end
 
 NS_ASSUME_NONNULL_END

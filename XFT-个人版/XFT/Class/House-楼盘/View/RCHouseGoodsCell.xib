@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,11 +14,11 @@
             <rect key="frame" x="0.0" y="0.0" width="419" height="30"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="419" height="29.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="419" height="30"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZZ-2x-CQ4">
-                        <rect key="frame" x="15" y="13" width="4" height="4"/>
+                        <rect key="frame" x="15" y="10" width="4" height="4"/>
                         <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="4" id="0aF-hg-yJP"/>
@@ -32,8 +30,8 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自持3000平方米商业配套，入住商户达250多家." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0m-Ne-bBD">
-                        <rect key="frame" x="24" y="6.5" width="380" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自持3000平方米商业配套，入住商户达250多家." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0m-Ne-bBD">
+                        <rect key="frame" x="24" y="5" width="380" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -42,12 +40,16 @@
                 <constraints>
                     <constraint firstItem="u0m-Ne-bBD" firstAttribute="leading" secondItem="cZZ-2x-CQ4" secondAttribute="trailing" constant="5" id="8YC-uW-Xxn"/>
                     <constraint firstItem="cZZ-2x-CQ4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="AoS-3F-2fJ"/>
-                    <constraint firstItem="u0m-Ne-bBD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="BuP-M0-ffb"/>
                     <constraint firstAttribute="trailing" secondItem="u0m-Ne-bBD" secondAttribute="trailing" constant="15" id="C9f-cD-8FB"/>
-                    <constraint firstItem="cZZ-2x-CQ4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="D50-pX-jDH"/>
+                    <constraint firstItem="u0m-Ne-bBD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="IcK-Bf-Hh6"/>
+                    <constraint firstItem="cZZ-2x-CQ4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="N2B-JG-Fn2"/>
+                    <constraint firstAttribute="bottom" secondItem="u0m-Ne-bBD" secondAttribute="bottom" constant="5" id="Z1Z-ln-Ceh"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="goodName" destination="u0m-Ne-bBD" id="57M-Bo-ThL"/>
+            </connections>
             <point key="canvasLocation" x="209.42028985507247" y="113.83928571428571"/>
         </tableViewCell>
     </objects>

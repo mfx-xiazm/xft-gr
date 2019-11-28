@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RCReportResultSectionHeader : UITableViewHeaderFooterView
-
+@property (weak, nonatomic) IBOutlet UILabel *resultTitle;
+@property (weak, nonatomic) IBOutlet UILabel *resultNum;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -8,11 +8,13 @@
 
 #import "RCClientNoteVC.h"
 #import "RCClientNoteCell.h"
+#import "RCMyClientNote.h"
 
 static NSString *const ClientNoteCell = @"ClientNoteCell";
 @interface RCClientNoteVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+/** 客户轨迹 */
+@property(nonatomic,strong) NSArray *clientNotes;
 @end
 
 @implementation RCClientNoteVC
@@ -21,6 +23,9 @@ static NSString *const ClientNoteCell = @"ClientNoteCell";
     [super viewDidLoad];
     [self.navigationItem setTitle:@"客户轨迹"];
     [self setUpTableView];
+    [self setUpEmptyView];
+    [self startShimmer];
+    [self getClientNoteRequest];
 }
 -(void)viewDidLayoutSubviews
 {
@@ -55,18 +60,62 @@ static NSString *const ClientNoteCell = @"ClientNoteCell";
     // 注册cell
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCClientNoteCell class]) bundle:nil] forCellReuseIdentifier:ClientNoteCell];
 }
+-(void)setUpEmptyView
+{
+    LYEmptyView *emptyView = [LYEmptyView emptyViewWithImageStr:@"pic_none_search" titleStr:nil detailStr:@"暂无轨迹"];
+    emptyView.contentViewOffset = -(self.HXNavBarHeight);
+    emptyView.subViewMargin = 30.f;
+    emptyView.detailLabTextColor = UIColorFromRGB(0x131D2D);
+    emptyView.detailLabFont = [UIFont fontWithName:@"PingFangSC-Semibold" size: 16];
+    emptyView.autoShowEmptyView = NO;
+    self.tableView.ly_emptyView = emptyView;
+}
+-(void)getClientNoteRequest
+{
+    // 请求客户轨迹的接口
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"cusUuid"] = self.cusUuid;
+    parameters[@"data"] = data;
+    
+    hx_weakify(self);
+    [HXNetworkTool POST:HXRC_M_URL action:@"cus/cus/cusInfo/getCusTrackInfo" parameters:parameters success:^(id responseObject) {
+        hx_strongify(weakSelf);
+        [strongSelf stopShimmer];
+        if ([responseObject[@"code"] integerValue] == 0) {
+            strongSelf.clientNotes = [NSArray yy_modelArrayWithClass:[RCMyClientNote class] json:responseObject[@"data"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf.tableView reloadData];
+                if (strongSelf.clientNotes.count) {
+                    [strongSelf.tableView ly_hideEmptyView];
+                }else{
+                    [strongSelf.tableView ly_showEmptyView];
+                }
+            });
+        }else{
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        hx_strongify(weakSelf);
+        [strongSelf stopShimmer];
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+    }];
+}
 #pragma mark -- UITableView数据源和代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return self.clientNotes.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RCClientNoteCell *cell = [tableView dequeueReusableCellWithIdentifier:ClientNoteCell forIndexPath:indexPath];
     //无色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.num.text = [NSString stringWithFormat:@"%zd",indexPath.row+1];
-    cell.buttomLine.hidden = (indexPath.row == 3)?YES:NO;
     cell.tabImg.image = indexPath.row ?HXGetImage(@"circle_jindu"):HXGetImage(@"circle_jindu_yellow");
+    cell.buttomLine.hidden = (indexPath.row == self.clientNotes.count-1)?YES:NO;
+    cell.bgView.backgroundColor = indexPath.row?UIColorFromRGB(0xf5f5f5):[UIColor whiteColor];
+    RCMyClientNote *note = self.clientNotes[indexPath.row];
+    cell.note = note;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RCProfileQuestionVC">
             <connections>
-                <outlet property="tableView" destination="ZmI-Um-sfe" id="jDq-03-AAm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,19 +18,49 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZmI-Um-sfe">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqg-a2-iSj">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </tableView>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A4l-iu-x90">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1138"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_question_bg" translatesAutoresizingMaskIntoConstraints="NO" id="h8s-QC-CFM">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="1138"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="h8s-QC-CFM" secondAttribute="height" multiplier="750:2062" id="hGC-aV-rNi"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="h8s-QC-CFM" firstAttribute="top" secondItem="A4l-iu-x90" secondAttribute="top" id="K2Z-DT-7di"/>
+                                <constraint firstItem="h8s-QC-CFM" firstAttribute="leading" secondItem="A4l-iu-x90" secondAttribute="leading" id="PNY-wP-X98"/>
+                                <constraint firstAttribute="bottom" secondItem="h8s-QC-CFM" secondAttribute="bottom" id="jid-oF-nMk"/>
+                                <constraint firstAttribute="trailing" secondItem="h8s-QC-CFM" secondAttribute="trailing" id="xEr-Rz-Rjl"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="A4l-iu-x90" firstAttribute="leading" secondItem="vqg-a2-iSj" secondAttribute="leading" id="P2Q-Zs-rRu"/>
+                        <constraint firstAttribute="bottom" secondItem="A4l-iu-x90" secondAttribute="bottom" id="PoI-Ds-f2S"/>
+                        <constraint firstAttribute="trailing" secondItem="A4l-iu-x90" secondAttribute="trailing" id="ZYW-re-UVi"/>
+                        <constraint firstItem="A4l-iu-x90" firstAttribute="top" secondItem="vqg-a2-iSj" secondAttribute="top" id="aM5-3v-bAU"/>
+                        <constraint firstItem="A4l-iu-x90" firstAttribute="width" secondItem="vqg-a2-iSj" secondAttribute="width" id="sJJ-Mz-dqO"/>
+                    </constraints>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="ZmI-Um-sfe" secondAttribute="bottom" id="Fjz-wY-mdq"/>
-                <constraint firstItem="ZmI-Um-sfe" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="QKG-sw-LId"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="ZmI-Um-sfe" secondAttribute="trailing" id="RoI-kC-Oq2"/>
-                <constraint firstItem="ZmI-Um-sfe" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="s2T-kS-tMo"/>
+                <constraint firstItem="vqg-a2-iSj" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="Fbw-Sn-yId"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="vqg-a2-iSj" secondAttribute="trailing" id="Oe2-qP-A3w"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="vqg-a2-iSj" secondAttribute="bottom" id="WIJ-gR-KWz"/>
+                <constraint firstItem="vqg-a2-iSj" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="rMY-eo-zT5"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="137.68115942028987" y="114.50892857142857"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_question_bg" width="375" height="1031"/>
+    </resources>
 </document>

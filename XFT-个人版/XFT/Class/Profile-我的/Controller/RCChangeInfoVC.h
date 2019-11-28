@@ -10,8 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^changeNickCall)(void);
 @interface RCChangeInfoVC : HXBaseViewController
-
+/* 回调 */
+@property(nonatomic,copy) changeNickCall changeNickCall;
 @end
 
 NS_ASSUME_NONNULL_END

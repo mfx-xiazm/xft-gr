@@ -11,7 +11,7 @@
 #define kPortraitMargin     10
 #define PortraitMargin     10
 
-#define kTitleWidth         180
+#define kTitleWidth         160
 #define kTitleHeight        20
 #define kArrorHeight        20
 #define ArrorHeight        10
@@ -62,7 +62,7 @@
     
     // 添加标题，即商户名
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, PortraitMargin, kTitleWidth, kTitleHeight)];
-    self.titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
+    self.titleLabel.font = [UIFont systemFontOfSize:15 weight:UIFontWeightMedium];
     self.titleLabel.textColor = [UIColor blackColor];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.text = @"商户名";
@@ -70,7 +70,7 @@
     
     // 添加副标题，即商户地址
     self.subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTitleHeight+PortraitMargin, kTitleWidth, kTitleHeight)];
-    self.subtitleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
+    self.subtitleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
     self.subtitleLabel.textColor = [UIColor redColor];
     self.subtitleLabel.textAlignment = NSTextAlignmentCenter;
     self.subtitleLabel.text = @"副标题";

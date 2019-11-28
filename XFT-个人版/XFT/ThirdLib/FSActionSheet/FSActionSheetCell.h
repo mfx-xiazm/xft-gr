@@ -15,5 +15,6 @@
 @property (nonatomic, assign) FSContentAlignment contentAlignment;
 @property (nonatomic, strong) FSActionSheetItem *item;
 @property (nonatomic, assign) BOOL hideTopLine; ///< 是否隐藏顶部线条
+@property (nonatomic, copy) NSString *currentButtontitle;
 
 @end

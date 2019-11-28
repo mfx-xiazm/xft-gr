@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RCMyClientStateCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UILabel *clientNum;
+@property (weak, nonatomic) IBOutlet UILabel *clientState;
 @end
 
 NS_ASSUME_NONNULL_END

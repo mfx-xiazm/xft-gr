@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RCLoginVC : HXBaseViewController
-
+/* 是否是APP内部弹起登录 */
+@property(nonatomic,assign) BOOL isInnerLogin;
 @end
 
 NS_ASSUME_NONNULL_END

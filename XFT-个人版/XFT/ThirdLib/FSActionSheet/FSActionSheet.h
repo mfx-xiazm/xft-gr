@@ -32,7 +32,7 @@
  *  @param highlightedButtonTitle 高亮按钮标题
  *  @param otherButtonTitles      其他按钮标题集合
  */
-- (instancetype)initWithTitle:(NSString *)title delegate:(id<FSActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle highlightedButtonTitle:(NSString *)highlightedButtonTitle otherButtonTitles:(NSArray<NSString *> *)otherButtonTitles;
+- (instancetype)initWithTitle:(NSString *)title delegate:(id<FSActionSheetDelegate>)delegate  currentButtonTitle:(NSString *)currentButtonTitle cancelButtonTitle:(NSString *)cancelButtonTitle highlightedButtonTitle:(NSString *)highlightedButtonTitle otherButtonTitles:(NSArray<NSString *> *)otherButtonTitles;
 
 /*! @author Steven
  *  @brief 在外部组装选项按钮item

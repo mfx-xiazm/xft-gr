@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RCHouseHotVC">
             <connections>
-                <outlet property="tableView" destination="G0E-y5-3LH" id="dJK-rw-OxB"/>
+                <outlet property="categoryView" destination="zzC-kl-0C2" id="jCt-9K-Sh3"/>
+                <outlet property="scrollView" destination="D4f-ya-E6P" id="TjC-G7-Rn6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,19 +20,41 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G0E-y5-3LH">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzC-kl-0C2" customClass="JXCategoryTitleView">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXC-m7-vD7" userLabel="分割线">
+                            <rect key="frame" x="0.0" y="43" width="414" height="1"/>
+                            <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="XRR-8l-SBU"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </tableView>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="PXC-m7-vD7" secondAttribute="trailing" id="7b3-Jo-viJ"/>
+                        <constraint firstItem="PXC-m7-vD7" firstAttribute="leading" secondItem="zzC-kl-0C2" secondAttribute="leading" id="BpS-Zn-asL"/>
+                        <constraint firstAttribute="bottom" secondItem="PXC-m7-vD7" secondAttribute="bottom" id="F6j-Wk-pZr"/>
+                        <constraint firstAttribute="height" constant="44" id="N9p-1P-DyM"/>
+                    </constraints>
+                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4f-ya-E6P">
+                    <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="G0E-y5-3LH" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="N6p-4G-x0K"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="G0E-y5-3LH" secondAttribute="trailing" id="ewK-Mr-fNd"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="G0E-y5-3LH" secondAttribute="bottom" id="sUI-IB-707"/>
-                <constraint firstItem="G0E-y5-3LH" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="w0J-Ty-AXF"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="D4f-ya-E6P" secondAttribute="trailing" id="4Rv-mz-4tV"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="leading" secondItem="D4f-ya-E6P" secondAttribute="leading" id="6NL-E9-JSa"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="leading" secondItem="zzC-kl-0C2" secondAttribute="leading" id="GRr-n5-Tl0"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="top" secondItem="zzC-kl-0C2" secondAttribute="top" id="LcW-se-zOH"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="zzC-kl-0C2" secondAttribute="trailing" id="Nfc-CX-PY8"/>
+                <constraint firstItem="D4f-ya-E6P" firstAttribute="top" secondItem="zzC-kl-0C2" secondAttribute="bottom" id="dqk-G3-i2f"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="D4f-ya-E6P" secondAttribute="bottom" id="nNS-5H-Qcs"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="139" y="115"/>
         </view>
     </objects>
 </document>

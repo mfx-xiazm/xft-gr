@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RCNewsDetailVC">
             <connections>
+                <outlet property="collectBtn" destination="F8q-Zf-Xhc" id="zhp-cn-AS8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webContentView" destination="jR2-vJ-pmu" id="a3l-hv-uM2"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -47,9 +47,10 @@
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8q-Zf-Xhc" customClass="SPButton">
                                     <rect key="frame" x="83" y="0.0" width="82.5" height="44"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                    <state key="normal" title="收藏户型" image="icon_schx">
+                                    <state key="normal" title="收藏资讯" image="icon_sc_36">
                                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <state key="selected" title="收藏资讯" image="icon_sc_36_yellow"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="imagePosition">
                                             <integer key="value" value="2"/>
@@ -83,6 +84,9 @@
                                     <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                     <state key="normal" title="查看楼盘详情"/>
+                                    <connections>
+                                        <action selector="lookHouseDetialClicked:" destination="-1" eventType="touchUpInside" id="ebH-aS-t4A"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -117,11 +121,19 @@
                         <constraint firstItem="gIT-iF-9tK" firstAttribute="width" secondItem="3Th-Tk-zhx" secondAttribute="width" multiplier="2:5" id="yrd-ur-awh"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jR2-vJ-pmu">
+                    <rect key="frame" x="0.0" y="44" width="414" height="774"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="3Th-Tk-zhx" firstAttribute="top" secondItem="jR2-vJ-pmu" secondAttribute="bottom" id="CXV-PK-pL9"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="jR2-vJ-pmu" secondAttribute="trailing" id="CZQ-gw-ENz"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="3Th-Tk-zhx" secondAttribute="trailing" id="E3Y-Jr-wPI"/>
                 <constraint firstItem="3Th-Tk-zhx" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="XA4-z9-wEJ"/>
+                <constraint firstItem="jR2-vJ-pmu" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="dxh-gt-hPz"/>
+                <constraint firstItem="jR2-vJ-pmu" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="v4D-z0-JPU"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="3Th-Tk-zhx" secondAttribute="bottom" id="zlc-HA-Fgo"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
@@ -129,7 +141,8 @@
         </view>
     </objects>
     <resources>
-        <image name="icon_schx" width="24" height="24"/>
+        <image name="icon_sc_36" width="24" height="24"/>
+        <image name="icon_sc_36_yellow" width="24" height="24"/>
         <image name="icon_share_friend" width="24" height="24"/>
     </resources>
 </document>

@@ -10,8 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class RCNews;
 @interface RCHouseDetailNewsCell : UITableViewCell
-
+/* 资讯 */
+@property(nonatomic,strong) RCNews *news;
 @end
 
 NS_ASSUME_NONNULL_END

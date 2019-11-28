@@ -22,6 +22,8 @@
 //日历周几转换（英文习惯-中文习惯）
 - (NSString *)getChineseWeekdayFormEnglishWeekday;
 
+- (NSString *)getTimeFromTimestamp:(NSString *)formatterStr;
+
 - (NSDictionary *)dictionaryWithJsonString;
 // 汉字、英语的拼音
 - (NSString *)pinyin;

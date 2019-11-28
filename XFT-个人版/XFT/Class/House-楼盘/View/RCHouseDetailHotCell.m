@@ -17,7 +17,15 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
-
+-(void)setHeadPic:(NSString *)headPic
+{
+    _headPic = headPic;
+    if ([_headPic hasPrefix:@"http"]) {
+        [self.image sd_setImageWithURL:[NSURL URLWithString:_headPic] placeholderImage:HXGetImage(@"avatarholder")];
+    }else{
+        self.image.image = HXGetImage(_headPic);
+    }
+}
 -(void)layoutSubviews
 {
     [super layoutSubviews];

@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RCHouseAppointVC : HXBaseViewController
-
+/* 项目id */
+@property(nonatomic,copy) NSString *productUuid;
 @end
 
 NS_ASSUME_NONNULL_END

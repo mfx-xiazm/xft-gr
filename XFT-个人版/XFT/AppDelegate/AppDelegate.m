@@ -58,8 +58,8 @@
     //    CLLocationCoordinate2D amapcoord = AMapCoordinateConvert(CLLocationCoordinate2DMake(latitude,longitude), AMapCoordinateTypeGPS);
     //    [[NSUserDefaults standardUserDefaults] setDouble:amapcoord.longitude forKey:HXUserLongitude];
     //    [[NSUserDefaults standardUserDefaults] setDouble:amapcoord.latitude forKey:HXUserLatitude];
-//        [[NSUserDefaults standardUserDefaults] setObject:[city stringByReplacingOccurrencesOfString:@"市" withString:@""] forKey:HXUserCityName];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSUserDefaults standardUserDefaults] setObject:[city stringByReplacingOccurrencesOfString:@"市" withString:@""] forKey:HXUserCityName];
+        [[NSUserDefaults standardUserDefaults] synchronize];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

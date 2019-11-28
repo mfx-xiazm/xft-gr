@@ -7,12 +7,22 @@
 //
 
 #import "RCAddedClientCell.h"
+#import "RCReportTarget.h"
 
+@interface RCAddedClientCell ()
+@property (weak, nonatomic) IBOutlet UILabel *name;
+
+@end
 @implementation RCAddedClientCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+}
+-(void)setClient:(RCReportTarget *)client
+{
+    _client = client;
+    self.name.text = [NSString stringWithFormat:@"%@-%@",_client.cusName,_client.cusPhone];
 }
 - (IBAction)cutClicked:(UIButton *)sender {
     if (self.cutBtnCall) {

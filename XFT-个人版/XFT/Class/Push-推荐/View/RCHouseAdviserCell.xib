@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,15 +14,14 @@
             <rect key="frame" x="0.0" y="0.0" width="362" height="77"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="362" height="76.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="362" height="77"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sag-c6-2C8">
-                        <rect key="frame" x="0.0" y="0.0" width="362" height="76.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="362" height="77"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dqq-Li-5FZ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_header" translatesAutoresizingMaskIntoConstraints="NO" id="Dqq-Li-5FZ">
                                 <rect key="frame" x="15" y="16.5" width="44" height="44"/>
-                                <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="MG2-0g-OUF"/>
                                     <constraint firstAttribute="height" constant="44" id="uds-gZ-5Qo"/>
@@ -41,11 +38,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="无置业顾问" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5x-ab-Jbc">
+                                <rect key="frame" x="10" y="0.0" width="303" height="77"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_choose" translatesAutoresizingMaskIntoConstraints="NO" id="pZo-Ge-1aA">
                                 <rect key="frame" x="323" y="26.5" width="24" height="24"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7th-SV-K5c" userLabel="分割线">
-                                <rect key="frame" x="0.0" y="75.5" width="362" height="1"/>
+                                <rect key="frame" x="0.0" y="76" width="362" height="1"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="5Jz-Sl-cag"/>
@@ -56,12 +60,16 @@
                         <constraints>
                             <constraint firstItem="pZo-Ge-1aA" firstAttribute="centerY" secondItem="Sag-c6-2C8" secondAttribute="centerY" id="27G-hR-bKs"/>
                             <constraint firstItem="Mpa-pY-Fb7" firstAttribute="centerY" secondItem="Dqq-Li-5FZ" secondAttribute="centerY" id="JG9-6P-3Dj"/>
+                            <constraint firstItem="pZo-Ge-1aA" firstAttribute="leading" secondItem="P5x-ab-Jbc" secondAttribute="trailing" constant="10" id="Oky-mv-Gxe"/>
+                            <constraint firstAttribute="bottom" secondItem="P5x-ab-Jbc" secondAttribute="bottom" id="PnY-wq-DK5"/>
                             <constraint firstItem="Dqq-Li-5FZ" firstAttribute="centerY" secondItem="Sag-c6-2C8" secondAttribute="centerY" id="Q8C-iG-V3f"/>
                             <constraint firstItem="7th-SV-K5c" firstAttribute="leading" secondItem="Sag-c6-2C8" secondAttribute="leading" id="SMh-bk-fyL"/>
                             <constraint firstAttribute="trailing" secondItem="7th-SV-K5c" secondAttribute="trailing" id="Wol-1T-OfE"/>
                             <constraint firstItem="Mpa-pY-Fb7" firstAttribute="leading" secondItem="Dqq-Li-5FZ" secondAttribute="trailing" constant="10" id="Xp4-6q-hRz"/>
                             <constraint firstItem="Dqq-Li-5FZ" firstAttribute="leading" secondItem="Sag-c6-2C8" secondAttribute="leading" constant="15" id="cLy-Hm-0UO"/>
                             <constraint firstAttribute="trailing" secondItem="pZo-Ge-1aA" secondAttribute="trailing" constant="15" id="gck-Y6-Adx"/>
+                            <constraint firstItem="P5x-ab-Jbc" firstAttribute="top" secondItem="Sag-c6-2C8" secondAttribute="top" id="htl-0N-hQL"/>
+                            <constraint firstItem="P5x-ab-Jbc" firstAttribute="leading" secondItem="Sag-c6-2C8" secondAttribute="leading" constant="10" id="rZF-FR-bww"/>
                             <constraint firstAttribute="bottom" secondItem="7th-SV-K5c" secondAttribute="bottom" id="tMM-DA-pOt"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -80,6 +88,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="headPic" destination="Dqq-Li-5FZ" id="Nsd-Im-yi8"/>
+                <outlet property="name" destination="Mpa-pY-Fb7" id="gTn-uu-kRH"/>
+                <outlet property="notName" destination="P5x-ab-Jbc" id="MuM-TY-De2"/>
                 <outlet property="tagImg" destination="pZo-Ge-1aA" id="tt5-1s-7kU"/>
             </connections>
             <point key="canvasLocation" x="30.434782608695656" y="106.80803571428571"/>
@@ -87,5 +98,6 @@
     </objects>
     <resources>
         <image name="icon_choose" width="24" height="24"/>
+        <image name="pic_header" width="65" height="65"/>
     </resources>
 </document>

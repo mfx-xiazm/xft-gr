@@ -16,6 +16,8 @@ typedef void(^mapToHouseCall)(void);
 @property (nonatomic,strong) UIScrollView *scrollView;
 /** 子控制器数组 */
 @property (nonatomic,strong) NSArray *childVCs;
+/* 房源分类 */
+@property(nonatomic,strong) NSArray *cates;
 /* 找房点击 */
 @property(nonatomic,copy) mapToHouseCall mapToHouseCall;
 @end

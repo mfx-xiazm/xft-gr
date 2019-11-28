@@ -10,8 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^newsBannerClicked)(NSInteger index);
 @interface RCNewsHeader : UIView
-
+/* 轮播图 */
+@property(nonatomic,strong) NSArray *banners;
+/* 点击 */
+@property(nonatomic,copy) newsBannerClicked newsBannerClicked;
 @end
 
 NS_ASSUME_NONNULL_END

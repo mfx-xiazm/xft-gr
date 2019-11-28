@@ -163,7 +163,12 @@ static YYCache *_cache = nil;
     {
         NSDictionary *dic = [self.curUserInfo yy_modelToJSONObject];
         [_cache setObject:dic forKey:KUserModelCache];
-        self.isLogined = YES;
+        
+        if (self.curUserInfo.uType == 0) {
+            self.isLogined = NO;
+        }else{
+            self.isLogined = YES;
+        }
     }
 }
 
@@ -173,7 +178,11 @@ static YYCache *_cache = nil;
     if (userDic)
     {
         self.curUserInfo = [MSUserInfo yy_modelWithJSON:userDic];
-        self.isLogined = YES;
+        if (self.curUserInfo.uType == 0) {
+            self.isLogined = NO;
+        }else{
+            self.isLogined = YES;
+        }
         return YES;
     }
     return NO;

@@ -21,6 +21,8 @@
 #import "RCNoticeVC.h"
 #import "RCMyBrokerVC.h"
 #import "RCHouseLoanVC.h"
+#import "RCMineNum.h"
+#import "RCMyCardVC.h"
 
 static NSString *const ProfileCell = @"ProfileCell";
 
@@ -34,6 +36,8 @@ static NSString *const ProfileCell = @"ProfileCell";
 @property(nonatomic,strong) NSArray *titles;
 /* 关于我们的跳转（隐藏导航栏） */
 @property(nonatomic,assign) BOOL isAboutUs;
+/* 各个数量 */
+@property(nonatomic,strong) RCMineNum *mineNum;
 @end
 
 @implementation RCStaffVC
@@ -48,6 +52,8 @@ static NSString *const ProfileCell = @"ProfileCell";
     [super viewWillAppear:animated];
     self.isAboutUs = NO;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    [self getMineDataRequest];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -74,6 +80,7 @@ static NSString *const ProfileCell = @"ProfileCell";
         _navBarView.navMoreCall = ^{
             RCNoticeVC *nvc = [RCNoticeVC new];
             nvc.navTitle = @"站内信";
+            nvc.isInnerMsg = YES;
             [weakSelf.navigationController pushViewController:nvc animated:YES];
         };
     }
@@ -98,15 +105,32 @@ static NSString *const ProfileCell = @"ProfileCell";
                 [weakSelf.navigationController pushViewController:bvc animated:YES];
             }else if (index == 4) {
                 RCMyClientVC *cvc = [RCMyClientVC new];
+                cvc.leftSelectIndex = 0;
                 [weakSelf.navigationController pushViewController:cvc animated:YES];
             }else if (index == 5) {
                 RCMyBrokerVC *bvc = [RCMyBrokerVC new];
                 [weakSelf.navigationController pushViewController:bvc animated:YES];
-            }else{
-                weakSelf.isAboutUs = YES;
-                RCAboutUsVC *uvc = [RCAboutUsVC new];
-                uvc.navTitle = @"发展经纪人";
+            }else if (index == 6) {
+                RCMyCardVC *uvc = [RCMyCardVC new];
                 [weakSelf.navigationController pushViewController:uvc animated:YES];
+            }else if (index == 7 || index == 8 || index == 9 || index == 10) {
+                RCMyClientVC *cvc = [RCMyClientVC new];
+                if (index == 7) {
+                    cvc.leftSelectIndex = 1;
+                }else if (index == 8) {
+                    cvc.leftSelectIndex = 2;
+                }else if (index == 9) {
+                    cvc.leftSelectIndex = 3;
+                }else{
+                    cvc.leftSelectIndex = 5;
+                }
+                [weakSelf.navigationController pushViewController:cvc animated:YES];
+            }else if (index == 11 || index == 12) {
+                RCMyBrokerVC *bvc = [RCMyBrokerVC new];
+                [weakSelf.navigationController pushViewController:bvc animated:YES];
+            }else{
+                RCMySalaryVC *svc = [RCMySalaryVC new];
+                [weakSelf.navigationController pushViewController:svc animated:YES];
             }
         };
     }
@@ -146,6 +170,25 @@ static NSString *const ProfileCell = @"ProfileCell";
     
     self.tableView.tableHeaderView = self.header;
 }
+#pragma mark -- 个人中心页面数据请求
+-(void)getMineDataRequest
+{
+    hx_weakify(self);
+    [HXNetworkTool POST:HXRC_M_URL action:@"sys/sys/agent/myIndexNum" parameters:@{} success:^(id responseObject) {
+        hx_strongify(weakSelf);
+        if ([responseObject[@"code"] integerValue] == 0) {
+            strongSelf.mineNum = [RCMineNum yy_modelWithDictionary:responseObject[@"data"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                strongSelf.header.mineNum = strongSelf.mineNum;
+                [strongSelf.tableView reloadData];
+            });
+        }else{
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+    }];
+}
 #pragma mark -- 业务逻辑
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -183,6 +226,16 @@ static NSString *const ProfileCell = @"ProfileCell";
     //无色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name.text = self.titles[indexPath.section][indexPath.row];
+    if (indexPath.section) {
+        cell.num.hidden = YES;
+    }else{
+        cell.num.hidden = NO;
+        if (indexPath.row) {
+            cell.num.text = (self.mineNum.mortgageNUM && self.mineNum.mortgageNUM)?self.mineNum.mortgageNUM:@"0";
+        }else{
+            cell.num.text = (self.mineNum.collNUM && self.mineNum.collNUM)?self.mineNum.collNUM:@"0";
+        }
+    }
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

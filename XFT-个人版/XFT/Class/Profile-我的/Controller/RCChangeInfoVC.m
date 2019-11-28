@@ -7,8 +7,10 @@
 //
 
 #import "RCChangeInfoVC.h"
+#import "UITextField+GYExpand.h"
 
 @interface RCChangeInfoVC ()
+@property (weak, nonatomic) IBOutlet UITextField *nick;
 
 @end
 
@@ -17,8 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"我的信息"];
-    
     [self setUpNavBar];
+    hx_weakify(self);
+    [self.nick lengthLimit:^{
+        hx_strongify(weakSelf);
+        if (strongSelf.nick.text.length > 10) {
+            strongSelf.nick.text = [strongSelf.nick.text substringToIndex:10];
+        }
+    }];
+    self.nick.text = [MSUserManager sharedInstance].curUserInfo.userinfo.nick;
 }
 -(void)setUpNavBar
 {
@@ -35,6 +44,35 @@
 }
 -(void)sureClicked
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (![self.nick hasText]) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"请填写昵称"];
+        return;
+    }
+    if (self.nick.text.length < 4) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"昵称需4-10个字符"];
+        return;
+    }
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"nick"] = self.nick.text;//反馈意见
+    parameters[@"data"] = data;
+    
+    hx_weakify(self);
+    [HXNetworkTool POST:HXRC_M_URL action:@"sso/sso/acclogin/updateNick" parameters:parameters success:^(id responseObject) {
+        hx_strongify(weakSelf);
+        if ([responseObject[@"code"] integerValue] == 0) {
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+            [MSUserManager sharedInstance].curUserInfo.userinfo.nick = strongSelf.nick.text;
+            [[MSUserManager sharedInstance] saveUserInfo];
+            if (strongSelf.changeNickCall) {
+                strongSelf.changeNickCall();
+            }
+            [strongSelf.navigationController popViewControllerAnimated:YES];
+        }else{
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+    }];
 }
 @end

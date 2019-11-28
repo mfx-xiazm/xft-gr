@@ -10,9 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class RCReportTarget;
 @interface RCReportResultCell : UITableViewCell
-/* 最后一个cell */
-@property(nonatomic,assign) BOOL isLast;
+/* 报备结果 */
+@property(nonatomic,assign) BOOL isSuccess;
+/* 报备结果 */
+@property(nonatomic,assign) RCReportTarget *person;
+@property (weak, nonatomic) IBOutlet UILabel *nnum;
 @end
 
 NS_ASSUME_NONNULL_END

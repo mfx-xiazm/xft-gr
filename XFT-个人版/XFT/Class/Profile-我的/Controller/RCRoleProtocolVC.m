@@ -35,7 +35,9 @@
     
     [self.navigationItem setTitle:@"服务协议"];
    
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.jianshu.com/p/4c39be207923"]]];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"protocol" ofType:@"html"];
+
+    [self.webView loadFileURL:[NSURL fileURLWithPath:filePath] allowingReadAccessToURL:[NSURL fileURLWithPath:[NSBundle mainBundle].bundlePath]];
 }
 -(void)viewDidLayoutSubviews
 {

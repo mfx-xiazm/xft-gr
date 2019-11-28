@@ -11,13 +11,19 @@
 #import "RCRegisterVC.h"
 #import "RCForgetPwdVC.h"
 #import "HXTabBarController.h"
+#import "UITextField+GYExpand.h"
 
 @interface RCLoginVC ()<UITextViewDelegate>
-@property (weak, nonatomic) IBOutlet UITextView *agreeMentTV;
+@property (weak, nonatomic) IBOutlet UIView *agreeMentView;
+@property (strong, nonatomic) UITextView *agreeMentTV;
 @property (weak, nonatomic) IBOutlet UIView *codeView;
 @property (weak, nonatomic) IBOutlet UIView *pwdView;
 @property (weak, nonatomic) IBOutlet UIView *accountView;
 @property (weak, nonatomic) IBOutlet UIView *phoneView;
+@property (weak, nonatomic) IBOutlet UITextField *phone;
+@property (weak, nonatomic) IBOutlet UITextField *code;
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (weak, nonatomic) IBOutlet UIButton *agreeBtn;
 
 @end
 
@@ -37,10 +43,49 @@
     [super viewDidLoad];
     
     [self setAgreeMentProtocol];
-}
+    
+    hx_weakify(self);
+    [self.loginBtn BindingBtnJudgeBlock:^BOOL{
+        hx_strongify(weakSelf);
+        if (![strongSelf.phone hasText]) {
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"请输入手机号"];
+            return NO;
+        }
+        if (strongSelf.phone.text.length != 11) {
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"手机格式有误"];
+            return NO;
+        }
+        if (![strongSelf.code hasText]) {
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"请输入验证码"];
+            return NO;
+        }
+        if (!self.agreeBtn.isSelected) {
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"请阅读并同意《幸福通用户协议》和《幸福通隐私协议》"];
+            return NO;
+        }
+        return YES;
+    } ActionBlock:^(UIButton * _Nullable button) {
+        hx_strongify(weakSelf);
+        [strongSelf loginHandleClicked:button];
+    }];
 
+    [self.phone lengthLimit:^{
+        hx_strongify(weakSelf);
+        if (strongSelf.phone.text.length > 11) {
+            strongSelf.phone.text = [strongSelf.phone.text substringToIndex:11];
+        }
+    }];
+}
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.agreeMentTV.frame = self.agreeMentView.bounds;
+}
 -(void)setAgreeMentProtocol
 {
+    self.agreeMentTV = [[UITextView alloc] initWithFrame:self.agreeMentView.bounds];
+    [self.agreeMentView addSubview:self.agreeMentTV];
+    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"已阅读并同意《幸福通用户协议》和《幸福通隐私协议》"];
     [attributedString addAttribute:NSLinkAttributeName value:@"yhxy://" range:[[attributedString string] rangeOfString:@"《幸福通用户协议》"]];
     [attributedString addAttribute:NSLinkAttributeName value:@"ysxy://" range:[[attributedString string] rangeOfString:@"《幸福通隐私协议》"]];
@@ -67,7 +112,30 @@
     }
 }
 - (IBAction)getCodeClicked:(UIButton *)sender {
-    [sender startWithTime:60 title:@"验证码" countDownTitle:@"s" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
+    if (![self.phone hasText]) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"请输入手机号"];
+        return;
+    }
+    if (self.phone.text.length != 11) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"手机格式有误"];
+        return;
+    }
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"phone"] = self.phone.text;
+    data[@"type"] = @"2";// 类型1:注册,2登录
+    parameters[@"data"] = data;
+    
+    [HXNetworkTool POST:HXRC_M_URL action:@"sys/sys/personalReg/personalSendSms" parameters:parameters success:^(id responseObject) {
+        if ([responseObject[@"code"] integerValue] == 0) {
+            [sender startWithTime:59 title:@"验证码" countDownTitle:@"s" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
+        }else{
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+    }];
 }
 - (IBAction)agreeBtnClicked:(UIButton *)sender {
     sender.selected = !sender.selected;
@@ -78,6 +146,45 @@
         RCForgetPwdVC *pvc = [RCForgetPwdVC new];
         [self.navigationController pushViewController:pvc animated:YES];
     }else if (sender.tag == 2) {
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        NSMutableDictionary *data = [NSMutableDictionary dictionary];
+        data[@"phone"] = self.phone.text;
+        data[@"code"] = self.code.text;
+        parameters[@"data"] = data;
+        
+        [HXNetworkTool POST:HXRC_M_URL action:@"sso/sso/auth/loginPersonalApp" parameters:parameters success:^(id responseObject) {
+            [sender stopLoading:@"登录" image:nil textColor:nil backgroundColor:nil];
+            if ([responseObject[@"code"] integerValue] == 0) {
+                MSUserInfo *userInfo = [MSUserInfo yy_modelWithDictionary:responseObject[@"data"]];
+                [MSUserManager sharedInstance].curUserInfo = userInfo;
+                [[MSUserManager sharedInstance] saveUserInfo];
+                
+                HXTabBarController *tabBarController = [[HXTabBarController alloc] init];
+                [UIApplication sharedApplication].keyWindow.rootViewController = tabBarController;
+                
+                //推出主界面出来
+                CATransition *ca = [CATransition animation];
+                ca.type = @"movein";
+                ca.duration = 0.5;
+                [[UIApplication sharedApplication].keyWindow.layer addAnimation:ca forKey:nil];
+            }else{
+                [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+            [sender stopLoading:@"登录" image:nil textColor:nil backgroundColor:nil];
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+        }];
+    }else if (sender.tag == 3) {
+        RCRegisterVC *rvc = [RCRegisterVC new];
+        [self.navigationController pushViewController:rvc animated:YES];
+    }else{
+        MSUserInfo *userInfo = [[MSUserInfo alloc] init];
+        MSShowUserInfo *showInfo = [[MSShowUserInfo alloc] init];
+        showInfo.accRole = @"15";// 游客身份
+        userInfo.userinfo = showInfo;
+        [MSUserManager sharedInstance].curUserInfo = userInfo;
+        [[MSUserManager sharedInstance] saveUserInfo];
+        
         HXTabBarController *tabBarController = [[HXTabBarController alloc] init];
         [UIApplication sharedApplication].keyWindow.rootViewController = tabBarController;
         
@@ -86,11 +193,6 @@
         ca.type = @"movein";
         ca.duration = 0.5;
         [[UIApplication sharedApplication].keyWindow.layer addAnimation:ca forKey:nil];
-    }else if (sender.tag == 3) {
-        RCRegisterVC *rvc = [RCRegisterVC new];
-        [self.navigationController pushViewController:rvc animated:YES];
-    }else{
-        
     }
 }
 #pragma mark -- UITextView代理

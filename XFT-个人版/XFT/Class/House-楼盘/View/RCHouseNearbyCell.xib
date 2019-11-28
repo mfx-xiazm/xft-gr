@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,14 +14,20 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iLo-49-zCp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.肖家沟公交站" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPV-2t-rB7">
-                                <rect key="frame" x="15" y="13" width="103" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0p1-2b-oep">
+                                <rect key="frame" x="15" y="13" width="8" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="肖家沟公交站" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPV-2t-rB7">
+                                <rect key="frame" x="28" y="13" width="176.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -38,7 +42,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6O-Hy-iIm" userLabel="分割线">
-                                <rect key="frame" x="15" y="42.5" width="290" height="1"/>
+                                <rect key="frame" x="15" y="43" width="290" height="1"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="UDO-Tj-KRK"/>
@@ -53,8 +57,11 @@
                             <constraint firstAttribute="trailing" secondItem="50A-F2-ruc" secondAttribute="trailing" constant="15" id="K2E-tn-usS"/>
                             <constraint firstItem="WPV-2t-rB7" firstAttribute="centerY" secondItem="iLo-49-zCp" secondAttribute="centerY" id="O4D-Kd-bh5"/>
                             <constraint firstAttribute="bottom" secondItem="H6O-Hy-iIm" secondAttribute="bottom" id="YuP-II-f5Z"/>
+                            <constraint firstItem="y5G-hF-yow" firstAttribute="leading" secondItem="WPV-2t-rB7" secondAttribute="trailing" constant="5" id="c48-Vo-Afc"/>
+                            <constraint firstItem="WPV-2t-rB7" firstAttribute="leading" secondItem="0p1-2b-oep" secondAttribute="trailing" constant="5" id="g8x-oL-pNy"/>
+                            <constraint firstItem="0p1-2b-oep" firstAttribute="centerY" secondItem="iLo-49-zCp" secondAttribute="centerY" id="hIh-fO-MZh"/>
                             <constraint firstItem="H6O-Hy-iIm" firstAttribute="leading" secondItem="iLo-49-zCp" secondAttribute="leading" constant="15" id="omm-2V-opl"/>
-                            <constraint firstItem="WPV-2t-rB7" firstAttribute="leading" secondItem="iLo-49-zCp" secondAttribute="leading" constant="15" id="rhR-3o-9S8"/>
+                            <constraint firstItem="0p1-2b-oep" firstAttribute="leading" secondItem="iLo-49-zCp" secondAttribute="leading" constant="15" id="uIz-YW-HeM"/>
                             <constraint firstItem="50A-F2-ruc" firstAttribute="centerY" secondItem="iLo-49-zCp" secondAttribute="centerY" id="xKj-WS-BsS"/>
                         </constraints>
                     </view>
@@ -67,6 +74,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="distance" destination="50A-F2-ruc" id="GDG-aI-OgM"/>
+                <outlet property="name" destination="WPV-2t-rB7" id="c6L-wq-xch"/>
+                <outlet property="numRow" destination="0p1-2b-oep" id="MXs-tz-9fm"/>
+            </connections>
             <point key="canvasLocation" x="108.69565217391305" y="34.821428571428569"/>
         </tableViewCell>
     </objects>

@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RCReportResultHeader : UIView
-
+@property (weak, nonatomic) IBOutlet UIImageView *header_img;
+@property (weak, nonatomic) IBOutlet UILabel *header_title;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -8,6 +8,7 @@
 
 #import "RCHouseCategoryView.h"
 #import <JXCategoryView.h>
+#import "RCHouceCate.h"
 
 @interface RCHouseCategoryView ()<JXCategoryViewDelegate>
 @property (weak, nonatomic) IBOutlet JXCategoryTitleView *categoryView;
@@ -42,6 +43,16 @@
 {
     _scrollView = scrollView;
     _categoryView.contentScrollView = self.scrollView;
+}
+-(void)setCates:(NSArray *)cates
+{
+    _cates = cates;
+    NSMutableArray *titles = [NSMutableArray array];
+    for (RCHouceCate *cate in _cates) {
+        [titles addObject:cate.dictName];
+    }
+    _categoryView.titles = titles;
+    [_categoryView reloadData];
 }
 - (IBAction)mapBtnClicked:(id)sender {
     if (self.mapToHouseCall) {

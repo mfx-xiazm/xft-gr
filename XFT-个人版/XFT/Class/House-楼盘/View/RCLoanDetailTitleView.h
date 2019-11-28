@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RCLoanDetailTitleView : UIView
+@property (weak, nonatomic) IBOutlet UIView *singleView;
+@property (weak, nonatomic) IBOutlet UIView *mixView;
 
 @end
 

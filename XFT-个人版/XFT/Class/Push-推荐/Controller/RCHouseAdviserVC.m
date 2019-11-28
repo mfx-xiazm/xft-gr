@@ -9,6 +9,7 @@
 #import "RCHouseAdviserVC.h"
 #import "RCHouseAdviserCell.h"
 #import "HXSearchBar.h"
+#import "RCHouseAdviser.h"
 
 static NSString *const HouseAdviserCell = @"HouseAdviserCell";
 
@@ -17,6 +18,8 @@ static NSString *const HouseAdviserCell = @"HouseAdviserCell";
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 /* 搜索 */
 @property(nonatomic,strong) HXSearchBar *search;
+/* 类表 */
+@property(nonatomic,strong) NSArray *advisers;
 @end
 
 @implementation RCHouseAdviserVC
@@ -25,9 +28,7 @@ static NSString *const HouseAdviserCell = @"HouseAdviserCell";
     [super viewDidLoad];
     [self setUpNavBar];
     [self setUpTableView];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
-    });
+    [self getAdviserDataRequest];
 }
 -(void)viewDidLayoutSubviews
 {
@@ -38,9 +39,6 @@ static NSString *const HouseAdviserCell = @"HouseAdviserCell";
 -(void)setUpNavBar
 {
     [self.navigationItem setTitle:@"顾问选择"];
-
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(sureClickd) title:@"确定" font:[UIFont systemFontOfSize:15] titleColor:UIColorFromRGB(0xFF9F08) highlightedColor:UIColorFromRGB(0xFF9F08) titleEdgeInsets:UIEdgeInsetsZero];
-    
     
     HXSearchBar *search = [HXSearchBar searchBar];
     search.backgroundColor = UIColorFromRGB(0xf5f5f5);
@@ -50,6 +48,7 @@ static NSString *const HouseAdviserCell = @"HouseAdviserCell";
     search.hxn_height = 40.f;
     search.layer.cornerRadius = 40/2.f;
     search.layer.masksToBounds = YES;
+    search.placeholder = @"请输入姓名进行搜索";
     search.delegate = self;
     self.search = search;
     [self.searchView addSubview:search];
@@ -82,19 +81,66 @@ static NSString *const HouseAdviserCell = @"HouseAdviserCell";
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCHouseAdviserCell class]) bundle:nil] forCellReuseIdentifier:HouseAdviserCell];
 }
 #pragma mark -- 点击事件
--(void)sureClickd
+-(IBAction)sureClickd
 {
+    if (self.chooseAdviserCall) {
+        self.chooseAdviserCall(self.lastAdvier?self.lastAdvier:nil);
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)getAdviserDataRequest
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"prouuid"] = self.prouuid;//项目uuid
+    data[@"queryName"] = [self.search hasText]?self.search.text:@"";//反馈意见
+
+    parameters[@"data"] = data;
+    
+    hx_weakify(self);
+    [HXNetworkTool POST:HXRC_M_URL action:@"anchang/anchang/baobei/assignUserList" parameters:parameters success:^(id responseObject) {
+        hx_strongify(weakSelf);
+        if ([responseObject[@"code"] integerValue] == 0) {
+            NSMutableArray *arrt = [NSMutableArray arrayWithArray:[NSArray yy_modelArrayWithClass:[RCHouseAdviser class] json:responseObject[@"data"]]];
+            RCHouseAdviser *adviser = [RCHouseAdviser new];
+            adviser.isNotAdviser = YES;
+            [arrt insertObject:adviser atIndex:0];
+            strongSelf.advisers = [NSArray arrayWithArray:arrt];
+            if (strongSelf.lastAdvier) {
+                 for (RCHouseAdviser *adviser0 in strongSelf.advisers) {
+                     if (adviser0.isNotAdviser && strongSelf.lastAdvier.isNotAdviser) {
+                         adviser0.isSelected = YES;
+                         strongSelf.lastAdvier = adviser0;
+                         break;
+                     }else if ([adviser0.accUuid isEqualToString:strongSelf.lastAdvier.accUuid]){
+                         adviser0.isSelected = YES;
+                         strongSelf.lastAdvier = adviser0;
+                         break;
+                     }
+                }
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf.tableView reloadData];
+            });
+        }else{
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+    }];
 }
 #pragma mark -- UITableView数据源和代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.advisers.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RCHouseAdviserCell *cell = [tableView dequeueReusableCellWithIdentifier:HouseAdviserCell forIndexPath:indexPath];
     //无色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    RCHouseAdviser *adviser = self.advisers[indexPath.row];
+    cell.adviser = adviser;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,7 +150,12 @@ static NSString *const HouseAdviserCell = @"HouseAdviserCell";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    RCHouseAdviser *adviser = self.advisers[indexPath.row];
+    self.lastAdvier.isSelected = NO;
+    adviser.isSelected = YES;
+    self.lastAdvier = adviser;
+    
+    [tableView reloadData];
 }
 
 

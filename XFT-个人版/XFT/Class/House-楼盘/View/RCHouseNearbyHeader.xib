@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -27,7 +25,7 @@
                         <button opaque="NO" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTw-Kt-0ab" customClass="SPButton">
                             <rect key="frame" x="0.0" y="0.0" width="103.5" height="63"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <state key="normal" title="交通(3)" image="icon_bus">
+                            <state key="normal" title="交通" image="icon_bus">
                                 <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="selected" image="iocn_bus_click">
@@ -48,7 +46,7 @@
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sag-j5-X8C" customClass="SPButton">
                             <rect key="frame" x="103.5" y="0.0" width="103.5" height="63"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <state key="normal" title="教育(3)" image="icon_education">
+                            <state key="normal" title="教育" image="icon_education">
                                 <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="selected" image="icon_education_click">
@@ -69,7 +67,7 @@
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYL-RW-h8k" customClass="SPButton">
                             <rect key="frame" x="207" y="0.0" width="103.5" height="63"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <state key="normal" title="医疗(3)" image="icon_medical">
+                            <state key="normal" title="医疗" image="icon_medical">
                                 <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="selected" image="icon_medical_click">
@@ -90,7 +88,7 @@
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYb-ek-IQW" customClass="SPButton">
                             <rect key="frame" x="310.5" y="0.0" width="103.5" height="63"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <state key="normal" title="商业(3)" image="icon_business">
+                            <state key="normal" title="商业" image="icon_business">
                                 <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="selected" image="icon_business_click">

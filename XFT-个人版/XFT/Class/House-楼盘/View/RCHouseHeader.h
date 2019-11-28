@@ -14,6 +14,10 @@ typedef void(^houseHeaderBtnClicked)(NSInteger,NSInteger);
 @interface RCHouseHeader : UIView
 /* 点击 */
 @property(nonatomic,copy) houseHeaderBtnClicked houseHeaderBtnClicked;
+/* 轮播图 */
+@property(nonatomic,strong) NSArray *banners;
+/* 公告 */
+@property(nonatomic,strong) NSArray *notices;
 @end
 
 NS_ASSUME_NONNULL_END

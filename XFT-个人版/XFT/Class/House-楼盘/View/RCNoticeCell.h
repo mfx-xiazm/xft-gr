@@ -10,8 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class RCHouseNotice,RCInnerMsg;
 @interface RCNoticeCell : UITableViewCell
-
+/* 公告 */
+@property(nonatomic,strong) RCHouseNotice *notice;
+/* 站内信 */
+@property(nonatomic,strong) RCInnerMsg *innerMsg;
 @end
 
 NS_ASSUME_NONNULL_END

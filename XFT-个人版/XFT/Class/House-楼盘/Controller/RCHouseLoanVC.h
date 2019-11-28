@@ -11,7 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RCHouseLoanVC : HXBaseViewController
-
+/* 楼盘信息 */
+@property(nonatomic,copy) NSString *proName;
+@property(nonatomic,copy) NSString *hxName;
+@property(nonatomic,copy) NSString *buldArea;
+@property(nonatomic,copy) NSString *roomArea;
+/* HU型uuid */
+@property(nonatomic,copy) NSString *hxUuid;
 @end
 
 NS_ASSUME_NONNULL_END

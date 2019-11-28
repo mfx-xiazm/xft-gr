@@ -11,7 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RCHouseNewsVC : HXBaseViewController
-
+/* 是否是资讯搜索 */
+@property(nonatomic,assign) BOOL isSearchNews;
+/* 关键词 */
+@property(nonatomic,copy) NSString *keyword;
+/* 楼盘uuid */
+@property(nonatomic,copy) NSString *uuid;
 @end
 
 NS_ASSUME_NONNULL_END

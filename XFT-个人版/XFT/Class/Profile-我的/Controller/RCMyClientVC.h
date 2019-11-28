@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RCMyClientVC : HXBaseViewController
-
+/* 左侧分类选中的索引 */
+@property(nonatomic,assign) NSInteger leftSelectIndex;
 @end
 
 NS_ASSUME_NONNULL_END

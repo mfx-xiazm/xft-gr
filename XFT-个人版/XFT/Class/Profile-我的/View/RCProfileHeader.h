@@ -10,10 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class RCMineNum;
 typedef void(^profileHeaderClicked)(void);
 @interface RCProfileHeader : UIView
 /* 点击 */
 @property(nonatomic,copy) profileHeaderClicked profileHeaderClicked;
+/* 个人数量信息 */
+@property(nonatomic,strong) RCMineNum *mineNum;
 @end
 
 NS_ASSUME_NONNULL_END

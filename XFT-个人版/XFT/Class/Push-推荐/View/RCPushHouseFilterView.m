@@ -8,6 +8,9 @@
 
 #import "RCPushHouseFilterView.h"
 #import "HXDropMenuView.h"
+#import "RCHouseFilterData.h"
+#import "HXBaseViewController.h"
+#import "RCPushHouseVC.h"
 
 @interface RCPushHouseFilterView ()<HXDropMenuDelegate,HXDropMenuDataSource>
 
@@ -37,7 +40,10 @@
     self.menuView.titleColor = UIColorFromRGB(0x131D2D);
     self.menuView.titleHightLightColor = UIColorFromRGB(0xFF9F08);
 }
-
+-(void)setFilterData:(RCHouseFilterData *)filterData
+{
+    _filterData = filterData;
+}
 - (IBAction)filterClicked:(UIButton *)sender {
     if (self.menuView.show) {
         [self.menuView menuHidden];
@@ -63,31 +69,48 @@
 
 #pragma mark -- menuDelegate
 - (CGPoint)menu_positionInSuperView {
-    return CGPointMake(0, 44);
+    return CGPointMake(0, 44.f);
 }
 -(NSString *)menu_titleForRow:(NSInteger)row {
     if (self.selectBtn.tag == 1) {
-        return self.areas[row];
+        RCHouseFilterDistrict *dus = self.filterData.countryList[row];
+        return dus.name;
     }else if (self.selectBtn.tag == 2) {
-        return self.wuye[row];
+        RCHouseFilterService *ser = self.filterData.buldType[row];
+        return ser.dictName;
     }else if (self.selectBtn.tag == 3) {
-        return self.huxing[row];
+        RCHouseFilterStyle *sty = self.filterData.hxType[row];
+        return sty.dictName;
     }else{
-        return self.mianji[row];
+        RCHouseFilterArea *area = self.filterData.areaType[row];
+        return area.dictName;
     }
 }
 -(NSInteger)menu_numberOfRows {
     if (self.selectBtn.tag == 1) {
-        return self.areas.count;
+        return self.filterData.countryList.count;
     }else if (self.selectBtn.tag == 2) {
-        return self.wuye.count;
+        return self.filterData.buldType.count;
     }else if (self.selectBtn.tag == 3) {
-        return self.huxing.count;
+        return self.filterData.hxType.count;
     }else{
-        return self.mianji.count;
+        return self.filterData.areaType.count;
     }
 }
 - (void)menu:(HXDropMenuView *)menu didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.selectBtn.tag == 1) {
+        RCHouseFilterDistrict *dus = self.filterData.countryList[indexPath.row];
+        self.areaLabel.text = indexPath.row ?dus.name:@"行政区域";
+    }else if (self.selectBtn.tag == 2){
+        RCHouseFilterService *ser = self.filterData.buldType[indexPath.row];
+        self.wuyeLabel.text = indexPath.row ?ser.dictName:@"物业类型";
+    }else if (self.selectBtn.tag == 3){
+        RCHouseFilterStyle *sty = self.filterData.hxType[indexPath.row];
+        self.huxingLabel.text = indexPath.row ?sty.dictName:@"户型";
+    }else{
+        RCHouseFilterArea *area = self.filterData.areaType[indexPath.row];
+        self.mianjiLabel.text = indexPath.row ?area.dictName:@"面积";
+    }
     if (self.pushHouseFilterCall) {
         self.pushHouseFilterCall(self.selectBtn.tag, indexPath.row);
     }

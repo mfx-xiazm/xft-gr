@@ -9,19 +9,12 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class RCHouseFilterData,RCPushHouseVC;
 typedef void(^pushHouseFilterCall)(NSInteger, NSInteger);
-
 @interface RCPushHouseFilterView : UIView
-@property (nonatomic,strong) UIViewController *target;
+@property (nonatomic,weak) RCPushHouseVC *target;
 @property(nonatomic,strong) UITableView *tableView;
-/** 区域 */
-@property (nonatomic,strong) NSArray *areas;
-/** 物业 */
-@property (nonatomic,strong) NSArray *wuye;
-/** 户型 */
-@property (nonatomic,strong) NSArray *huxing;
-/** 面积 */
-@property (nonatomic,strong) NSArray *mianji;
+@property(nonatomic,strong) RCHouseFilterData *filterData;
 /** 筛选点击回调 */
 @property (nonatomic,copy) pushHouseFilterCall pushHouseFilterCall;
 @end

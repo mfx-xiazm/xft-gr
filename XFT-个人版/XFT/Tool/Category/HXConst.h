@@ -29,4 +29,8 @@ UIKIT_EXTERN NSString * const HXUserLongitude;//经度
 
 UIKIT_EXTERN NSString * const HXUserLatitude;//纬度
 
+UIKIT_EXTERN NSString * const HXUserCityName;//定位城市
+
+UIKIT_EXTERN NSString * const HXCityCode;//定位城市id
+
 

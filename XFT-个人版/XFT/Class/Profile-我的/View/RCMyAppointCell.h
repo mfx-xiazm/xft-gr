@@ -10,10 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^doneAppointCall)(void);
+@class RCMyAppoint;
 @interface RCMyAppointCell : UITableViewCell
-/* 去完成 */
-@property(nonatomic,copy) doneAppointCall doneAppointCall;
+/* 预约 */
+@property(nonatomic,strong) RCMyAppoint *appoint;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,13 +7,15 @@
 //
 
 #import "RCHouseHotVC.h"
-#import "RCHouseHotCell.h"
+#import "RCHouseHotChildVC.h"
+#import <JXCategoryTitleView.h>
+#import <JXCategoryIndicatorLineView.h>
 
-static NSString *const HouseHotCell = @"HouseHotCell";
-
-@interface RCHouseHotVC ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@interface RCHouseHotVC ()<JXCategoryViewDelegate,UIScrollViewDelegate>
+@property (weak, nonatomic) IBOutlet JXCategoryTitleView *categoryView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+/** 子控制器数组 */
+@property (nonatomic,strong) NSArray *childVCs;
 @end
 
 @implementation RCHouseHotVC
@@ -21,59 +23,69 @@ static NSString *const HouseHotCell = @"HouseHotCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"楼盘热度"];
-    [self setUpTableView];
+    [self setUpCategoryView];
 }
--(void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    //离开页面的时候，需要恢复屏幕边缘手势，不能影响其他页面
+    //self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
--(void)setUpTableView
+-(NSArray *)childVCs
 {
-    // 针对 11.0 以上的iOS系统进行处理
-    if (@available(iOS 11.0, *)) {
-        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
-    } else {
-        // 针对 11.0 以下的iOS系统进行处理
-        // 不要自动调整inset
-        self.automaticallyAdjustsScrollViewInsets = NO;
+    if (_childVCs == nil) {
+        NSMutableArray *vcs = [NSMutableArray array];
+        for (int i=0;i<3;i++) {
+            RCHouseHotChildVC *cvc0 = [RCHouseHotChildVC new];
+            cvc0.type = i+1;
+            cvc0.uuid = self.uuid;
+            [self addChildViewController:cvc0];
+            [vcs addObject:cvc0];
+        }
+        _childVCs = vcs;
     }
-    self.tableView.estimatedRowHeight = 0;//预估高度
-    self.tableView.estimatedSectionHeaderHeight = 0;
-    self.tableView.estimatedSectionFooterHeight = 0;
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    
-    self.tableView.showsVerticalScrollIndicator = NO;
-    
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    // 设置背景色为clear
-    self.tableView.backgroundColor = [UIColor clearColor];
-    
-    // 注册cell
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCHouseHotCell class]) bundle:nil] forCellReuseIdentifier:HouseHotCell];
+    return _childVCs;
 }
-#pragma mark -- UITableView数据源和代理
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(void)setUpCategoryView
 {
-    return 6;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RCHouseHotCell *cell = [tableView dequeueReusableCellWithIdentifier:HouseHotCell forIndexPath:indexPath];
-    //无色
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // 返回这个模型对应的cell高度
-    return 60.f;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+    _categoryView.backgroundColor = [UIColor whiteColor];
+    _categoryView.titleLabelZoomEnabled = NO;
+    _categoryView.titles = @[@"围观", @"收藏", @"我的"];
+    _categoryView.titleFont = [UIFont systemFontOfSize:15 weight:UIFontWeightMedium];
+    _categoryView.titleColor = UIColorFromRGB(0x666666);
+    _categoryView.titleSelectedColor = HXControlBg;
+    _categoryView.delegate = self;
+    _categoryView.contentScrollView = self.scrollView;
     
+    JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
+    lineView.verticalMargin = 5.f;
+    lineView.indicatorColor = HXControlBg;
+    _categoryView.indicators = @[lineView];
+    
+    _scrollView.pagingEnabled = YES;
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    _scrollView.showsVerticalScrollIndicator = NO;
+    _scrollView.contentSize = CGSizeMake(HX_SCREEN_WIDTH*self.childVCs.count, 0);
+    
+    // 加第一个视图
+    UIViewController *targetViewController = self.childVCs.firstObject;
+    targetViewController.view.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, _scrollView.hxn_height);
+    [_scrollView addSubview:targetViewController.view];
 }
+#pragma mark - JXCategoryViewDelegate
+// 滚动和点击选中
+- (void)categoryView:(JXCategoryBaseView *)categoryView didSelectedItemAtIndex:(NSInteger)index
+{
+    // 处理侧滑手势
+    //self.navigationController.interactivePopGestureRecognizer.enabled = (index == 0);
 
-
+    if (self.childVCs.count <= index) {return;}
+    
+    UIViewController *targetViewController = self.childVCs[index];
+    // 如果已经加载过，就不再加载
+    if ([targetViewController isViewLoaded]) return;
+    
+    targetViewController.view.frame = CGRectMake(HX_SCREEN_WIDTH * index, 0, HX_SCREEN_WIDTH, self.scrollView.hxn_height);
+    
+    [self.scrollView addSubview:targetViewController.view];
+}
 @end

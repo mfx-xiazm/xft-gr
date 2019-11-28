@@ -83,7 +83,7 @@
      
      if([phoneType  isEqualToString:@"iPhone11,6"]) return@"iPhone XS Max";
      */
-    if([phoneType  isEqualToString:@"iPhone10,3"] || [phoneType  isEqualToString:@"iPhone10,6"] || [phoneType  isEqualToString:@"iPhone11,8"] || [phoneType  isEqualToString:@"iPhone11,2"] || [phoneType  isEqualToString:@"iPhone11,4"] || [phoneType  isEqualToString:@"iPhone11,6"]) {
+    if([phoneType  isEqualToString:@"iPhone10,3"] || [phoneType  isEqualToString:@"iPhone10,6"] || [phoneType  isEqualToString:@"iPhone11,8"] || [phoneType  isEqualToString:@"iPhone11,2"] || [phoneType  isEqualToString:@"iPhone11,4"] || [phoneType  isEqualToString:@"iPhone11,6"] || [phoneType  isEqualToString:@"iPhone12,1"] || [phoneType  isEqualToString:@"iPhone12,3"] || [phoneType  isEqualToString:@"iPhone12,5"]) {
         return YES;
     }else{
         return NO;

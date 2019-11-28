@@ -9,8 +9,6 @@
 #import "RCMyClientStateCell.h"
 
 @interface RCMyClientStateCell ()
-@property (weak, nonatomic) IBOutlet UILabel *clientNum;
-@property (weak, nonatomic) IBOutlet UILabel *clientState;
 
 @end
 @implementation RCMyClientStateCell
