@@ -337,8 +337,8 @@
     [HXNetworkTool POST:HXRC_M_URL action:@"sys/sys/city/cityCodeByNameLike" parameters:parameters success:^(id responseObject) {
         hx_strongify(weakSelf);
         if ([responseObject[@"code"] integerValue] == 0) {
-//            [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"data"][@"cityCode"] forKey:HXCityCode];
-            [[NSUserDefaults standardUserDefaults] setObject:@"500100" forKey:HXCityCode];
+            [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"data"][@"cityCode"] forKey:HXCityCode];
+//            [[NSUserDefaults standardUserDefaults] setObject:@"500100" forKey:HXCityCode];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [strongSelf getHouseDataRequest];
         }else{

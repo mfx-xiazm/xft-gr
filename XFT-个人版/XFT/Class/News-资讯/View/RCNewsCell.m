@@ -27,7 +27,7 @@
 {
     _news = news;
     [self.head_ic sd_setImageWithURL:[NSURL URLWithString:_news.headPic]];
-    [self.news_title setTextWithLineSpace:5.f withString:_news.title withFont:[UIFont systemFontOfSize:16]];
+    [self.news_title setTextWithLineSpace:5.f withString:[NSString stringWithFormat:@"【%@】%@",_news.proName,_news.title] withFont:[UIFont systemFontOfSize:16]];
     self.news_look.text = [NSString stringWithFormat:@"已查看%@人",_news.clickNum];
     self.time.text = _news.createTime;
 }

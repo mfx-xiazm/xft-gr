@@ -171,18 +171,18 @@ static NSArray *_filtrationCacheKey;
     
     NSString *appendUrl =  action?[NSString stringWithFormat:@"%@%@",URL,action]:URL;
 
-//    if (![MSUserManager sharedInstance].isLogined) {
-//        [_sessionManager.requestSerializer setValue:@"{\"domain\":\"agent-app-ios\"}" forHTTPHeaderField:@"UserAccessInfo"];
-//    }else{
-//        [_sessionManager.requestSerializer setValue:[MSUserManager sharedInstance].curUserInfo.userAccessStr forHTTPHeaderField:@"UserAccessInfo"];
-//    }
-//    [_sessionManager.requestSerializer setValue:[MSUserManager sharedInstance].curUserInfo.token forHTTPHeaderField:@"Authorization"];
+    if (![MSUserManager sharedInstance].isLogined) {
+        [_sessionManager.requestSerializer setValue:@"{\"domain\":\"agent-app-ios\"}" forHTTPHeaderField:@"UserAccessInfo"];
+    }else{
+        [_sessionManager.requestSerializer setValue:[MSUserManager sharedInstance].curUserInfo.userAccessStr forHTTPHeaderField:@"UserAccessInfo"];
+    }
+    [_sessionManager.requestSerializer setValue:[MSUserManager sharedInstance].curUserInfo.token forHTTPHeaderField:@"Authorization"];
 
     // 61b0c7709cd442dfad0dfa4adcf1f7d2
     // fba54210f87d4852b83fd57547501b8b
-    [_sessionManager.requestSerializer setValue:@"{\"domain\":\"agent-app-ios\",\"loginId\":\"fba54210f87d4852b83fd57547501b8b\"}" forHTTPHeaderField:@"UserAccessInfo"];
-
-    [_sessionManager.requestSerializer setValue:@"Bearer:eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbklkIjoiNjFiMGM3NzA5Y2Q0NDJkZmFkMGRmYTRhZGNmMWY3ZDIiLCJpc3MiOiJodHRwOi8veWR4cy5zdW5hYy5jb20iLCJleHAiOjE1NzU1MzAyNTIsImlhdCI6MTU3NDkyNTQ1Mn0.WpimsMMSlljYp0ktDCJrVijfNaHSqKl99CqEsamtoPXwHwHXEj7HbwoY8oMrnFeqvYrY44VAgb1hkvAew52w9A" forHTTPHeaderField:@"Authorization"];
+//    [_sessionManager.requestSerializer setValue:@"{\"domain\":\"agent-app-ios\",\"loginId\":\"fba54210f87d4852b83fd57547501b8b\"}" forHTTPHeaderField:@"UserAccessInfo"];
+//
+//    [_sessionManager.requestSerializer setValue:@"Bearer:eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbklkIjoiNjFiMGM3NzA5Y2Q0NDJkZmFkMGRmYTRhZGNmMWY3ZDIiLCJpc3MiOiJodHRwOi8veWR4cy5zdW5hYy5jb20iLCJleHAiOjE1NzU1MzAyNTIsImlhdCI6MTU3NDkyNTQ1Mn0.WpimsMMSlljYp0ktDCJrVijfNaHSqKl99CqEsamtoPXwHwHXEj7HbwoY8oMrnFeqvYrY44VAgb1hkvAew52w9A" forHTTPHeaderField:@"Authorization"];
     
     //读取缓存
     responseCache!=nil ? responseCache([HXNetworkCache httpCacheForURL:appendUrl parameters:parameters filtrationCacheKey:_filtrationCacheKey]) : nil;

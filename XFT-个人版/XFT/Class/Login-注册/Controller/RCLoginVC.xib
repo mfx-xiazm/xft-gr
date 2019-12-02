@@ -13,6 +13,7 @@
                 <outlet property="accountView" destination="g9h-E9-vZ7" id="O08-30-o1B"/>
                 <outlet property="agreeBtn" destination="rx3-uw-1bb" id="AJn-1M-N9I"/>
                 <outlet property="agreeMentView" destination="yae-gf-dI7" id="AY0-wo-m1C"/>
+                <outlet property="backBtn" destination="dRK-Gm-EeY" id="RRn-mo-BvD"/>
                 <outlet property="code" destination="RyP-v0-yAb" id="EoU-B4-YNS"/>
                 <outlet property="codeView" destination="g6B-ve-8aF" id="ymB-u4-6bM"/>
                 <outlet property="loginBtn" destination="33A-3w-zpd" id="1hN-iC-mbY"/>
@@ -33,6 +34,16 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kRr-EE-dzB">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                             <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRK-Gm-EeY">
+                                    <rect key="frame" x="20" y="15" width="60" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="WkT-98-PIm"/>
+                                    </constraints>
+                                    <state key="normal" image="返回"/>
+                                    <connections>
+                                        <action selector="backClicked" destination="-1" eventType="touchUpInside" id="Lv4-Hh-gJ7"/>
+                                    </connections>
+                                </button>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M0A-EH-mSi">
                                     <rect key="frame" x="312" y="15" width="82" height="32"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -319,6 +330,7 @@
                                 <constraint firstAttribute="trailing" secondItem="g6B-ve-8aF" secondAttribute="trailing" constant="30" id="339-JK-YuD"/>
                                 <constraint firstItem="g6B-ve-8aF" firstAttribute="leading" secondItem="kRr-EE-dzB" secondAttribute="leading" constant="30" id="4sx-CJ-2nU"/>
                                 <constraint firstAttribute="trailing" secondItem="yae-gf-dI7" secondAttribute="trailing" constant="10" id="BBb-Jk-W8G"/>
+                                <constraint firstItem="dRK-Gm-EeY" firstAttribute="leading" secondItem="kRr-EE-dzB" secondAttribute="leading" constant="20" id="CBr-IV-WZF"/>
                                 <constraint firstItem="IsU-bi-qP9" firstAttribute="top" secondItem="33A-3w-zpd" secondAttribute="bottom" id="DnW-iA-LFH"/>
                                 <constraint firstItem="33A-3w-zpd" firstAttribute="top" secondItem="MBa-Z9-h41" secondAttribute="bottom" constant="75" id="FdH-4V-8OR"/>
                                 <constraint firstAttribute="trailing" secondItem="M0A-EH-mSi" secondAttribute="trailing" constant="20" id="Gfc-ne-IgM"/>
@@ -344,6 +356,7 @@
                                 <constraint firstItem="IpL-yc-rcq" firstAttribute="top" secondItem="gld-y0-gU7" secondAttribute="bottom" constant="20" id="o7B-MM-7hS"/>
                                 <constraint firstItem="2tG-Lx-as1" firstAttribute="leading" secondItem="kRr-EE-dzB" secondAttribute="leading" constant="30" id="oX9-fc-lW7"/>
                                 <constraint firstItem="cqp-i7-XBe" firstAttribute="top" secondItem="33A-3w-zpd" secondAttribute="bottom" id="p5W-be-Yhc"/>
+                                <constraint firstItem="dRK-Gm-EeY" firstAttribute="top" secondItem="kRr-EE-dzB" secondAttribute="top" constant="15" id="sse-iR-pfM"/>
                                 <constraint firstItem="gld-y0-gU7" firstAttribute="centerX" secondItem="kRr-EE-dzB" secondAttribute="centerX" id="tva-AC-jDD"/>
                                 <constraint firstAttribute="trailing" secondItem="MBa-Z9-h41" secondAttribute="trailing" constant="30" id="xox-Xg-5lg"/>
                             </constraints>
@@ -378,5 +391,6 @@
         <image name="icon_username_denglu" width="24" height="24"/>
         <image name="icon_yanzhengma" width="24" height="24"/>
         <image name="logo" width="188" height="56"/>
+        <image name="返回" width="11" height="20"/>
     </resources>
 </document>

@@ -169,15 +169,21 @@
         [strongSelf stopShimmer];
         if ([responseObject[@"code"] integerValue] == 0) {
             strongSelf.proUuid = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"proUuid"]];
-            NSArray *images = [(NSString *)responseObject[@"data"][@"context"] componentsSeparatedByString:@","];
-            NSMutableString *imgs = [NSMutableString string];
-            if (images && images.count) {
-                for (NSString *url in images) {
-                    [imgs appendFormat:@"<img src=\"%@\"/>",url];
+            // 1:图片 2:文字 3:图文混排
+            if ([responseObject[@"data"][@"viewType"] integerValue] == 1) {
+                NSArray *images = [(NSString *)responseObject[@"data"][@"context"] componentsSeparatedByString:@","];
+                NSMutableString *imgs = [NSMutableString string];
+                if (images && images.count) {
+                    for (NSString *url in images) {
+                        [imgs appendFormat:@"<img src=\"%@\"/>",url];
+                    }
                 }
+                NSString *h5 = [NSString stringWithFormat:@"<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"><style>img{width:100%%; height:auto;}body{margin:15px 15px;}</style></head><body><div style=\"font-size:18px;font-weight:600;\">%@</div><div style=\"color:#B8B8B8\">%@</div>%@</body></html>",[NSString stringWithFormat:@"【%@】%@",responseObject[@"data"][@"productName"],responseObject[@"data"][@"title"]],[[NSString stringWithFormat:@"%@",responseObject[@"data"][@"publishTime"]] getTimeFromTimestamp:@"YYYY-MM-dd"],imgs];
+                [strongSelf.webView loadHTMLString:h5 baseURL:nil];
+            }else{
+                NSString *h5 = [NSString stringWithFormat:@"<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"><style>img{width:100%%; height:auto;}body{margin:15px 15px;}</style></head><body><div style=\"font-size:18px;font-weight:600;\">%@</div><div style=\"color:#B8B8B8\">%@</div>%@</body></html>",[NSString stringWithFormat:@"【%@】%@",responseObject[@"data"][@"productName"],responseObject[@"data"][@"title"]],[[NSString stringWithFormat:@"%@",responseObject[@"data"][@"publishTime"]] getTimeFromTimestamp:@"YYYY-MM-dd"],responseObject[@"data"][@"context"]];
+                [strongSelf.webView loadHTMLString:h5 baseURL:nil];
             }
-            NSString *h5 = [NSString stringWithFormat:@"<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"><style>img{width:100%%; height:auto;}body{margin:15px 15px;}</style></head><body><div style=\"font-size:18px;font-weight:600;\">%@</div><div style=\"color:#B8B8B8\">%@</div>%@</body></html>",responseObject[@"data"][@"title"],[[NSString stringWithFormat:@"%@",responseObject[@"data"][@"publishTime"]] getTimeFromTimestamp:@"YYYY-MM-dd"],imgs];
-            [strongSelf.webView loadHTMLString:h5 baseURL:nil];
         }else{
             [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
         }

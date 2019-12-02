@@ -14,6 +14,8 @@
 #import "UITextField+GYExpand.h"
 
 @interface RCLoginVC ()<UITextViewDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
+
 @property (weak, nonatomic) IBOutlet UIView *agreeMentView;
 @property (strong, nonatomic) UITextView *agreeMentTV;
 @property (weak, nonatomic) IBOutlet UIView *codeView;
@@ -41,7 +43,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.backBtn.hidden = self.isInnerLogin?NO:YES;
     [self setAgreeMentProtocol];
     
     hx_weakify(self);
@@ -96,6 +98,10 @@
     _agreeMentTV.delegate = self;
     _agreeMentTV.editable = NO;        //必须禁止输入，否则点击将弹出输入键盘
     _agreeMentTV.scrollEnabled = NO;
+}
+-(IBAction)backClicked
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)loginTypeClicked:(UIButton *)sender {
     sender.selected = !sender.selected;

@@ -261,7 +261,6 @@
         [self.mapView removeAnnotation:self.nearbyPoint];
     }
     
-    self.nearbyPoint = [[RCCustomAnnotation alloc] init];
     self.nearbyPoint.coordinate = CLLocationCoordinate2DMake(poi.location.lat, poi.location.lng);
     self.nearbyPoint.title      = poi.title;
     [self.mapView addAnnotation:self.nearbyPoint];
