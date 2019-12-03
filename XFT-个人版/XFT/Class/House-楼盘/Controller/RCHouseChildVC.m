@@ -36,8 +36,6 @@ static NSString *const HouseCell = @"HouseCell";
 @property (nonatomic,assign) NSInteger pagenum;
 /* 房源列表 */
 @property(nonatomic,strong) NSMutableArray *houses;
-/* 是否是通知刷新 */
-@property(nonatomic,assign) BOOL isChangeCityToRefresh;
 @end
 
 @implementation RCHouseChildVC
@@ -46,7 +44,6 @@ static NSString *const HouseCell = @"HouseCell";
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(childScrollHandle:) name:@"childScrollCan" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(childScrollHandle:) name:@"MainTableScroll" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshHouseDataRequest) name:@"ChangeCityToRefresh" object:nil];
     [self setUpTableView];
     [self setUpRefresh];
     [self getHouseDataRequest];
@@ -61,11 +58,9 @@ static NSString *const HouseCell = @"HouseCell";
     if (![_countryUuid isEqualToString:countryUuid]) {
         _countryUuid = countryUuid;
         hx_weakify(self);
-        if (!self.isChangeCityToRefresh) {
-            [self getHouseListDataRequest:YES completeCall:^{
-                [weakSelf.tableView reloadData];
-            }];
-        }
+        [self getHouseListDataRequest:YES completeCall:^{
+            [weakSelf.tableView reloadData];
+        }];
     }
 }
 -(void)setBuldType:(NSString *)buldType
@@ -73,11 +68,9 @@ static NSString *const HouseCell = @"HouseCell";
     if (![_buldType isEqualToString:buldType]) {
         _buldType = buldType;
         hx_weakify(self);
-        if (!self.isChangeCityToRefresh) {
-            [self getHouseListDataRequest:YES completeCall:^{
-                [weakSelf.tableView reloadData];
-            }];
-        }
+        [self getHouseListDataRequest:YES completeCall:^{
+            [weakSelf.tableView reloadData];
+        }];
     }
 }
 -(void)setHxType:(NSString *)hxType
@@ -85,11 +78,9 @@ static NSString *const HouseCell = @"HouseCell";
     if (![_hxType isEqualToString:hxType]) {
         _hxType = hxType;
         hx_weakify(self);
-        if (!self.isChangeCityToRefresh) {
-            [self getHouseListDataRequest:YES completeCall:^{
-                [weakSelf.tableView reloadData];
-            }];
-        }
+        [self getHouseListDataRequest:YES completeCall:^{
+            [weakSelf.tableView reloadData];
+        }];
     }
 }
 -(void)setAreaType:(NSString *)areaType
@@ -97,11 +88,9 @@ static NSString *const HouseCell = @"HouseCell";
     if (![_areaType isEqualToString:areaType]) {
         _areaType = areaType;
         hx_weakify(self);
-        if (!self.isChangeCityToRefresh) {
-            [self getHouseListDataRequest:YES completeCall:^{
-                [weakSelf.tableView reloadData];
-            }];
-        }
+        [self getHouseListDataRequest:YES completeCall:^{
+            [weakSelf.tableView reloadData];
+        }];
     }
 }
 -(NSMutableArray *)houses
@@ -155,25 +144,6 @@ static NSString *const HouseCell = @"HouseCell";
     }];
 }
 #pragma mark -- 通知处理
--(void)refreshHouseDataRequest
-{
-    if ([self isViewLoaded]) {
-        self.isChangeCityToRefresh = YES;
-        // 清空筛选条件
-        self.countryUuid = nil;
-        self.buldType = nil;
-        self.hxType = nil;
-        self.areaType = nil;
-        self.filterView.areaLabel.text = @"行政区域";
-        self.filterView.wuyeLabel.text = @"物业类型";
-        self.filterView.huxingLabel.text = @"户型";
-        self.filterView.mianjiLabel.text = @"面积";
-        
-        [self getHouseDataRequest];
-        
-        self.isChangeCityToRefresh = NO;
-    }
-}
 -(void)childScrollHandle:(NSNotification *)user{
     if ([user.name isEqualToString:@"childScrollCan"]){
         self.isCanScroll = YES;

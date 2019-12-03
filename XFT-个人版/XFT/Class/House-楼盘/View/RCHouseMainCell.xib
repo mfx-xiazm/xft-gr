@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="360" id="KGk-i7-Jjw" customClass="RCHouseMainCell">
+            <rect key="frame" x="0.0" y="0.0" width="366" height="360"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="366" height="360"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvz-r8-res">
+                        <rect key="frame" x="0.0" y="0.0" width="366" height="60"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHH-ys-C5c">
+                                <rect key="frame" x="251" y="15" width="100" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="7rb-QL-SPj"/>
+                                    <constraint firstAttribute="height" constant="30" id="mCX-fn-uOv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <inset key="titleEdgeInsets" minX="2" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2" maxY="0.0"/>
+                                <state key="normal" title="地图找房" image="icon_map"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRv-43-jga" customClass="JXCategoryTitleView">
+                                <rect key="frame" x="0.0" y="0.0" width="251" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uRv-43-jga" firstAttribute="leading" secondItem="bvz-r8-res" secondAttribute="leading" id="Hu1-IC-QsX"/>
+                            <constraint firstAttribute="bottom" secondItem="uRv-43-jga" secondAttribute="bottom" id="KXf-ob-ACb"/>
+                            <constraint firstItem="ZHH-ys-C5c" firstAttribute="leading" secondItem="uRv-43-jga" secondAttribute="trailing" id="Yz6-qO-Lk4"/>
+                            <constraint firstItem="uRv-43-jga" firstAttribute="top" secondItem="bvz-r8-res" secondAttribute="top" id="dk5-et-vdR"/>
+                            <constraint firstAttribute="height" constant="60" id="gR5-b2-9aF"/>
+                            <constraint firstAttribute="trailing" secondItem="ZHH-ys-C5c" secondAttribute="trailing" constant="15" id="xgL-1A-ajQ"/>
+                            <constraint firstItem="ZHH-ys-C5c" firstAttribute="centerY" secondItem="bvz-r8-res" secondAttribute="centerY" id="zxW-zr-Ccc"/>
+                        </constraints>
+                    </view>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2X-p3-6dV">
+                        <rect key="frame" x="0.0" y="60" width="366" height="300"/>
+                    </scrollView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="f2X-p3-6dV" firstAttribute="top" secondItem="bvz-r8-res" secondAttribute="bottom" id="0c4-qc-lOb"/>
+                    <constraint firstAttribute="trailing" secondItem="bvz-r8-res" secondAttribute="trailing" id="3vp-EQ-fCk"/>
+                    <constraint firstItem="f2X-p3-6dV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="6EY-Yq-hjN"/>
+                    <constraint firstAttribute="trailing" secondItem="f2X-p3-6dV" secondAttribute="trailing" id="Lm7-z9-YQp"/>
+                    <constraint firstItem="bvz-r8-res" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ZvD-ky-ZF4"/>
+                    <constraint firstAttribute="bottom" secondItem="f2X-p3-6dV" secondAttribute="bottom" id="eSt-L0-S8u"/>
+                    <constraint firstItem="bvz-r8-res" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jQb-3K-Rne"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="169.56521739130437" y="219.64285714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_map" width="18" height="18"/>
+    </resources>
+</document>

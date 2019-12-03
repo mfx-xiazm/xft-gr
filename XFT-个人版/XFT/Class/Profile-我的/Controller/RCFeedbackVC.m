@@ -12,7 +12,8 @@
 
 @interface RCFeedbackVC ()
 @property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet HXPlaceholderTextView *remark;
+@property (weak, nonatomic) IBOutlet UIView *remarkView;
+@property (strong, nonatomic) HXPlaceholderTextView *remark;
 @property (weak, nonatomic) IBOutlet HCSStarRatingView *starView;
 @property (weak, nonatomic) IBOutlet UIButton *hiddenNameBtn;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
@@ -23,8 +24,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"意见反馈"];
+    self.remark = [[HXPlaceholderTextView alloc] initWithFrame:self.remarkView.bounds];
+    self.remark.backgroundColor = UIColorFromRGB(0xF6F7FB);
     self.remark.placeholder = @"请输入意见和建议";
-    self.name.text = [NSString stringWithFormat:@"%@，您好，请您留下您的宝贵意见。",([MSUserManager sharedInstance].curUserInfo.userinfo.name&& [MSUserManager sharedInstance].curUserInfo.userinfo.name.length)?[MSUserManager sharedInstance].curUserInfo.userinfo.name:[MSUserManager sharedInstance].curUserInfo.userinfo.nick];
+    [self.remarkView addSubview:self.remark];
+    
+    if ([MSUserManager sharedInstance].isLogined) {
+        self.name.text = [NSString stringWithFormat:@"%@，您好，请您留下您的宝贵意见。",([MSUserManager sharedInstance].curUserInfo.userinfo.name&& [MSUserManager sharedInstance].curUserInfo.userinfo.name.length)?[MSUserManager sharedInstance].curUserInfo.userinfo.name:[MSUserManager sharedInstance].curUserInfo.userinfo.nick];
+    }else{
+        self.name.text = @"游客，您好，请您留下您的宝贵意见。";
+    }
+    
     hx_weakify(self);
     [self.submitBtn BindingBtnJudgeBlock:^BOOL{
         hx_strongify(weakSelf);
@@ -41,6 +51,11 @@
         hx_strongify(weakSelf);
         [strongSelf submitIdeaRequest:button];
     }];
+}
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.remark.frame = self.remarkView.bounds;
 }
 - (IBAction)hiddenSubmitClicked:(UIButton *)sender {
     sender.selected = !sender.selected;

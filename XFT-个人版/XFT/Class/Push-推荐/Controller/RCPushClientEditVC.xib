@@ -15,7 +15,7 @@
                 <outlet property="morePhoneViewHeight" destination="RtZ-bh-RTZ" id="oNQ-DP-JOo"/>
                 <outlet property="name" destination="8cv-T7-guD" id="zcw-Yp-AQy"/>
                 <outlet property="phone" destination="wzA-tp-5UV" id="LWc-zN-Hfc"/>
-                <outlet property="remark" destination="NN3-Ar-xQ6" id="ed1-QD-3vn"/>
+                <outlet property="remarkView" destination="ZCg-63-ykw" id="Ehp-42-lXF"/>
                 <outlet property="reporterAccRole" destination="EZf-Km-hrW" id="zlO-eL-Rgz"/>
                 <outlet property="saleMan" destination="Xte-Jv-xY5" id="Xup-Dr-NjV"/>
                 <outlet property="saleManView" destination="Bk8-Nf-6lh" id="zCx-wb-CgP"/>
@@ -402,22 +402,20 @@
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NN3-Ar-xQ6" customClass="HXPlaceholderTextView">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCg-63-ykw">
                                             <rect key="frame" x="0.0" y="38" width="384" height="112"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="150" id="B2z-iq-pDd"/>
-                                        <constraint firstAttribute="trailing" secondItem="NN3-Ar-xQ6" secondAttribute="trailing" id="EMp-G1-jlp"/>
                                         <constraint firstItem="gPL-ec-Xka" firstAttribute="top" secondItem="Ul1-RO-myE" secondAttribute="top" constant="15" id="EbY-xq-bCF"/>
-                                        <constraint firstItem="NN3-Ar-xQ6" firstAttribute="top" secondItem="gPL-ec-Xka" secondAttribute="bottom" constant="6" id="HiK-d8-hxn"/>
+                                        <constraint firstItem="ZCg-63-ykw" firstAttribute="top" secondItem="gPL-ec-Xka" secondAttribute="bottom" constant="6" id="SIN-r4-Rwj"/>
                                         <constraint firstItem="gPL-ec-Xka" firstAttribute="leading" secondItem="Ul1-RO-myE" secondAttribute="leading" id="UT8-4d-HSw"/>
-                                        <constraint firstItem="NN3-Ar-xQ6" firstAttribute="leading" secondItem="Ul1-RO-myE" secondAttribute="leading" id="kT8-4I-g57"/>
-                                        <constraint firstAttribute="bottom" secondItem="NN3-Ar-xQ6" secondAttribute="bottom" id="nKs-mC-VaI"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZCg-63-ykw" secondAttribute="trailing" id="WJW-SH-vnq"/>
+                                        <constraint firstItem="ZCg-63-ykw" firstAttribute="leading" secondItem="Ul1-RO-myE" secondAttribute="leading" id="jFT-Io-7KY"/>
+                                        <constraint firstAttribute="bottom" secondItem="ZCg-63-ykw" secondAttribute="bottom" id="r94-ca-SLu"/>
                                     </constraints>
                                 </view>
                             </subviews>

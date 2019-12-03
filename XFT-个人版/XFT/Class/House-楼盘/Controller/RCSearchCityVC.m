@@ -75,6 +75,7 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
     search.hxn_height = 32;
     search.layer.cornerRadius = 32/2.f;
     search.layer.masksToBounds = YES;
+    search.placeholder = @"输入城市名搜索";
     search.delegate = self;
     UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithCustomView:search];
     self.navigationItem.leftBarButtonItems = @[speaceItem,searchItem];

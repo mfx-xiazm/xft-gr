@@ -40,9 +40,11 @@
     [self startShimmer];
     [self getNewsDetailRequest];
     
+    /*
     if ([MSUserManager sharedInstance].isLogined) {
-        [self getCollectStateRequest];
+        [self getCollectStateRequest];// 请求收藏状态
     }
+    */
 }
 -(void)viewDidLayoutSubviews
 {

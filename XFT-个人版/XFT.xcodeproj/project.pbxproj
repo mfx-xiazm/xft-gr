@@ -178,6 +178,8 @@
 		904D03AA2326780500AB7098 /* RCCustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 904D03A92326780500AB7098 /* RCCustomCalloutView.m */; };
 		904E08422395F02E00320AAC /* RCShowPic.m in Sources */ = {isa = PBXBuildFile; fileRef = 904E08412395F02E00320AAC /* RCShowPic.m */; };
 		904E08462395FC5100320AAC /* RCRouteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 904E08452395FC5100320AAC /* RCRouteManager.m */; };
+		904E085E2396596D00320AAC /* RCHouseMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 904E085C2396596D00320AAC /* RCHouseMainCell.m */; };
+		904E085F2396596D00320AAC /* RCHouseMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 904E085D2396596D00320AAC /* RCHouseMainCell.xib */; };
 		905DBCA223164B1D000C7384 /* RCHouseTagsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 905DBCA023164B1D000C7384 /* RCHouseTagsCell.m */; };
 		905DBCA323164B1D000C7384 /* RCHouseTagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 905DBCA123164B1D000C7384 /* RCHouseTagsCell.xib */; };
 		905DBCA723165692000C7384 /* HXPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905DBCA623165692000C7384 /* HXPlaceholderTextView.m */; };
@@ -657,6 +659,9 @@
 		904E08412395F02E00320AAC /* RCShowPic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCShowPic.m; sourceTree = "<group>"; };
 		904E08442395FC5100320AAC /* RCRouteManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCRouteManager.h; sourceTree = "<group>"; };
 		904E08452395FC5100320AAC /* RCRouteManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCRouteManager.m; sourceTree = "<group>"; };
+		904E085B2396596D00320AAC /* RCHouseMainCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCHouseMainCell.h; sourceTree = "<group>"; };
+		904E085C2396596D00320AAC /* RCHouseMainCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCHouseMainCell.m; sourceTree = "<group>"; };
+		904E085D2396596D00320AAC /* RCHouseMainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCHouseMainCell.xib; sourceTree = "<group>"; };
 		905DBC9F23164B1D000C7384 /* RCHouseTagsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCHouseTagsCell.h; sourceTree = "<group>"; };
 		905DBCA023164B1D000C7384 /* RCHouseTagsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCHouseTagsCell.m; sourceTree = "<group>"; };
 		905DBCA123164B1D000C7384 /* RCHouseTagsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCHouseTagsCell.xib; sourceTree = "<group>"; };
@@ -1051,6 +1056,9 @@
 		900B7A5C23161ECC00832CDE /* 楼盘首页 */ = {
 			isa = PBXGroup;
 			children = (
+				904E085B2396596D00320AAC /* RCHouseMainCell.h */,
+				904E085C2396596D00320AAC /* RCHouseMainCell.m */,
+				904E085D2396596D00320AAC /* RCHouseMainCell.xib */,
 				900B7A0823140DBD00832CDE /* RCHouseCell.h */,
 				900B7A0923140DBD00832CDE /* RCHouseCell.m */,
 				900B7A0A23140DBD00832CDE /* RCHouseCell.xib */,
@@ -2557,6 +2565,7 @@
 				908585E623235B8D00FF75B4 /* RCMyBrokerCell.xib in Resources */,
 				90B8B4712323ABD5008A9E13 /* RCPushClientEditVC.xib in Resources */,
 				908585E123235B5400FF75B4 /* RCMyBrokerVC.xib in Resources */,
+				904E085F2396596D00320AAC /* RCHouseMainCell.xib in Resources */,
 				90B8B46C23239AD2008A9E13 /* RCMyAppointCell.xib in Resources */,
 				908585D42323596800FF75B4 /* RCClientNoteCell.xib in Resources */,
 				90D2DE232319456F00363EBE /* RCHouseStyleDetailCell.xib in Resources */,
@@ -2823,6 +2832,7 @@
 				900B7A00231402E100832CDE /* RCRegisterVC.m in Sources */,
 				90FAB9F923862E2A006EE336 /* RCHouseBanner.m in Sources */,
 				90683E2F231A032E00ED9169 /* RCBindCardVC.m in Sources */,
+				904E085E2396596D00320AAC /* RCHouseMainCell.m in Sources */,
 				90B8B45523239260008A9E13 /* RCHouseAdviserVC.m in Sources */,
 				9040F2472313A839005E6B2E /* XTimer.m in Sources */,
 				9040B9F423176819001CC87B /* RCProfileCollectChildVC.m in Sources */,

@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RCVisitCommentVC">
             <connections>
-                <outlet property="remark" destination="BYn-kI-bHK" id="sh7-Kk-Blg"/>
+                <outlet property="remarkView" destination="qbg-no-FUQ" id="0Jo-fI-lpN"/>
                 <outlet property="starView1" destination="LKm-0C-VUT" id="iY6-yy-H98"/>
                 <outlet property="starView2" destination="Xjm-we-Kvm" id="xnJ-Xj-ucY"/>
                 <outlet property="submitBtn" destination="LA1-lb-EWn" id="raL-lR-9Nx"/>
@@ -88,26 +88,24 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BYn-kI-bHK" customClass="HXPlaceholderTextView">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbg-no-FUQ">
                                     <rect key="frame" x="15" y="234" width="384" height="150"/>
-                                    <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="0.98123899650000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="150" id="pry-uz-L5m"/>
+                                        <constraint firstAttribute="height" constant="150" id="Lwf-6n-IJd"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
-                                            <real key="value" value="5"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layerBoderWidth">
+                                            <real key="value" value="1"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="boderColor">
                                             <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layerBoderWidth">
-                                            <real key="value" value="1"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
+                                            <real key="value" value="5"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
-                                </textView>
+                                </view>
                                 <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LA1-lb-EWn">
                                     <rect key="frame" x="15" y="459" width="384" height="44"/>
                                     <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -127,22 +125,22 @@
                             <constraints>
                                 <constraint firstItem="Xjm-we-Kvm" firstAttribute="top" secondItem="pWx-VK-bRR" secondAttribute="bottom" constant="20" id="0OV-eF-OS0"/>
                                 <constraint firstItem="pVa-l6-Wgo" firstAttribute="top" secondItem="Xjm-we-Kvm" secondAttribute="bottom" constant="20" id="4t1-u8-LA5"/>
-                                <constraint firstAttribute="trailing" secondItem="BYn-kI-bHK" secondAttribute="trailing" constant="15" id="5Jb-VW-ebE"/>
                                 <constraint firstItem="rrH-14-dRY" firstAttribute="leading" secondItem="nq9-So-0y0" secondAttribute="leading" constant="15" id="5Vr-tO-8SS"/>
                                 <constraint firstItem="LKm-0C-VUT" firstAttribute="top" secondItem="rrH-14-dRY" secondAttribute="bottom" constant="20" id="5bf-Ts-2Cl"/>
                                 <constraint firstItem="pWx-VK-bRR" firstAttribute="top" secondItem="LKm-0C-VUT" secondAttribute="bottom" constant="20" id="Ate-9D-ImM"/>
-                                <constraint firstItem="BYn-kI-bHK" firstAttribute="leading" secondItem="nq9-So-0y0" secondAttribute="leading" constant="15" id="DWo-eN-6ox"/>
                                 <constraint firstItem="LA1-lb-EWn" firstAttribute="leading" secondItem="nq9-So-0y0" secondAttribute="leading" constant="15" id="Emj-wI-cG1"/>
                                 <constraint firstItem="LKm-0C-VUT" firstAttribute="leading" secondItem="nq9-So-0y0" secondAttribute="leading" constant="15" id="FFa-Vp-Vhi"/>
-                                <constraint firstItem="BYn-kI-bHK" firstAttribute="top" secondItem="pVa-l6-Wgo" secondAttribute="bottom" constant="20" id="Qnb-Xl-1v9"/>
+                                <constraint firstAttribute="trailing" secondItem="qbg-no-FUQ" secondAttribute="trailing" constant="15" id="Npa-oK-F47"/>
+                                <constraint firstItem="qbg-no-FUQ" firstAttribute="leading" secondItem="nq9-So-0y0" secondAttribute="leading" constant="15" id="Qdh-qj-SIJ"/>
                                 <constraint firstItem="pVa-l6-Wgo" firstAttribute="leading" secondItem="nq9-So-0y0" secondAttribute="leading" constant="15" id="SXT-w3-yXC"/>
                                 <constraint firstItem="rrH-14-dRY" firstAttribute="top" secondItem="nq9-So-0y0" secondAttribute="top" constant="20" id="VcI-mm-pol"/>
                                 <constraint firstAttribute="trailing" secondItem="LKm-0C-VUT" secondAttribute="trailing" constant="120" id="Xbb-XG-ZmB"/>
                                 <constraint firstItem="Xjm-we-Kvm" firstAttribute="leading" secondItem="nq9-So-0y0" secondAttribute="leading" constant="15" id="Xem-dM-tb8"/>
                                 <constraint firstAttribute="trailing" secondItem="LA1-lb-EWn" secondAttribute="trailing" constant="15" id="a29-Fx-oB5"/>
                                 <constraint firstAttribute="trailing" secondItem="Xjm-we-Kvm" secondAttribute="trailing" constant="120" id="doM-v6-uWA"/>
-                                <constraint firstItem="LA1-lb-EWn" firstAttribute="top" secondItem="BYn-kI-bHK" secondAttribute="bottom" constant="75" id="gDk-MZ-kfo"/>
                                 <constraint firstItem="pWx-VK-bRR" firstAttribute="leading" secondItem="nq9-So-0y0" secondAttribute="leading" constant="15" id="pn5-U3-JYl"/>
+                                <constraint firstItem="qbg-no-FUQ" firstAttribute="top" secondItem="pVa-l6-Wgo" secondAttribute="bottom" constant="20" id="sOc-ua-eeO"/>
+                                <constraint firstItem="LA1-lb-EWn" firstAttribute="top" secondItem="qbg-no-FUQ" secondAttribute="bottom" constant="75" id="wAH-hq-Z8n"/>
                             </constraints>
                         </view>
                     </subviews>

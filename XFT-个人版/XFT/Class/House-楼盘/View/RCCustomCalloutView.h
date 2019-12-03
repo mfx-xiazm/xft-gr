@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *subtitle; //地址
 @property(nonatomic,copy) NSString *area;
 @property(nonatomic,copy) NSString *contentId;
+@property (nonatomic, strong) UIButton *clickBtn;
 @property(nonatomic,weak) id<RCCustomCalloutViewDelegate> delegate;
 @end
 

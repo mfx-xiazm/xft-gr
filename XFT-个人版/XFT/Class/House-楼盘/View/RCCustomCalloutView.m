@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UILabel *subtitleLabel;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *areaLabel;
-@property (nonatomic, strong) UIButton *clickBtn;
+
 @end
 @implementation RCCustomCalloutView
 
@@ -89,7 +89,7 @@
     clickBtn.frame = self.bounds;
     [self addSubview:clickBtn];
     [clickBtn addTarget:self action:@selector(outViewClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
+    self.clickBtn = clickBtn;
 }
 - (void)outViewClicked:(UIButton *)btn{
 

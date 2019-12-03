@@ -59,6 +59,7 @@
     self.isCanScroll = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MainTableScroll:) name:@"MainTableScroll" object:nil];
     [self setUpNavBar];
+    [self setUpTableView];
     //[self queryAppVersion];
     [self startShimmer];
     [self getCityRequest];
@@ -449,20 +450,10 @@
 }
 -(void)handleHouseData
 {
-    self.tableView.hidden = NO;
-    
     self.header.banners = self.banners;
     self.header.notices = self.notices;
-    
-    self.categoryView.scrollView = self.scrollView;
-    self.categoryView.childVCs = self.childVCs;
-    self.categoryView.cates = self.cates;
-    
-    [self setUpTableView];
         
     [self.tableView reloadData];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeCityToRefresh" object:nil];
 }
 #pragma mark -- UITableView数据源和代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -477,10 +468,22 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     // 添加pageView
-    [cell.contentView addSubview:self.scrollView];
-    self.categoryView.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 60.f);
-    [cell.contentView addSubview:self.categoryView];
+    self.scrollView = nil;
+    self.categoryView = nil;
+    self.childVCs = nil;
     
+    [cell.contentView addSubview:self.scrollView];
+    [cell.contentView addSubview:self.categoryView];
+    hx_weakify(self);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        hx_strongify(weakSelf);
+        strongSelf.categoryView.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 60.f);
+    });
+
+    self.categoryView.scrollView = self.scrollView;
+    self.categoryView.childVCs = self.childVCs;
+    self.categoryView.cates = self.cates;
+
     return cell;
 }
 

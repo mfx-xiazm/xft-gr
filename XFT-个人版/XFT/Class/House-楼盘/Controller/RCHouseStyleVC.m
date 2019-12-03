@@ -48,7 +48,7 @@ static NSString *const HouseStyleDetailCell = @"HouseStyleDetailCell";
         }else{
             [self.appointOrReportBtn setTitle:@"报备客户" forState:UIControlStateNormal];
         }
-        [self getCollectStateRequest];
+       //[self getCollectStateRequest];//查询收藏状态
     }
 }
 -(void)viewDidLayoutSubviews

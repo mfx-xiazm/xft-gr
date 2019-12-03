@@ -12,7 +12,7 @@
             <connections>
                 <outlet property="hiddenNameBtn" destination="p6v-o4-MKp" id="Lfg-sC-3c4"/>
                 <outlet property="name" destination="N2i-fT-Rmn" id="y3d-pm-cm6"/>
-                <outlet property="remark" destination="ZXh-na-RFS" id="xko-Kv-01L"/>
+                <outlet property="remarkView" destination="50S-tu-WHn" id="H6D-3h-pXs"/>
                 <outlet property="starView" destination="egZ-V9-n4Y" id="qcG-kW-Yru"/>
                 <outlet property="submitBtn" destination="SWC-uk-oIS" id="thw-jF-I7n"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -68,26 +68,24 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZXh-na-RFS" customClass="HXPlaceholderTextView">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50S-tu-WHn">
                                     <rect key="frame" x="15" y="182.5" width="384" height="150"/>
-                                    <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="0.98123899650000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="150" id="PcW-ew-aHV"/>
+                                        <constraint firstAttribute="height" constant="150" id="Xiq-lG-QSG"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
-                                            <real key="value" value="5"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layerBoderWidth">
+                                            <real key="value" value="1"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="boderColor">
                                             <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layerBoderWidth">
-                                            <real key="value" value="1"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layerBoderCorner">
+                                            <real key="value" value="5"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
-                                </textView>
+                                </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6v-o4-MKp">
                                     <rect key="frame" x="15" y="347.5" width="384" height="25"/>
                                     <constraints>
@@ -120,12 +118,10 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="50S-tu-WHn" secondAttribute="trailing" constant="15" id="5JN-04-udL"/>
                                 <constraint firstItem="uQP-no-MPv" firstAttribute="leading" secondItem="BZn-hk-HWq" secondAttribute="leading" constant="15" id="5JS-AY-eOK"/>
-                                <constraint firstItem="p6v-o4-MKp" firstAttribute="top" secondItem="ZXh-na-RFS" secondAttribute="bottom" constant="15" id="5WU-J3-M4c"/>
-                                <constraint firstItem="ZXh-na-RFS" firstAttribute="leading" secondItem="BZn-hk-HWq" secondAttribute="leading" constant="15" id="BgF-7K-Nt2"/>
+                                <constraint firstItem="50S-tu-WHn" firstAttribute="top" secondItem="2v2-S2-tWL" secondAttribute="bottom" constant="20" id="83a-XE-nAd"/>
                                 <constraint firstItem="SWC-uk-oIS" firstAttribute="top" secondItem="p6v-o4-MKp" secondAttribute="bottom" constant="35" id="CbE-yW-Xg3"/>
-                                <constraint firstItem="ZXh-na-RFS" firstAttribute="top" secondItem="2v2-S2-tWL" secondAttribute="bottom" constant="20" id="GHh-pi-gax"/>
-                                <constraint firstAttribute="trailing" secondItem="ZXh-na-RFS" secondAttribute="trailing" constant="15" id="Gq8-rL-dVJ"/>
                                 <constraint firstItem="uQP-no-MPv" firstAttribute="top" secondItem="N2i-fT-Rmn" secondAttribute="bottom" constant="15" id="Gt6-gk-iy8"/>
                                 <constraint firstItem="SWC-uk-oIS" firstAttribute="leading" secondItem="BZn-hk-HWq" secondAttribute="leading" constant="15" id="Mp5-Jw-2qN"/>
                                 <constraint firstItem="p6v-o4-MKp" firstAttribute="leading" secondItem="BZn-hk-HWq" secondAttribute="leading" constant="15" id="OSU-UP-OLv"/>
@@ -134,8 +130,10 @@
                                 <constraint firstAttribute="trailing" secondItem="egZ-V9-n4Y" secondAttribute="trailing" constant="120" id="bzA-af-vvs"/>
                                 <constraint firstItem="N2i-fT-Rmn" firstAttribute="top" secondItem="BZn-hk-HWq" secondAttribute="top" constant="20" id="d8Y-jX-QT0"/>
                                 <constraint firstAttribute="trailing" secondItem="p6v-o4-MKp" secondAttribute="trailing" constant="15" id="d9p-Y4-zH7"/>
+                                <constraint firstItem="p6v-o4-MKp" firstAttribute="top" secondItem="50S-tu-WHn" secondAttribute="bottom" constant="15" id="dfe-Op-A1H"/>
                                 <constraint firstItem="N2i-fT-Rmn" firstAttribute="leading" secondItem="BZn-hk-HWq" secondAttribute="leading" constant="15" id="fed-FC-mho"/>
                                 <constraint firstItem="2v2-S2-tWL" firstAttribute="leading" secondItem="BZn-hk-HWq" secondAttribute="leading" constant="15" id="gbg-gI-fWb"/>
+                                <constraint firstItem="50S-tu-WHn" firstAttribute="leading" secondItem="BZn-hk-HWq" secondAttribute="leading" constant="15" id="oR6-5z-3pk"/>
                                 <constraint firstItem="egZ-V9-n4Y" firstAttribute="top" secondItem="uQP-no-MPv" secondAttribute="bottom" constant="20" id="teW-NZ-a2a"/>
                                 <constraint firstItem="2v2-S2-tWL" firstAttribute="top" secondItem="egZ-V9-n4Y" secondAttribute="bottom" constant="20" id="tsq-Ma-FVu"/>
                                 <constraint firstAttribute="trailing" secondItem="SWC-uk-oIS" secondAttribute="trailing" constant="15" id="v6g-xT-8Yh"/>

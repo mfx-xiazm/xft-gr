@@ -11,7 +11,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RCHouseStyleVC">
             <connections>
                 <outlet property="appointOrReportBtn" destination="IAg-g9-eTM" id="qPA-xz-7nD"/>
-                <outlet property="collectBtn" destination="73p-Kf-GpH" id="xoH-r1-1EF"/>
                 <outlet property="tableView" destination="dnd-Ab-eYC" id="Hlp-pf-AM8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -49,30 +48,8 @@
                                 <action selector="shareClicked:" destination="-1" eventType="touchUpInside" id="UUe-KV-hL7"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73p-Kf-GpH" customClass="SPButton">
-                            <rect key="frame" x="80" y="0.0" width="80" height="44"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="80" id="P4m-ZW-hYQ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <state key="normal" title="收藏户型" image="icon_schx">
-                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <state key="selected" title="收藏户型" image="icon_sc_36_yellow"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="imagePosition">
-                                    <integer key="value" value="2"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="imageTitleSpace">
-                                    <real key="value" value="3"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="collectClicked:" destination="-1" eventType="touchUpInside" id="mhC-zJ-9td"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7m-TQ-15v">
-                            <rect key="frame" x="160" y="5" width="112" height="34"/>
+                            <rect key="frame" x="80" y="5" width="152" height="34"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
@@ -102,7 +79,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAg-g9-eTM">
-                            <rect key="frame" x="287" y="5" width="112" height="34"/>
+                            <rect key="frame" x="247" y="5" width="152" height="34"/>
                             <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="预约看房"/>
@@ -119,17 +96,14 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="pZE-sZ-l4s" secondAttribute="trailing" id="2lw-Rd-S0r"/>
-                        <constraint firstAttribute="bottom" secondItem="73p-Kf-GpH" secondAttribute="bottom" id="8mq-HF-tRQ"/>
                         <constraint firstItem="B7m-TQ-15v" firstAttribute="top" secondItem="4W0-KC-x1k" secondAttribute="top" constant="5" id="9AA-7Q-vX2"/>
-                        <constraint firstItem="B7m-TQ-15v" firstAttribute="leading" secondItem="73p-Kf-GpH" secondAttribute="trailing" id="Aml-Ml-5iR"/>
                         <constraint firstItem="E5V-R5-Fnw" firstAttribute="leading" secondItem="4W0-KC-x1k" secondAttribute="leading" id="DGd-ww-Qfx"/>
+                        <constraint firstItem="B7m-TQ-15v" firstAttribute="leading" secondItem="E5V-R5-Fnw" secondAttribute="trailing" id="E4z-zH-G72"/>
                         <constraint firstAttribute="height" constant="44" id="Zty-dk-hdw"/>
-                        <constraint firstItem="73p-Kf-GpH" firstAttribute="leading" secondItem="E5V-R5-Fnw" secondAttribute="trailing" id="aQH-Cb-hFo"/>
                         <constraint firstAttribute="bottom" secondItem="IAg-g9-eTM" secondAttribute="bottom" constant="5" id="gFN-qv-vBd"/>
                         <constraint firstItem="IAg-g9-eTM" firstAttribute="top" secondItem="4W0-KC-x1k" secondAttribute="top" constant="5" id="hxe-Ne-XLM"/>
                         <constraint firstItem="IAg-g9-eTM" firstAttribute="leading" secondItem="B7m-TQ-15v" secondAttribute="trailing" constant="15" id="jFw-w1-cuE"/>
                         <constraint firstAttribute="trailing" secondItem="IAg-g9-eTM" secondAttribute="trailing" constant="15" id="kCb-hZ-AGi"/>
-                        <constraint firstItem="73p-Kf-GpH" firstAttribute="top" secondItem="4W0-KC-x1k" secondAttribute="top" id="mBf-yS-gOP"/>
                         <constraint firstAttribute="bottom" secondItem="E5V-R5-Fnw" secondAttribute="bottom" id="qm9-30-16W"/>
                         <constraint firstItem="pZE-sZ-l4s" firstAttribute="top" secondItem="4W0-KC-x1k" secondAttribute="top" id="u2l-9h-I5b"/>
                         <constraint firstAttribute="bottom" secondItem="B7m-TQ-15v" secondAttribute="bottom" constant="5" id="uES-Du-Uaf"/>
@@ -154,8 +128,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icon_sc_36_yellow" width="24" height="24"/>
-        <image name="icon_schx" width="24" height="24"/>
         <image name="icon_share_friend" width="24" height="24"/>
     </resources>
 </document>

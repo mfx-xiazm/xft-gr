@@ -53,24 +53,24 @@
  以下两个方法处理弹框的点击响应范围
  */
 
-//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-//    UIView *view = [super hitTest:point withEvent:event];
-//    if (view == nil) {
-//        CGPoint tempoint = [self.calloutView.btn convertPoint:point fromView:self];
-//        if (CGRectContainsPoint(self.calloutView.btn.bounds, tempoint)){
-//            view = self.calloutView.btn;
-//        }
-//    }
-//    return view;
-//}
-
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
-{
-    BOOL inside = [super pointInside:point withEvent:event];
-    if (!inside && self.selected) {
-        inside = [self.calloutView pointInside:[self convertPoint:point toView:self.calloutView] withEvent:event];
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    UIView *view = [super hitTest:point withEvent:event];
+    if (view == nil) {
+        CGPoint tempoint = [self.calloutView.clickBtn convertPoint:point fromView:self];
+        if (CGRectContainsPoint(self.calloutView.clickBtn.bounds, tempoint)){
+            view = self.calloutView.clickBtn;
+        }
     }
-    
-    return inside;
+    return view;
 }
+
+//- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+//{
+//    BOOL inside = [super pointInside:point withEvent:event];
+//    if (!inside && self.selected) {
+//        inside = [self.calloutView pointInside:[self convertPoint:point toView:self.calloutView] withEvent:event];
+//    }
+//    
+//    return inside;
+//}
 @end

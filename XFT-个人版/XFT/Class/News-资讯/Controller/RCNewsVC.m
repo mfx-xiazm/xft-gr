@@ -33,11 +33,17 @@ static NSString *const NewsCell = @"NewsCell";
     [super viewDidLoad];
     [self setUpTableView];
     [self setUpRefresh];
+    [self setUpEmptyView];
     [self startShimmer];
     hx_weakify(self);
     [self getNewsListDataRequest:YES completeCall:^{
         hx_strongify(weakSelf);
         [strongSelf.tableView reloadData];
+        if (strongSelf.newsList.count) {
+            [strongSelf.tableView ly_hideEmptyView];
+        }else{
+            [strongSelf.tableView ly_showEmptyView];
+        }
     }];
 }
 -(void)viewDidLayoutSubviews
@@ -84,6 +90,16 @@ static NSString *const NewsCell = @"NewsCell";
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCNewsCell class]) bundle:nil] forCellReuseIdentifier:NewsCell];
 //    self.tableView.tableHeaderView = self.header;
 }
+-(void)setUpEmptyView
+{
+    LYEmptyView *emptyView = [LYEmptyView emptyViewWithImageStr:@"pic_none_search" titleStr:nil detailStr:@"暂无内容"];
+    emptyView.contentViewOffset = -(self.HXNavBarHeight);
+    emptyView.subViewMargin = 30.f;
+    emptyView.detailLabTextColor = UIColorFromRGB(0x131D2D);
+    emptyView.detailLabFont = [UIFont fontWithName:@"PingFangSC-Semibold" size: 16];
+    emptyView.autoShowEmptyView = NO;
+    self.tableView.ly_emptyView = emptyView;
+}
 /** 添加刷新控件 */
 -(void)setUpRefresh
 {
@@ -94,6 +110,11 @@ static NSString *const NewsCell = @"NewsCell";
         [strongSelf.tableView.mj_footer resetNoMoreData];
         [strongSelf getNewsListDataRequest:YES completeCall:^{
             [strongSelf.tableView reloadData];
+            if (strongSelf.newsList.count) {
+                [strongSelf.tableView ly_hideEmptyView];
+            }else{
+                [strongSelf.tableView ly_showEmptyView];
+            }
         }];
     }];
     //追加尾部刷新
@@ -101,6 +122,11 @@ static NSString *const NewsCell = @"NewsCell";
         hx_strongify(weakSelf);
         [strongSelf getNewsListDataRequest:NO completeCall:^{
             [strongSelf.tableView reloadData];
+            if (strongSelf.newsList.count) {
+                [strongSelf.tableView ly_hideEmptyView];
+            }else{
+                [strongSelf.tableView ly_showEmptyView];
+            }
         }];
     }];
 }

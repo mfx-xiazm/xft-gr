@@ -48,6 +48,7 @@ static NSString *const NewsCell = @"NewsCell";
     search.layer.cornerRadius = 32/2.f;
     search.layer.masksToBounds = YES;
     search.delegate = self;
+    search.placeholder = @"输入楼盘名搜索";
     search.text = self.keyword;
     self.navigationItem.titleView = search;
     

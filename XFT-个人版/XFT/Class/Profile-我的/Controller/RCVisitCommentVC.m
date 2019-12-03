@@ -14,8 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet HCSStarRatingView *starView1;
 @property (weak, nonatomic) IBOutlet HCSStarRatingView *starView2;
-
-@property (weak, nonatomic) IBOutlet HXPlaceholderTextView *remark;
+@property (weak, nonatomic) IBOutlet UIView *remarkView;
+@property (strong, nonatomic) HXPlaceholderTextView *remark;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 
 @end
@@ -25,7 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"回访调查表"];
+    self.remark = [[HXPlaceholderTextView alloc] initWithFrame:self.remarkView.bounds];
+    self.remark.backgroundColor = UIColorFromRGB(0xF6F7FB);
     self.remark.placeholder = @"请输入意见和建议";
+    [self.remarkView addSubview:self.remark];
     
     hx_weakify(self);
     [self.submitBtn BindingBtnJudgeBlock:^BOOL{
@@ -39,6 +42,11 @@
         hx_strongify(weakSelf);
         [strongSelf submitCusQuestionnaireRequest:button];
     }];
+}
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.remark.frame = self.remarkView.bounds;
 }
 -(void)submitCusQuestionnaireRequest:(UIButton *)sender
 {

@@ -95,6 +95,7 @@ static NSString *const ProfileCell = @"ProfileCell";
                 [weakSelf.navigationController pushViewController:ivc animated:YES];
             }else{
                 RCLoginVC *lvc = [RCLoginVC new];
+                weakSelf.isAboutUs = YES;
                 lvc.isInnerLogin = YES;
                 HXNavigationController *nav = [[HXNavigationController alloc] initWithRootViewController:lvc];
                 if (@available(iOS 13.0, *)) {

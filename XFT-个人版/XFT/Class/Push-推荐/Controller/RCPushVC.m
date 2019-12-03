@@ -61,7 +61,8 @@ static NSString *const AddedClientCell = @"AddedClientCell";
 /* 报备人身份 */
 @property (weak, nonatomic) IBOutlet UITextField *reporterAccRole;
 /* 客户备注 */
-@property (weak, nonatomic) IBOutlet HXPlaceholderTextView *remark;
+@property (weak, nonatomic) IBOutlet UIView *remarkView;
+@property (strong, nonatomic) HXPlaceholderTextView *remark;
 /* 继续添加客户按钮 */
 @property (weak, nonatomic) IBOutlet UIButton *againAddBtn;
 /* 确认完成推荐按钮 */
@@ -87,7 +88,9 @@ static NSString *const AddedClientCell = @"AddedClientCell";
     self.phone.delegate = self;
     self.remark.delegate = self;
     
+    self.remark = [[HXPlaceholderTextView alloc] initWithFrame:self.remarkView.bounds];
     self.remark.placeholder = @"请输入客户购房的补充说明(选填)";
+    [self.remarkView addSubview:self.remark];
     
     hx_weakify(self);
     [self.phone lengthLimit:^{
@@ -168,6 +171,11 @@ static NSString *const AddedClientCell = @"AddedClientCell";
         hx_strongify(weakSelf);
         [strongSelf pushDoneClicked:button];
     }];
+}
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.remark.frame = self.remarkView.bounds;
 }
 -(NSMutableArray *)houses
 {

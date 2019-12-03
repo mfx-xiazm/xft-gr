@@ -20,7 +20,7 @@
                 <outlet property="morePhoneViewHeight" destination="74E-gL-uGM" id="f26-I7-jyv"/>
                 <outlet property="name" destination="HV6-Ad-SNr" id="pxe-ca-9jc"/>
                 <outlet property="phone" destination="GWT-bR-zJO" id="7mk-9p-1gh"/>
-                <outlet property="remark" destination="2sv-OS-evp" id="IeA-th-9FM"/>
+                <outlet property="remarkView" destination="esg-7d-B11" id="mrh-mA-FyA"/>
                 <outlet property="reporterAccRole" destination="JVO-5H-YBn" id="kUy-FU-pHe"/>
                 <outlet property="saleMan" destination="9iY-TD-MFX" id="cJD-0k-XgD"/>
                 <outlet property="saleManView" destination="XTe-CU-J3o" id="hob-h0-6Nx"/>
@@ -501,22 +501,20 @@
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2sv-OS-evp" customClass="HXPlaceholderTextView">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esg-7d-B11">
                                             <rect key="frame" x="0.0" y="38" width="384" height="112"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="2sv-OS-evp" firstAttribute="top" secondItem="ahN-Fj-TkR" secondAttribute="bottom" constant="6" id="Ecc-Vy-JGf"/>
                                         <constraint firstAttribute="height" constant="150" id="FCM-4t-h7t"/>
+                                        <constraint firstAttribute="trailing" secondItem="esg-7d-B11" secondAttribute="trailing" id="GcQ-4C-NpH"/>
+                                        <constraint firstItem="esg-7d-B11" firstAttribute="leading" secondItem="zMI-EN-RRw" secondAttribute="leading" id="dB1-g0-Qng"/>
                                         <constraint firstItem="ahN-Fj-TkR" firstAttribute="top" secondItem="zMI-EN-RRw" secondAttribute="top" constant="15" id="eGx-Mf-htd"/>
                                         <constraint firstItem="ahN-Fj-TkR" firstAttribute="leading" secondItem="zMI-EN-RRw" secondAttribute="leading" id="hJC-Ei-Rqy"/>
-                                        <constraint firstAttribute="bottom" secondItem="2sv-OS-evp" secondAttribute="bottom" id="iym-7P-Es4"/>
-                                        <constraint firstItem="2sv-OS-evp" firstAttribute="leading" secondItem="zMI-EN-RRw" secondAttribute="leading" id="mb1-4R-d3o"/>
-                                        <constraint firstAttribute="trailing" secondItem="2sv-OS-evp" secondAttribute="trailing" id="qxr-jr-Un9"/>
+                                        <constraint firstItem="esg-7d-B11" firstAttribute="top" secondItem="ahN-Fj-TkR" secondAttribute="bottom" constant="6" id="r89-4v-jpZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="esg-7d-B11" secondAttribute="bottom" id="vha-M4-CuA"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0R2-fG-YQg">

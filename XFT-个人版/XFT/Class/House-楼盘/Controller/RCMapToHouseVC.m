@@ -514,10 +514,13 @@
         if (annotationView == nil){
             annotationView = [[RCCustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:customReuseIndetifier];
         }
+        [annotationView setEnabled:NO];
+        [annotationView setSelected:YES animated:NO];
         hx_weakify(self);
         annotationView.callOutViewClicked = ^{
             weakSelf.currentPoint = annotation;
             [mapView setCenterOffset:CGPointMake(0.5, 0.35)];
+            [mapView setZoomLevel:15 animated:YES];
             [mapView setCenterCoordinate:annotation.coordinate animated:YES];
             [weakSelf getHouseDetailRequest];
         };

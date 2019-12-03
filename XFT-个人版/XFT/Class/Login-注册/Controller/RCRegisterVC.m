@@ -107,13 +107,16 @@
         
         parameters[@"data"] = data;
         
+        [MBProgressHUD showLoadToView:nil title:@"加载中..."];
         [HXNetworkTool POST:HXRC_M_URL action:@"sys/sys/personalReg/personalSendSms" parameters:parameters success:^(id responseObject) {
+            [MBProgressHUD hideHUD];
             if ([responseObject[@"code"] integerValue] == 0) {
                 [sender startWithTime:59 title:@"验证码" countDownTitle:@"s" mainColor:[UIColor whiteColor] countColor:[UIColor whiteColor]];
             }else{
                 [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
             }
         } failure:^(NSError *error) {
+            [MBProgressHUD hideHUD];
             [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
         }];
     }else{

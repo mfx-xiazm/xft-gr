@@ -46,7 +46,8 @@ static NSString *const AddPhoneCell = @"AddPhoneCell";
 /* 报备人身份 */
 @property (weak, nonatomic) IBOutlet UITextField *reporterAccRole;
 /* 客户备注 */
-@property (weak, nonatomic) IBOutlet HXPlaceholderTextView *remark;
+@property (weak, nonatomic) IBOutlet UIView *remarkView;
+@property (strong, nonatomic) HXPlaceholderTextView *remark;
 /* 选中的顾问 */
 @property(nonatomic,strong) RCHouseAdviser *selectcAdviser;
 @end
@@ -56,7 +57,11 @@ static NSString *const AddPhoneCell = @"AddPhoneCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"客户推荐"];
+    
+    self.remark = [[HXPlaceholderTextView alloc] initWithFrame:self.remarkView.bounds];
     self.remark.placeholder = @"请输入客户购房的补充说明(选填)";
+    [self.remarkView addSubview:self.remark];
+    
     self.name.delegate = self;
     self.phone.delegate = self;
     self.remark.delegate = self;
@@ -96,6 +101,11 @@ static NSString *const AddPhoneCell = @"AddPhoneCell";
     }else{
         self.reporterAccRole.text = @"普通经纪人";
     }
+}
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.remark.frame = self.remarkView.bounds;
 }
 -(void)setUpTableView
 {
