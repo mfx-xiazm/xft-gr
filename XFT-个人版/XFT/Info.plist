@@ -22,6 +22,8 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+        <string>iosamap</string>
+        <string>baidumap</string>
 		<string>uppaysdk</string>
 		<string>uppaywallet</string>
 		<string>uppayx1</string>
@@ -142,6 +144,8 @@
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

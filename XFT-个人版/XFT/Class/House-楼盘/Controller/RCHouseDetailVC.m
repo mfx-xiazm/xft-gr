@@ -46,6 +46,8 @@
 #import "RCLoginVC.h"
 #import "HXNavigationController.h"
 #import "RCPushClientEditVC.h"
+#import "RCShowPicVC.h"
+#import "RCRouteManager.h"
 
 static NSString *const HouseDetailHotCell = @"HouseDetailHotCell";
 static NSString *const HouseDetailInfoCell = @"HouseDetailInfoCell";
@@ -964,7 +966,9 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
         fvc.url = picInfo.url;
         [self.navigationController pushViewController:fvc animated:NO];
     }else{
-        HXLog(@"点击图片");
+        RCShowPicVC *pvc = [RCShowPicVC new];
+        pvc.housePics = self.housePics;
+        [self.navigationController pushViewController:pvc animated:YES];
     }
 }
 #pragma mark -- UICollectionView 数据源和代理
@@ -1139,7 +1143,13 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.houseNewsTableView) {
+    if (tableView == self.houseInfoTableView) {
+        if (indexPath.row == 0) {
+            NSDictionary *dict = self.houseInfoData[indexPath.row];
+            [RCRouteManager presentRouteNaviMenuOnController:self withCoordate:CLLocationCoordinate2DMake(self.houseDetail.dimension, self.houseDetail.longitude) destination:dict[@"content"]];
+        }
+        
+    }else if (tableView == self.houseNewsTableView) {
         RCNewsDetailVC *dvc = [RCNewsDetailVC new];
         RCNews *news = self.houseNews[indexPath.row];
         dvc.uuid = news.uuid;
