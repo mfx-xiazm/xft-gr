@@ -23,9 +23,8 @@
     _categoryView.backgroundColor = [UIColor whiteColor];
     _categoryView.averageCellSpacingEnabled = NO;
     _categoryView.titleLabelZoomEnabled = YES;
-    _categoryView.titles = @[@"热售项目", @"文旅项目"];
     _categoryView.titleFont = [UIFont systemFontOfSize:16 weight:UIFontWeightMedium];
-    _categoryView.cellSpacing = 45.f;
+    _categoryView.cellSpacing = 35.f;
     _categoryView.contentEdgeInsetLeft = 20.f;
     _categoryView.titleColor = UIColorFromRGB(0x666666);
     _categoryView.titleSelectedColor = UIColorFromRGB(0x333333);

@@ -219,8 +219,9 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     data[@"productUuid"] = self.uuid;
-    parameters[@"type"] = @"3";//1:楼盘 2:户型 3:新闻资讯 4:营销活动
-    
+    data[@"type"] = @"3";//1:楼盘 2:户型 3:新闻资讯 4:营销活动
+    parameters[@"data"] = data;
+
     hx_weakify(self);
     [HXNetworkTool POST:HXRC_M_URL action:@"sys/sys/collection/productCollection" parameters:parameters success:^(id responseObject) {
         hx_strongify(weakSelf);

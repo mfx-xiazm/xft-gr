@@ -202,6 +202,7 @@
                 [tempArr addObject:a1];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf.mapView setZoomLevel:10 animated:YES];
                 [strongSelf.mapView addAnnotations:tempArr];// 打标记
                 if (tempArr.count) {
                     RCMapHouse *cerHouse = strongSelf.houses.firstObject;
@@ -401,7 +402,7 @@
     data[@"uuid"] = self.currentPoint.contentId;
     parameters[@"data"] = data;
     
-    [HXNetworkTool POST:HXRC_M_URL action:@"/pro/map/saveProductPeripheralMatchingRel" parameters:parameters success:^(id responseObject) {
+    [HXNetworkTool POST:HXRC_M_URL action:@"pro/pro/map/saveProductPeripheralMatchingRel" parameters:parameters success:^(id responseObject) {
         if ([responseObject[@"code"] integerValue] == 0) {
             // 周边数据上传存入成功
         }else{

@@ -34,7 +34,7 @@
     [self.navigationItem setTitle:@"我的信息"];
     
     [self.headPic sd_setImageWithURL:[NSURL URLWithString:[MSUserManager sharedInstance].curUserInfo.userinfo.headpic]];
-    self.nickName.text = [MSUserManager sharedInstance].curUserInfo.userinfo.nick;
+    self.nickName.text = [MSUserManager sharedInstance].curUserInfo.userinfo.name;
     if ([MSUserManager sharedInstance].curUserInfo.userinfo.regPhone && [MSUserManager sharedInstance].curUserInfo.userinfo.regPhone.length) {
         self.phone.text = [NSString stringWithFormat:@"%@****%@",[[MSUserManager sharedInstance].curUserInfo.userinfo.regPhone substringToIndex:3],[[MSUserManager sharedInstance].curUserInfo.userinfo.regPhone substringFromIndex:[MSUserManager sharedInstance].curUserInfo.userinfo.regPhone.length-4]];
     }else{

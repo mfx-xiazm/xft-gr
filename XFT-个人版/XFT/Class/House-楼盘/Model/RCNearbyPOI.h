@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class RCNearbyAdInfo,RCNearbyLocation;
 @interface RCNearbyPOI : NSObject
-@property (nonatomic, assign) CGFloat _distance;
-@property (nonatomic, strong) RCNearbyAdInfo * adInfo;
+@property (nonatomic, copy) NSString *_distance;
+@property (nonatomic, strong) RCNearbyAdInfo * ad_info;
 @property (nonatomic, strong) NSString * address;
 @property (nonatomic, strong) NSString * category;
 @property (nonatomic, strong) NSString * ID;

@@ -669,7 +669,7 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
     data[@"uuid"] = self.uuid;
     parameters[@"data"] = data;
     
-    [HXNetworkTool POST:HXRC_M_URL action:@"/pro/map/saveProductPeripheralMatchingRel" parameters:parameters success:^(id responseObject) {
+    [HXNetworkTool POST:HXRC_M_URL action:@"pro/pro/map/saveProductPeripheralMatchingRel" parameters:parameters success:^(id responseObject) {
         if ([responseObject[@"code"] integerValue] == 0) {
             // 周边数据上传存入成功
         }else{
@@ -826,8 +826,9 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     data[@"productUuid"] = self.uuid;
-    parameters[@"type"] = @"1";//1:楼盘 2:户型 3:新闻资讯 4:营销活动
-    
+    data[@"type"] = @"1";//1:楼盘 2:户型 3:新闻资讯 4:营销活动
+    parameters[@"data"] = data;
+
     hx_weakify(self);
     [HXNetworkTool POST:HXRC_M_URL action:@"sys/sys/collection/queryProduct" parameters:parameters success:^(id responseObject) {
         hx_strongify(weakSelf);
@@ -845,8 +846,8 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     data[@"productUuid"] = self.uuid;
-    parameters[@"type"] = @"1";//1:楼盘 2:户型 3:新闻资讯 4:营销活动
-    
+    data[@"type"] = @"1";//1:楼盘 2:户型 3:新闻资讯 4:营销活动
+    parameters[@"data"] = data;
     hx_weakify(self);
     [HXNetworkTool POST:HXRC_M_URL action:@"sys/sys/collection/productCollection" parameters:parameters success:^(id responseObject) {
         hx_strongify(weakSelf);

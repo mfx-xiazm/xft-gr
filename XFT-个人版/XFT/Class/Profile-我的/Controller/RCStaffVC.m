@@ -11,7 +11,7 @@
 #import "RCNavBarView.h"
 #import "RCProfileCell.h"
 #import "RCProfileInfoVC.h"
-#import "RCProfileCollectVC.h"
+#import "RCProfileCollectChildVC.h"
 #import "RCFeedbackVC.h"
 #import "RCAboutUsVC.h"
 #import "RCMySalaryVC.h"
@@ -247,8 +247,9 @@ static NSString *const ProfileCell = @"ProfileCell";
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             //我的收藏
-            RCProfileCollectVC *cvc = [RCProfileCollectVC  new];
-            [self.navigationController pushViewController:cvc animated:YES];
+            RCProfileCollectChildVC *cvc0 = [RCProfileCollectChildVC new];
+            cvc0.collectType = 1;
+            [self.navigationController pushViewController:cvc0 animated:YES];
         }else{
             //房贷计算器
             RCHouseLoanVC *lvc = [RCHouseLoanVC new];

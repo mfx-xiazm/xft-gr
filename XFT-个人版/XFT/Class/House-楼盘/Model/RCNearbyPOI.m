@@ -10,7 +10,7 @@
 
 @implementation RCNearbyPOI
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"adInfo":[RCNearbyAdInfo class],
+    return @{@"ad_info":[RCNearbyAdInfo class],
              @"location":[RCNearbyLocation class]
              };
 }

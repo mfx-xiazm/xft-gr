@@ -147,6 +147,11 @@ static NSString *const LoanDetailCell = @"LoanDetailCell";
     [self.tableView reloadData];
 }
 - (IBAction)saveLoanRequest:(UIButton *)sender {
+    if (![MSUserManager sharedInstance].isLogined) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"请先登录"];
+        return;
+    }
+    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     if (self.loanType == 1) {

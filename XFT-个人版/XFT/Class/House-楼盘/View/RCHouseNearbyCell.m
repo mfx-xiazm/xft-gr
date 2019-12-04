@@ -24,7 +24,15 @@
 {
     _nearby = nearby;
     self.name.text = _nearby.title;
-    self.distance.text = [NSString stringWithFormat:@"距离%.2f米",_nearby._distance];
+    self.distance.text = [NSString stringWithFormat:@"距离%@",[self getDistance]];
+}
+-(NSString *)getDistance
+{
+    if ([_nearby._distance floatValue] > 1000) {
+        return [NSString stringWithFormat:@"%.1fkm",[_nearby._distance floatValue]/1000.0];
+    }else{
+        return [NSString stringWithFormat:@"%.1fm",[_nearby._distance floatValue]];
+    }
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

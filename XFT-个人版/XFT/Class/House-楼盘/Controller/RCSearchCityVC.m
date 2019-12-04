@@ -120,9 +120,7 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
         [self getAllCitysRequest];
     }else{
         self.keyWord = nil;
-        // 直接刷新回到全部
-        self.pinCategoryView.hidden = NO;
-        [self.collectionView reloadData];
+        [self getAllCitysRequest];
     }
     
     return YES;

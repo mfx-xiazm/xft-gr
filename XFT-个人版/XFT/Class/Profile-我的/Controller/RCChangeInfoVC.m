@@ -45,20 +45,20 @@
 -(void)sureClicked
 {
     if (![self.nick hasText]) {
-        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"请填写昵称"];
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"请填写姓名"];
         return;
     }
     if (self.nick.text.length < 4) {
-        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"昵称需4-10个字符"];
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"姓名需4-10个字符"];
         return;
     }
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    data[@"nick"] = self.nick.text;//反馈意见
+    data[@"name"] = self.nick.text;//反馈意见
     parameters[@"data"] = data;
     
     hx_weakify(self);
-    [HXNetworkTool POST:HXRC_M_URL action:@"sso/sso/acclogin/updateNick" parameters:parameters success:^(id responseObject) {
+    [HXNetworkTool POST:HXRC_M_URL action:@"sso/sso/acclogin/updateName" parameters:parameters success:^(id responseObject) {
         hx_strongify(weakSelf);
         if ([responseObject[@"code"] integerValue] == 0) {
             [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];

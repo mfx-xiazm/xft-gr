@@ -33,6 +33,7 @@ static NSString *const ProfileCollectCell = @"ProfileCollectCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationItem setTitle:@"我的收藏"];
     [self setUpTableView];
     [self setUpEmptyView];
     [self setUpRefresh];

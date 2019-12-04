@@ -177,7 +177,7 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
     data[@"uuid"] = self.uuid;
     parameters[@"data"] = data;
     
-    [HXNetworkTool POST:HXRC_M_URL action:@"/pro/map/saveProductPeripheralMatchingRel" parameters:parameters success:^(id responseObject) {
+    [HXNetworkTool POST:HXRC_M_URL action:@"pro/pro/map/saveProductPeripheralMatchingRel" parameters:parameters success:^(id responseObject) {
         if ([responseObject[@"code"] integerValue] == 0) {
             // 周边数据上传存入成功
         }else{

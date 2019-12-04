@@ -22,6 +22,11 @@
 #import "RCHouseBanner.h"
 #import "RCHouseNotice.h"
 #import "RCHouceCate.h"
+#import "RCNewsDetailVC.h"
+#import "RCHouseDetailVC.h"
+#import "RCWebContentVC.h"
+#import "RCNoticeDetialVC.h"
+#import "RCVideoFullScreenVC.h"
 
 @interface RCHouseVC ()<UITableViewDelegate,UITableViewDataSource>
 /** tableView */
@@ -83,6 +88,30 @@
                 [weakSelf.navigationController pushViewController:nvc animated:YES];
             }else{
                 /*展现方式 0:不跳转 1:新闻咨询 2:报名活动 3房源详情 4:外链H5 5:城市公告 6:视频播放*/
+                RCHouseBanner *banner = weakSelf.banners[index];
+                if (banner.viewType == 1) {
+                    RCNewsDetailVC *dvc = [RCNewsDetailVC new];
+                    dvc.uuid = banner.context;
+                    [weakSelf.navigationController pushViewController:dvc animated:YES];
+                }else if (banner.viewType == 3) {
+                    RCHouseDetailVC *dvc = [RCHouseDetailVC new];
+                    dvc.uuid = banner.context;
+                    [weakSelf.navigationController pushViewController:dvc animated:YES];
+                }else if (banner.viewType == 4) {
+                    RCWebContentVC *wvc = [RCWebContentVC new];
+                    wvc.url = banner.context;
+                    [weakSelf.navigationController pushViewController:wvc animated:YES];
+                }else if (banner.viewType == 5) {
+                    RCNoticeDetialVC *wvc = [RCNoticeDetialVC new];
+                    wvc.uuid = banner.context;
+                    [weakSelf.navigationController pushViewController:wvc animated:YES];
+                }else if (banner.viewType == 6) {
+                    RCVideoFullScreenVC *fvc = [RCVideoFullScreenVC new];
+                    fvc.url = banner.context;
+                    [weakSelf.navigationController pushViewController:fvc animated:NO];
+                }else{
+                    // 其他类型不处理
+                }
             }
         };
     }
