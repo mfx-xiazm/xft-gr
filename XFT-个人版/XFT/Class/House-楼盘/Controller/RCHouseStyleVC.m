@@ -18,6 +18,7 @@
 #import "RCLoginVC.h"
 #import "HXNavigationController.h"
 #import "RCPushClientEditVC.h"
+#import <UMShare/UMShare.h>
 
 static NSString *const HouseStyleDetailCell = @"HouseStyleDetailCell";
 
@@ -99,26 +100,51 @@ static NSString *const HouseStyleDetailCell = @"HouseStyleDetailCell";
 #pragma mark -- 点击事件
 -(IBAction)shareClicked:(UIButton *)sender
 {
-    RCShareView *share = [RCShareView loadXibView];
-    share.hxn_width = HX_SCREEN_WIDTH;
-    share.hxn_height = 260.f;
-    hx_weakify(self);
-    share.shareTypeCall = ^(NSInteger type, NSInteger index) {
-        if (type == 1) {
-            if (index == 1) {
-                HXLog(@"微信好友");
-            }else if (index == 2) {
-                HXLog(@"朋友圈");
-            }else{
-                HXLog(@"链接");
-            }
+    if (![[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"未安装微信客户端"];
+    }else{
+        //创建分享消息对象
+        UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+        UMShareMiniProgramObject *shareObject = [UMShareMiniProgramObject shareObjectWithTitle:self.houseInfo.name descr:self.houseInfo.name thumImage:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WechatIMG806" ofType:@"png"]]];
+        NSString *path = [NSString stringWithFormat:@"pages/hoursTypeDetail/hoursTypeDetail?loginid=%@&actType=0&uid=%@&phoneNum=%@",[MSUserManager sharedInstance].curUserInfo.userinfo.uuid,self.uuid,self.housePhone];
+        /* 低版本微信网页链接 */
+        shareObject.webpageUrl = path;
+        /* 小程序username */
+        shareObject.userName = @"gh_d2e3f78eca81";
+        /* 小程序页面的路径 */
+        shareObject.path = path;
+        /* 小程序新版本的预览图 128k */
+        shareObject.hdImageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WechatIMG806" ofType:@"png"]];//[NSData dataWithContentsOfURL:[NSURL URLWithString:self.shareInfo[@"thumbData"]]]
+        
+        /* 分享小程序的版本（正式，开发，体验）*/
+        NSInteger miniprogramType = 0;//正式版:0，测试版:1，体验版:2
+        if (miniprogramType == 0) {
+            shareObject.miniProgramType = UShareWXMiniProgramTypeRelease;
+        }else if (miniprogramType == 1) {
+            shareObject.miniProgramType = UShareWXMiniProgramTypeTest;
         }else{
-            [weakSelf.zh_popupController dismissWithDuration:0.25 springAnimated:NO];
+            shareObject.miniProgramType = UShareWXMiniProgramTypePreview;
         }
-    };
-    self.zh_popupController = [[zhPopupController alloc] init];
-    self.zh_popupController.layoutType = zhPopupLayoutTypeBottom;
-    [self.zh_popupController presentContentView:share duration:0.25 springAnimated:NO];
+        messageObject.shareObject = shareObject;
+        //调用分享接口
+        [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_WechatSession messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+            if (error) {
+                UMSocialLogInfo(@"************Share fail with error %@*********",error);
+                [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+            }else{
+                if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                    UMSocialShareResponse *resp = data;
+                    [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:resp.message];
+                    //分享结果消息
+                    UMSocialLogInfo(@"response message is %@",resp.message);
+                    //第三方原始返回的数据
+                    UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                }else{
+                    UMSocialLogInfo(@"response data is %@",data);
+                }
+            }
+        }];
+    }
 }
 -(IBAction)collectClicked:(UIButton *)sender
 {
@@ -166,6 +192,8 @@ static NSString *const HouseStyleDetailCell = @"HouseStyleDetailCell";
                 RCPushClientEditVC *pvc = [RCPushClientEditVC new];
                 /* 是否展示物业类型 0不展示物业，展示顾问 1展示物业，不展示顾问 */
                 pvc.buldTypeIsShows = self.buldTypeIsShows;
+                /* 项目名称 */
+                pvc.proName = self.houseInfo.name;
                 /* 项目id */
                 pvc.proUuid = self.uuid;
                 /* 项目物业类型 */
@@ -220,7 +248,8 @@ static NSString *const HouseStyleDetailCell = @"HouseStyleDetailCell";
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     data[@"productUuid"] = self.uuid;
-    parameters[@"type"] = @"2";//1:楼盘 2:户型 3:新闻资讯 4:营销活动
+    data[@"type"] = @"2";//1:楼盘 2:户型 3:新闻资讯 4:营销活动
+    parameters[@"data"] = data;
     
     hx_weakify(self);
     [HXNetworkTool POST:HXRC_M_URL action:@"sys/sys/collection/queryProduct" parameters:parameters success:^(id responseObject) {

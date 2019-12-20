@@ -117,6 +117,8 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
     // 发起搜索
     if ([textField hasText]) {
         self.keyWord = textField.text;
+        NSDictionary *tempHistory = @{@"aid":@"",@"aname":@"历史访问",@"cid":@"",@"cname":textField.text,@"num":@""};
+        [self checkHistoryData:tempHistory];
         [self getAllCitysRequest];
     }else{
         self.keyWord = nil;
@@ -247,6 +249,7 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
         //        plistArr = [[NSMutableArray alloc] init];
     } else {
         HXLog(@"存在");
+        [self.historys removeAllObjects];
         // 使用NSArray来接收plist里面的文件，获取里面的数据
         NSArray *arr = [NSArray arrayWithContentsOfFile:KFilePath];
         if (arr.count != 0) {
@@ -291,7 +294,7 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
     BOOL isHaveHistory = NO;
     for (NSDictionary *dict in self.historys) {
         if ([dict[@"cname"] isEqualToString:history[@"cname"]]) {//如果历史数据包含就更新
-            [self.historys removeObject:history];
+            [self.historys removeObject:dict];
             [self.historys insertObject:history atIndex:0];
             isHaveHistory = YES;
             break;
@@ -309,6 +312,16 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
 {
     [self.historys removeAllObjects];
     [self writeHistorySearch];//写入
+    [self.citys removeObjectAtIndex:1];
+    NSMutableArray *titles = [NSMutableArray arrayWithArray:self.pinCategoryView.titles];
+    [titles removeObjectAtIndex:1];
+    self.pinCategoryView.titles = titles;
+    [self.pinCategoryView reloadData];//刷新数组布局
+    hx_weakify(self);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        hx_strongify(weakSelf);
+        [strongSelf updateSectionHeaderAttributes];//存放每组的布局
+    });
     [self.collectionView reloadData];
 }
 #pragma mark - JXCategoryViewDelegate
@@ -317,6 +330,46 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
     UICollectionViewLayoutAttributes *targetAttri = self.sectionHeaderAttributes[index];
     //选中了第一个，特殊处理一下，滚动到sectionHeaer的最上面
     [self.collectionView setContentOffset:CGPointMake(0, targetAttri.frame.origin.y) animated:YES];
+}
+#pragma mark - 判断是否有城市
+/** 房源列表 用来判断是否切换城市 该城市没有楼盘时弹框提示切换默认-北京 */
+-(void)getHouseListDataRequestCityID:(NSString *)cityId CompleteCall:(void(^)(BOOL))completeCall
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"cityUuid"] = cityId;
+    data[@"buldType"] = @"";
+    data[@"countryUuid"] = @"";
+    data[@"hxType"] = @"";
+    data[@"proType"] = @"";
+    NSMutableDictionary *page = [NSMutableDictionary dictionary];
+    page[@"current"] = @(1);//第几页
+    page[@"size"] = @"1";
+    parameters[@"data"] = data;
+    parameters[@"page"] = page;
+    
+    hx_weakify(self);
+    [HXNetworkTool POST:HXRC_M_URL action:@"pro/pro/proBaseInfo/proListByLike" parameters:parameters success:^(id responseObject) {
+        hx_strongify(weakSelf);
+        if ([responseObject[@"code"] integerValue] == 0) {
+            if ([responseObject[@"data"][@"records"] isKindOfClass:[NSArray class]] && ((NSArray *)responseObject[@"data"][@"records"]).count){
+                if (completeCall) {
+                    completeCall(YES);
+                }
+            }else{// 提示没有更多数据
+                if (completeCall) {
+                    completeCall(NO);
+                }
+            }
+        }else{
+            [strongSelf stopShimmer];
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        hx_strongify(weakSelf);
+        [strongSelf stopShimmer];
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+    }];
 }
 #pragma mark -- UICollectionView 数据源和代理
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -336,7 +389,13 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
     
     RCOpenArea *area = self.citys[indexPath.section];
     RCOpenCity *city = area.list[indexPath.item];
-    cell.contentText.text = indexPath.section?[NSString stringWithFormat:@"%@(%@)",city.cname,city.num]:city.cname;
+    if (indexPath.section == 0) {
+        cell.contentText.text = city.cname;
+    }else if(indexPath.section == 1){
+        cell.contentText.text = [area.aname isEqualToString:@"历史访问"]?city.cname:[NSString stringWithFormat:@"%@(%@)",city.cname,city.num];
+    }else{
+        cell.contentText.text = [NSString stringWithFormat:@"%@(%@)",city.cname,city.num];
+    }
     cell.contentText.backgroundColor = indexPath.section?[UIColor whiteColor]:HXControlBg;
     cell.contentText.textColor = indexPath.section?[UIColor lightGrayColor]:[UIColor whiteColor];
     
@@ -354,19 +413,71 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
             [self checkHistoryData:dict];
         }
     }
-    if (self.changeCityCall) {
-        self.changeCityCall([city.cname stringByReplacingOccurrencesOfString:@"市" withString:@""]);
+    if (city.cid && city.cid.length) {
+        if (city.num && city.num.length) {
+            if (self.changeCityCall) {
+                self.changeCityCall([city.cname stringByReplacingOccurrencesOfString:@"市" withString:@""]);
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"该城市暂无项目"];
+        }
+    }else{
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        NSMutableDictionary *data = [NSMutableDictionary dictionary];
+        data[@"name"] = [city.cname stringByReplacingOccurrencesOfString:@"市" withString:@""];
+        parameters[@"data"] = data;
+        
+        hx_weakify(self);
+        [HXNetworkTool POST:HXRC_M_URL action:@"sys/sys/city/cityCodeByNameLike" parameters:parameters success:^(id responseObject) {
+            hx_strongify(weakSelf);
+            if ([responseObject[@"code"] integerValue] == 0) {
+                
+                [strongSelf getHouseListDataRequestCityID:[NSString stringWithFormat:@"%@",responseObject[@"data"][@"cityCode"]] CompleteCall:^(BOOL isHaveHouse) {
+                    if (isHaveHouse) {
+                        if (strongSelf.changeCityCall) {
+                            strongSelf.changeCityCall([city.cname stringByReplacingOccurrencesOfString:@"市" withString:@""]);
+                        }
+                        [strongSelf.navigationController popViewControllerAnimated:YES];
+                    }else{
+                        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"该城市暂无项目"];
+                    }
+                }];
+            }else{
+                [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+        }];
     }
-    [self.navigationController popViewControllerAnimated:YES];
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if ([kind isEqualToString : UICollectionElementKindSectionHeader]){
         RCSearchTagHeader * headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SearchTagHeader forIndexPath:indexPath];
         RCOpenArea *area = self.citys[indexPath.section];
         headerView.tabText.text = area.aname;
-        headerView.locationBtn.hidden = indexPath.section;
+        if ([area.aname isEqualToString:@"定位城市"]) {
+            headerView.locationBtn.hidden = NO;
+            [headerView.locationBtn setTitle:@"重新定位" forState:UIControlStateNormal];
+            [headerView.locationBtn setImage:HXGetImage(@"icon_cxdingwei") forState:UIControlStateNormal];
+        }else if ([area.aname isEqualToString:@"历史访问"]) {
+            headerView.locationBtn.hidden = NO;
+            [headerView.locationBtn setTitle:@"" forState:UIControlStateNormal];
+            [headerView.locationBtn setImage:HXGetImage(@"icon_del_tuijian") forState:UIControlStateNormal];
+        }else{
+            headerView.locationBtn.hidden = YES;
+        }
+        hx_weakify(self);
         headerView.resetLocationCall = ^{
-            HXLog(@"重新定位");
+            hx_strongify(weakSelf);
+            if ([area.aname isEqualToString:@"定位城市"]) {
+                HXLog(@"重新定位");
+            }else if ([area.aname isEqualToString:@"历史访问"]) {
+                HXLog(@"删除历史");
+                [strongSelf clearClicked];
+            }else{
+                HXLog(@"无");
+            }
         };
         return headerView;
     }

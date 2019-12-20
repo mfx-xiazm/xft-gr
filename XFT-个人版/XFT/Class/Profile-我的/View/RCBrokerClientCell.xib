@@ -118,7 +118,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="StO-5z-Miw" secondAttribute="trailing" constant="15" id="9KL-Mv-0XV"/>
                     <constraint firstItem="StO-5z-Miw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7.5" id="ZEH-lb-R7B"/>
@@ -126,6 +126,7 @@
                     <constraint firstItem="StO-5z-Miw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="tvp-zD-tsP"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="headPic" destination="PJS-4c-EBQ" id="pDY-61-Dte"/>

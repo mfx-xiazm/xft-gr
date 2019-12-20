@@ -34,9 +34,9 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
     [self setUpCollectionView];
     
     NSMutableArray *handledPics = [NSMutableArray arrayWithArray:self.housePics];
-    // 图片类别: 1:封面图 2:规划图 3:效果图 4:实景图 5:配套图 6:户型图 7:样板间图 8:视频 9:VR'
+    // 图片类别: 0:封面图 1:封面图 2:规划图 3:效果图 4:实景图 5:配套图 6:户型图 7:样板间图 8:视频 9:VR'
     self.showResult = [NSMutableArray array];
-    NSArray *types = @[@"9",@"8",@"1",@"2",@"3",@"4",@"5",@"6",@"7"];
+    NSArray *types = @[@"9",@"8",@"2",@"3",@"4",@"5",@"6",@"7"];
     for (NSString *type in types) {
         RCShowPic *showPic = [RCShowPic new];
         showPic.type = type;
@@ -46,6 +46,11 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
         
         [handledPics removeObjectsInArray:tmpArray];
     }
+    RCShowPic *showPic = [RCShowPic new];
+    showPic.type = @"1";
+    showPic.pics = [NSArray arrayWithArray:handledPics];
+    [self.showResult insertObject:showPic atIndex:2];
+    
     [self.collectionView reloadData];
 }
 -(void)setUpCollectionView

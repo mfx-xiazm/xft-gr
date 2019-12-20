@@ -31,14 +31,14 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自持3000平方米商业配套，入住商户达250多家." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0m-Ne-bBD">
-                        <rect key="frame" x="24" y="5" width="380" height="20"/>
+                        <rect key="frame" x="25" y="5" width="379" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="u0m-Ne-bBD" firstAttribute="leading" secondItem="cZZ-2x-CQ4" secondAttribute="trailing" constant="5" id="8YC-uW-Xxn"/>
+                    <constraint firstItem="u0m-Ne-bBD" firstAttribute="leading" secondItem="cZZ-2x-CQ4" secondAttribute="trailing" constant="6" id="8YC-uW-Xxn"/>
                     <constraint firstItem="cZZ-2x-CQ4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="AoS-3F-2fJ"/>
                     <constraint firstAttribute="trailing" secondItem="u0m-Ne-bBD" secondAttribute="trailing" constant="15" id="C9f-cD-8FB"/>
                     <constraint firstItem="u0m-Ne-bBD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="IcK-Bf-Hh6"/>

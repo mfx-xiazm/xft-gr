@@ -1,47 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RCHouseHeader">
-            <rect key="frame" x="0.0" y="0.0" width="412" height="225"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="244"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7i-SN-JHt" customClass="TYCyclePagerView">
-                    <rect key="frame" x="0.0" y="10" width="412" height="170"/>
+                    <rect key="frame" x="15" y="10" width="363" height="181.5"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="170" id="6P9-dp-dQA"/>
+                        <constraint firstAttribute="width" secondItem="n7i-SN-JHt" secondAttribute="height" multiplier="2:1" id="d3l-Tj-KiN"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="60c-cI-S2f">
-                    <rect key="frame" x="0.0" y="165" width="412" height="60"/>
+                    <rect key="frame" x="0.0" y="184" width="393" height="60"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ckb-ki-Adm">
-                            <rect key="frame" x="15" y="5" width="382" height="50"/>
+                            <rect key="frame" x="15" y="5" width="363" height="50"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_gonggao" translatesAutoresizingMaskIntoConstraints="NO" id="O7M-xg-Fbf">
                                     <rect key="frame" x="10" y="12" width="37" height="26"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HFA-jh-k7S">
-                                    <rect key="frame" x="57" y="10" width="281" height="30"/>
+                                    <rect key="frame" x="57" y="10" width="262" height="30"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="eel-PN-0ly"/>
                                     </constraints>
                                 </view>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_next_circle" translatesAutoresizingMaskIntoConstraints="NO" id="iWz-nF-aOW">
-                                    <rect key="frame" x="348" y="13" width="24" height="24"/>
+                                    <rect key="frame" x="329" y="13" width="24" height="24"/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KU-NQ-odH">
-                                    <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="363" height="50"/>
                                     <connections>
                                         <action selector="noticeClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="ajJ-Uw-PgD"/>
                                     </connections>
@@ -93,18 +91,18 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="60c-cI-S2f" secondAttribute="bottom" id="2Vp-2P-nTN"/>
-                <constraint firstItem="n7i-SN-JHt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="D3F-MZ-Zeh"/>
+                <constraint firstItem="n7i-SN-JHt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="D3F-MZ-Zeh"/>
                 <constraint firstItem="60c-cI-S2f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EM2-4a-OpB"/>
                 <constraint firstAttribute="trailing" secondItem="60c-cI-S2f" secondAttribute="trailing" id="jqf-jX-Ylr"/>
                 <constraint firstItem="n7i-SN-JHt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="t3n-aT-8PT"/>
-                <constraint firstAttribute="trailing" secondItem="n7i-SN-JHt" secondAttribute="trailing" id="wse-BJ-vuD"/>
+                <constraint firstAttribute="trailing" secondItem="n7i-SN-JHt" secondAttribute="trailing" constant="15" id="wse-BJ-vuD"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="cycleView" destination="n7i-SN-JHt" id="fin-sJ-0rP"/>
                 <outlet property="scrollTextView" destination="HFA-jh-k7S" id="tZk-0w-uk7"/>
             </connections>
-            <point key="canvasLocation" x="46.376811594202906" y="244.08482142857142"/>
+            <point key="canvasLocation" x="32.608695652173914" y="250.44642857142856"/>
         </view>
     </objects>
     <resources>

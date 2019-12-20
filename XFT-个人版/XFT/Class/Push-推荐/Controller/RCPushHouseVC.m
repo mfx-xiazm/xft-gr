@@ -248,7 +248,7 @@ static NSString *const HouseCell = @"HouseCell";
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    data[@"cityId"] = [[NSUserDefaults standardUserDefaults] objectForKey:HXCityCode];
+    data[@"cityUuid"] = [[NSUserDefaults standardUserDefaults] objectForKey:HXCityCode];
     data[@"areaType"] = (self.areaType && self.areaType.length) ?self.areaType:@"";
     data[@"buldType"] = (self.buldType && self.buldType.length) ?self.buldType:@"";
     data[@"countryUuid"] = (self.countryUuid && self.countryUuid.length) ?self.countryUuid:@"";

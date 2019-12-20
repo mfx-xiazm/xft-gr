@@ -35,26 +35,31 @@
 {
     _mineNum = mineNum;
     
-    [self.headPic sd_setImageWithURL:[NSURL URLWithString:[MSUserManager sharedInstance].curUserInfo.userinfo.headpic]];
+    [self.headPic sd_setImageWithURL:[NSURL URLWithString:[MSUserManager sharedInstance].curUserInfo.userinfo.headpic] placeholderImage:HXGetImage(@"pic_header")];
     self.name.text = ([MSUserManager sharedInstance].curUserInfo.userinfo.name && [MSUserManager sharedInstance].curUserInfo.userinfo.name.length)?[MSUserManager sharedInstance].curUserInfo.userinfo.name:[MSUserManager sharedInstance].curUserInfo.userinfo.nick;
 
-    if ([[MSUserManager sharedInstance].curUserInfo.userinfo.isStaff isEqualToString:@"1"] && [[MSUserManager sharedInstance].curUserInfo.userinfo.isOwner isEqualToString:@"1"]) {
-        self.roleName1.hidden = NO;
-        self.roleName1.text = @" 业主经纪人 ";
-        self.roleName2.hidden = NO;
-        self.roleName2.text = @" 员工经纪人 ";
-    }else if ([[MSUserManager sharedInstance].curUserInfo.userinfo.isStaff isEqualToString:@"1"]) {
-        self.roleName1.hidden = NO;
-        self.roleName1.text = @" 员工经纪人 ";
-        self.roleName2.hidden = YES;
-    }else if ([[MSUserManager sharedInstance].curUserInfo.userinfo.isOwner isEqualToString:@"1"]) {
-        self.roleName1.hidden = NO;
-        self.roleName1.text = @" 业主经纪人 ";
+    if ([MSUserManager sharedInstance].curUserInfo.uType == 4) {
+        self.roleName1.hidden = YES;
         self.roleName2.hidden = YES;
     }else{
-        self.roleName1.hidden = NO;
-        self.roleName1.text = @" 社会经纪人 ";
-        self.roleName2.hidden = YES;
+        if ([[MSUserManager sharedInstance].curUserInfo.userinfo.isStaff isEqualToString:@"1"] && [[MSUserManager sharedInstance].curUserInfo.userinfo.isOwner isEqualToString:@"1"]) {
+            self.roleName1.hidden = NO;
+            self.roleName1.text = @" 业主经纪人 ";
+            self.roleName2.hidden = NO;
+            self.roleName2.text = @" 员工经纪人 ";
+        }else if ([[MSUserManager sharedInstance].curUserInfo.userinfo.isStaff isEqualToString:@"1"]) {
+            self.roleName1.hidden = NO;
+            self.roleName1.text = @" 员工经纪人 ";
+            self.roleName2.hidden = YES;
+        }else if ([[MSUserManager sharedInstance].curUserInfo.userinfo.isOwner isEqualToString:@"1"]) {
+            self.roleName1.hidden = NO;
+            self.roleName1.text = @" 业主经纪人 ";
+            self.roleName2.hidden = YES;
+        }else{
+            self.roleName1.hidden = NO;
+            self.roleName1.text = @" 个人经纪人 ";
+            self.roleName2.hidden = YES;
+        }
     }
 }
 - (IBAction)infoClicked:(UIButton *)sender {

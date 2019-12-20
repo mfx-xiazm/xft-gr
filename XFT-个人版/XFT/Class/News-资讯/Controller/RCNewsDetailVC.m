@@ -38,6 +38,7 @@
     
     [self.webContentView addSubview:self.webView];
     [self startShimmer];
+    [self setNewsClickRequest];
     [self getNewsDetailRequest];
     
     /*
@@ -158,6 +159,27 @@
     }
     return nil;
 }
+-(void)setNewsClickRequest
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"uuid"] = self.uuid;
+    parameters[@"data"] = data;
+    
+    hx_weakify(self);
+    [HXNetworkTool POST:HXRC_M_URL action:@"pro/pro/information/click" parameters:parameters success:^(id responseObject) {
+        hx_strongify(weakSelf);
+        if ([responseObject[@"code"] integerValue] == 0) {
+            if (strongSelf.lookSuccessCall) {
+                strongSelf.lookSuccessCall();
+            }
+        }else{
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+    }];
+}
 -(void)getNewsDetailRequest
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -200,7 +222,8 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     data[@"productUuid"] = self.uuid;
-    parameters[@"type"] = @"3";//1:楼盘 2:户型 3:新闻资讯 4:营销活动
+    data[@"type"] = @"3";//1:楼盘 2:户型 3:新闻资讯 4:营销活动
+    parameters[@"data"] = data;
     
     hx_weakify(self);
     [HXNetworkTool POST:HXRC_M_URL action:@"sys/sys/collection/queryProduct" parameters:parameters success:^(id responseObject) {

@@ -255,6 +255,7 @@
 		9088C9A12316A4520088F986 /* RCProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9088C9A02316A4520088F986 /* RCProfileHeader.xib */; };
 		9088C9A52316A93E0088F986 /* RCProfileInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9088C9A32316A93E0088F986 /* RCProfileInfoVC.m */; };
 		9088C9A62316A93E0088F986 /* RCProfileInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9088C9A42316A93E0088F986 /* RCProfileInfoVC.xib */; };
+		908F942A23AB1FCF007E6C27 /* WechatIMG806.png in Resources */ = {isa = PBXBuildFile; fileRef = 908F942923AB1FCF007E6C27 /* WechatIMG806.png */; };
 		90934126231FA82E001A3A6E /* WSDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90934122231FA82E001A3A6E /* WSDatePickerView.xib */; };
 		90934127231FA82E001A3A6E /* WSDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90934123231FA82E001A3A6E /* WSDatePickerView.m */; };
 		90934128231FA82E001A3A6E /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 90934124231FA82E001A3A6E /* NSDate+Extension.m */; };
@@ -785,6 +786,7 @@
 		9088C9A22316A93E0088F986 /* RCProfileInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCProfileInfoVC.h; sourceTree = "<group>"; };
 		9088C9A32316A93E0088F986 /* RCProfileInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCProfileInfoVC.m; sourceTree = "<group>"; };
 		9088C9A42316A93E0088F986 /* RCProfileInfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCProfileInfoVC.xib; sourceTree = "<group>"; };
+		908F942923AB1FCF007E6C27 /* WechatIMG806.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WechatIMG806.png; sourceTree = "<group>"; };
 		9093411F231FA82E001A3A6E /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		90934120231FA82E001A3A6E /* WSDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSDatePickerView.h; sourceTree = "<group>"; };
 		90934121231FA82E001A3A6E /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
@@ -1521,6 +1523,7 @@
 		9040F25B2313AA11005E6B2E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				908F942923AB1FCF007E6C27 /* WechatIMG806.png */,
 				90BE24912387B85800DB142F /* 楼盘详情 */,
 				90BE24882387845900DB142F /* 楼盘搜索 */,
 				90FABA112386B627006EE336 /* 城市搜索 */,
@@ -2544,6 +2547,7 @@
 				9049E738232282340010E5B1 /* RCProfileFooter.xib in Resources */,
 				9049E72E2322585C0010E5B1 /* RCHouseChildVC.xib in Resources */,
 				90867FA52395380200C33437 /* RCShowPicVC.xib in Resources */,
+				908F942A23AB1FCF007E6C27 /* WechatIMG806.png in Resources */,
 				904C8ED72317EA53007EB77D /* RCProfileQuestionCell.xib in Resources */,
 				90D2DE19231942B200363EBE /* RCHouseStyleVC.xib in Resources */,
 				900B7A4C2315043C00832CDE /* RCSearchHouseResultVC.xib in Resources */,

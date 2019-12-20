@@ -10,7 +10,7 @@
 #import "RCBannerCell.h"
 #import <TYCyclePagerView/TYCyclePagerView.h>
 #import <TYCyclePagerView/TYPageControl.h>
-#import "LMJHorizontalScrollText.h"
+#import "LMJVerticalScrollText.h"
 #import "RCHouseBanner.h"
 #import "RCHouseNotice.h"
 
@@ -19,7 +19,7 @@
 /** page */
 @property (nonatomic,strong) TYPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *scrollTextView;
-@property (strong, nonatomic) LMJHorizontalScrollText *scrollText;
+@property (strong, nonatomic) LMJVerticalScrollText *scrollText;
 
 @end
 @implementation RCHouseHeader
@@ -46,13 +46,14 @@
     self.pageControl = pageControl;
     [self.cycleView addSubview:pageControl];
     
-    self.scrollText = [[LMJHorizontalScrollText alloc] initWithFrame:self.scrollTextView.bounds];
+    self.scrollText = [[LMJVerticalScrollText alloc] initWithFrame:self.scrollTextView.bounds];
     self.scrollText.layer.cornerRadius = 2;
     self.scrollText.layer.masksToBounds = YES;
     self.scrollText.backgroundColor    = [UIColor whiteColor];
+    self.scrollText.textDataArr               = @[@"融创江南融府2019年8月6日火爆开盘，速来抢购..."];
     self.scrollText.textColor          = [UIColor lightGrayColor];
     self.scrollText.textFont           = [UIFont systemFontOfSize:15];
-    self.scrollText.speed              = 0.07;
+    self.scrollText.textAlignment              = NSTextAlignmentLeft;
     
     [self.scrollTextView addSubview:self.scrollText];
 }
@@ -75,14 +76,16 @@
 {
     _notices = notices;
     if (_notices && _notices.count) {
-        RCHouseNotice *notice = _notices.firstObject;
-        self.scrollText.text = notice.title;
+        NSMutableArray *texts = [NSMutableArray array];
+        for (RCHouseNotice *notice in _notices) {
+            [texts addObject:notice.title];
+        }
+        self.scrollText.textDataArr  = texts;
     }else{
-        self.scrollText.text = @"";
+        self.scrollText.textDataArr = @[];
     }
-    self.scrollText.moveDirection      = LMJTextScrollMoveLeft;
-    self.scrollText.moveMode           = LMJTextScrollContinuous;
-    [self.scrollText move];
+    
+    [self.scrollText startScrollBottomToTopWithNoSpace];
 }
 - (IBAction)noticeClicked:(UIButton *)sender {
     if (self.houseHeaderBtnClicked) {
@@ -107,7 +110,7 @@
 - (TYCyclePagerViewLayout *)layoutForPagerView:(TYCyclePagerView *)pageView {
     TYCyclePagerViewLayout *layout = [[TYCyclePagerViewLayout alloc]init];
     layout.itemSize = CGSizeMake(HX_SCREEN_WIDTH-30.f, CGRectGetHeight(pageView.frame));
-    layout.itemSpacing = 15.f;
+    layout.itemSpacing = 0.f;
     layout.itemHorizontalCenter = YES;
     return layout;
 }

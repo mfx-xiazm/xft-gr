@@ -60,6 +60,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"幸福通"];
+    [self checkLocation];
     self.loginBtn.hidden = [MSUserManager sharedInstance].isLogined?YES:NO;
     self.isCanScroll = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MainTableScroll:) name:@"MainTableScroll" object:nil];
@@ -72,14 +73,36 @@
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.header.frame = CGRectMake(0, -(10.f+170.f+50.f), HX_SCREEN_WIDTH, 10.f+170.f+50.f);
+    self.header.frame = CGRectMake(0, -(10.f+((HX_SCREEN_WIDTH-30.f)/2.0)+50.f), HX_SCREEN_WIDTH, 10.f+((HX_SCREEN_WIDTH-30.f)/2.0)+50.f);
     self.categoryView.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 60.f);
+}
+-(void)checkLocation
+{
+    if (![self isCanUseLocation]) {
+        zhAlertView *alert = [[zhAlertView alloc] initWithTitle:@"提示" message:@"为了您有更好的体验，请开启定位权限" constantWidth:HX_SCREEN_WIDTH - 50*2];
+        hx_weakify(self);
+        zhAlertButton *okButton = [zhAlertButton buttonWithTitle:@"去开启" handler:^(zhAlertButton * _Nonnull button) {
+            [weakSelf.zh_popupController dismiss];
+            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url];
+            }
+        }];
+        
+        okButton.lineColor = UIColorFromRGB(0xDDDDDD);
+        [okButton setTitleColor:HXControlBg forState:UIControlStateNormal];
+        [alert addAction:okButton];
+
+        self.zh_popupController = [[zhPopupController alloc] init];
+        self.zh_popupController.dismissOnMaskTouched = YES;
+        [self.zh_popupController presentContentView:alert duration:0.25 springAnimated:NO];
+    }
 }
 -(RCHouseHeader *)header
 {
     if (_header == nil) {
         _header = [RCHouseHeader loadXibView];
-        _header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 10.f+170.f+50.f);
+        _header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 10.f+((HX_SCREEN_WIDTH-30.f)/2.0)+50.f);
         hx_weakify(self);
         _header.houseHeaderBtnClicked = ^(NSInteger type, NSInteger index) {
             if (type == 0) {
@@ -167,6 +190,7 @@
 {
     if (![_chooseCity isEqualToString:chooseCity]) {
         _chooseCity = chooseCity;
+        [self.locationBtn setTitle:_chooseCity forState:UIControlStateNormal];
         [self getCityRequest];
     }
 }
@@ -182,7 +206,7 @@
     if ([[NSUserDefaults standardUserDefaults] objectForKey:HXUserCityName]) {
         [item setTitle:[[NSUserDefaults standardUserDefaults] objectForKey:HXUserCityName] forState:UIControlStateNormal];
     }else{
-        [item setTitle:@"武汉" forState:UIControlStateNormal];
+        [item setTitle:@"北京" forState:UIControlStateNormal];
     }
     [item addTarget:self action:@selector(cityClicked) forControlEvents:UIControlEventTouchUpInside];
     
@@ -208,7 +232,7 @@
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
     
-    self.tableView.contentInset = UIEdgeInsetsMake(10.f+170.f+50.f,0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(10.f+((HX_SCREEN_WIDTH-30.f)/2.0)+50.f,0, 0, 0);
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -220,15 +244,15 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     
     self.tableView.tableFooterView = [UIView new];
-    //    hx_weakify(self);
-    //    __weak __typeof(BBPageMainTable *) weakTable = _mainTable;
-    //    _mainTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    //        hx_strongify(weakSelf);
-    //        BBExcellentShopChildVC *cv = strongSelf.childVCs[strongSelf.pageMenu.selectedItemIndex];
-    //        [cv refreshData:weakTable];
-    //    }];
-    //    _mainTable.mj_header.ignoredScrollViewContentInsetTop = (self.type != 2)?(HX_SCREEN_WIDTH*2/5.0 + (HX_SCREEN_WIDTH*4/5.0)*2 +10):(HX_SCREEN_WIDTH*2/5.0 + 10);
-    //    _mainTable.mj_header.automaticallyChangeAlpha = YES;
+    hx_weakify(self);
+    __weak __typeof(RCPageMainTable *) weakTable = self.tableView;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        hx_strongify(weakSelf);
+        RCHouseChildVC *cv = strongSelf.childVCs[strongSelf.categoryView.categoryView.selectedIndex];
+        [cv refreshData:weakTable];
+    }];
+    self.tableView.mj_header.ignoredScrollViewContentInsetTop = 10.f+((HX_SCREEN_WIDTH-30.f)/2.0)+50.f;
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
     
     [self.tableView addSubview:self.header];
 }
@@ -273,7 +297,6 @@
     hvc.changeCityCall = ^(NSString * _Nonnull city) {
         hx_strongify(weakSelf);
         strongSelf.chooseCity = city;
-        [strongSelf.locationBtn setTitle:city forState:UIControlStateNormal];
     };
     [self.navigationController pushViewController:hvc animated:YES];
 }
@@ -359,7 +382,7 @@
     }else if ([[NSUserDefaults standardUserDefaults] objectForKey:HXUserCityName]) {
         data[@"name"] = [[NSUserDefaults standardUserDefaults] objectForKey:HXUserCityName];
     }else{
-        data[@"name"] = @"武汉";
+        data[@"name"] = @"北京";
     }
     parameters[@"data"] = data;
     
@@ -370,7 +393,70 @@
             [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"data"][@"cityCode"] forKey:HXCityCode];
 //            [[NSUserDefaults standardUserDefaults] setObject:@"500100" forKey:HXCityCode];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            [strongSelf getHouseDataRequest];
+            [strongSelf getHouseListDataRequestCompleteCall:^(BOOL isHaveHouse) {
+                if (isHaveHouse) {
+                    [strongSelf getHouseDataRequest];
+                }else{
+                    zhAlertView *alert = [[zhAlertView alloc] initWithTitle:@"提示" message:@"该城市暂无合作项目\n是否切换默认城市-北京" constantWidth:HX_SCREEN_WIDTH - 50*2];
+                    zhAlertButton *cancelButton = [zhAlertButton buttonWithTitle:@"取消" handler:^(zhAlertButton * _Nonnull button) {
+                        [strongSelf.zh_popupController dismiss];
+                        [strongSelf getHouseDataRequest];
+                    }];
+                    zhAlertButton *okButton = [zhAlertButton buttonWithTitle:@"切换" handler:^(zhAlertButton * _Nonnull button) {
+                        [strongSelf.zh_popupController dismiss];
+                        strongSelf.chooseCity = @"北京";
+                    }];
+                    cancelButton.lineColor = UIColorFromRGB(0xDDDDDD);
+                    [cancelButton setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateNormal];
+                    okButton.lineColor = UIColorFromRGB(0xDDDDDD);
+                    [okButton setTitleColor:HXControlBg forState:UIControlStateNormal];
+                    [alert adjoinWithLeftAction:cancelButton rightAction:okButton];
+
+                    strongSelf.zh_popupController = [[zhPopupController alloc] init];
+                    strongSelf.zh_popupController.dismissOnMaskTouched = NO;
+                    [strongSelf.zh_popupController presentContentView:alert duration:0.25 springAnimated:NO];
+                }
+            }];
+        }else{
+            [strongSelf stopShimmer];
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        hx_strongify(weakSelf);
+        [strongSelf stopShimmer];
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+    }];
+}
+/** 房源列表 用来判断是否切换城市 该城市没有楼盘时弹框提示切换默认-北京 */
+-(void)getHouseListDataRequestCompleteCall:(void(^)(BOOL))completeCall
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"cityUuid"] = [[NSUserDefaults standardUserDefaults] objectForKey:HXCityCode];
+    data[@"areaType"] = @"";
+    data[@"buldType"] = @"";
+    data[@"countryUuid"] = @"";
+    data[@"hxType"] = @"";
+    data[@"proType"] = @"";
+    NSMutableDictionary *page = [NSMutableDictionary dictionary];
+    page[@"current"] = @(1);//第几页
+    page[@"size"] = @"1";
+    parameters[@"data"] = data;
+    parameters[@"page"] = page;
+    
+    hx_weakify(self);
+    [HXNetworkTool POST:HXRC_M_URL action:@"pro/pro/proBaseInfo/proListByLike" parameters:parameters success:^(id responseObject) {
+        hx_strongify(weakSelf);
+        if ([responseObject[@"code"] integerValue] == 0) {
+            if ([responseObject[@"data"][@"records"] isKindOfClass:[NSArray class]] && ((NSArray *)responseObject[@"data"][@"records"]).count){
+                if (completeCall) {
+                    completeCall(YES);
+                }
+            }else{// 提示没有更多数据
+                if (completeCall) {
+                    completeCall(NO);
+                }
+            }
         }else{
             [strongSelf stopShimmer];
             [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
@@ -423,7 +509,7 @@
         data[@"num"] = @"1";
         NSMutableDictionary *page = [NSMutableDictionary dictionary];
         page[@"current"] = @"1";
-        page[@"size"] = @"1";
+        page[@"size"] = @"3";
         parameters[@"data"] = data;
         parameters[@"page"] = page;
         

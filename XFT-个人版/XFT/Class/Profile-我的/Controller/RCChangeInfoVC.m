@@ -27,7 +27,7 @@
             strongSelf.nick.text = [strongSelf.nick.text substringToIndex:10];
         }
     }];
-    self.nick.text = [MSUserManager sharedInstance].curUserInfo.userinfo.nick;
+    self.nick.text = [MSUserManager sharedInstance].curUserInfo.userinfo.name;
 }
 -(void)setUpNavBar
 {
@@ -62,7 +62,7 @@
         hx_strongify(weakSelf);
         if ([responseObject[@"code"] integerValue] == 0) {
             [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
-            [MSUserManager sharedInstance].curUserInfo.userinfo.nick = strongSelf.nick.text;
+            [MSUserManager sharedInstance].curUserInfo.userinfo.name = strongSelf.nick.text;
             [[MSUserManager sharedInstance] saveUserInfo];
             if (strongSelf.changeNickCall) {
                 strongSelf.changeNickCall();

@@ -279,6 +279,10 @@ static NSString *const NewsCell = @"NewsCell";
         RCNewsDetailVC *dvc = [RCNewsDetailVC new];
         RCNews *news = self.news[indexPath.row];
         dvc.uuid = news.uuid;
+        dvc.lookSuccessCall = ^{
+            news.clickNum = [NSString stringWithFormat:@"%zd",[news.clickNum integerValue]+1];
+            [tableView reloadData];
+        };
         [self.navigationController pushViewController:dvc animated:YES];
     }
 }

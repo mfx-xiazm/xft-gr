@@ -83,7 +83,7 @@
         self.roleName2.hidden = YES;
     }else{
         self.roleName1.hidden = NO;
-        self.roleName1.text = @" 社会经纪人 ";
+        self.roleName1.text = @" 个人经纪人 ";
         self.roleName2.hidden = YES;
     }
 }

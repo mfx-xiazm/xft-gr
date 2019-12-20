@@ -14,6 +14,8 @@ typedef void(^editDoneCall)(void);
 @interface RCPushClientEditVC : HXBaseViewController
 /* 是否展示物业类型 0不展示物业，展示顾问 1展示物业，不展示顾问 */
 @property(nonatomic,copy) NSString *buldTypeIsShows;
+/* 项目名称 */
+@property(nonatomic,copy) NSString *proName;
 /* 项目id */
 @property(nonatomic,copy) NSString *proUuid;
 /* 项目物业类型 */

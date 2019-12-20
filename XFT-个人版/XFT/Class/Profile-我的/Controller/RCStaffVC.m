@@ -231,7 +231,8 @@ static NSString *const ProfileCell = @"ProfileCell";
     }else{
         cell.num.hidden = NO;
         if (indexPath.row) {
-            cell.num.text = (self.mineNum.mortgageNUM && self.mineNum.mortgageNUM)?self.mineNum.mortgageNUM:@"0";
+            //cell.num.text = (self.mineNum.mortgageNUM && self.mineNum.mortgageNUM)?self.mineNum.mortgageNUM:@"0";
+            cell.num.text = @"";
         }else{
             cell.num.text = (self.mineNum.collNUM && self.mineNum.collNUM)?self.mineNum.collNUM:@"0";
         }

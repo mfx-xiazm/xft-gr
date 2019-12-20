@@ -71,7 +71,7 @@ static NSString *const MyClientStateCell = @"MyClientStateCell";
     self.rightTableView.showsVerticalScrollIndicator = NO;
     
     self.rightTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    self.rightTableView.backgroundColor = HXGlobalBg;
     // 注册cell
     [self.rightTableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCMyClientCell class]) bundle:nil] forCellReuseIdentifier:MyClientCell];
     
@@ -341,6 +341,7 @@ static NSString *const MyClientStateCell = @"MyClientStateCell";
         RCMyClientCell *cell = [tableView dequeueReusableCellWithIdentifier:MyClientCell forIndexPath:indexPath];
         //无色
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.state.hidden = YES;
         RCMyClient *client = self.clients[indexPath.row];
         cell.client = client;
         hx_weakify(self);

@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class RCMyClient;
 typedef void(^clientHandleCall)(NSInteger index);
 @interface RCMyClientCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *state;
 @property (weak, nonatomic) IBOutlet UIButton *pushBtn;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
 /* 客户 */

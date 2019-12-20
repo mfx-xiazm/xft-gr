@@ -7,11 +7,9 @@
 //
 
 #import "RCHouseCategoryView.h"
-#import <JXCategoryView.h>
 #import "RCHouceCate.h"
 
 @interface RCHouseCategoryView ()<JXCategoryViewDelegate>
-@property (weak, nonatomic) IBOutlet JXCategoryTitleView *categoryView;
 
 @end
 @implementation RCHouseCategoryView

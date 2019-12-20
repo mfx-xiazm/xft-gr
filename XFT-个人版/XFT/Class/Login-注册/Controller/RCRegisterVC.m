@@ -40,11 +40,11 @@
             [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"请选择注册身份"];
             return NO;
         }
-        if (![strongSelf.roleType.text isEqualToString:@"客户"]) {
-            if (![strongSelf.idType hasText]) {
-                [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"请选择证件类型"];
-                return NO;
-            }
+        if (![strongSelf.roleType.text isEqualToString:@"客户"] && ![strongSelf.roleType.text isEqualToString:@"个人经纪人"]) {
+//            if (![strongSelf.idType hasText]) {
+//                [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"请选择证件类型"];
+//                return NO;
+//            }
             if (![strongSelf.idCode hasText]) {
                 [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"请输入证件号码"];
                 return NO;
@@ -70,7 +70,7 @@
 - (IBAction)registerHandleClicked:(UIButton *)sender {
     hx_weakify(self);
     if (sender.tag == 1) {
-        NSArray *roles = @[@"注册为客户随便看看",@"业主经纪人",@"员工经纪人",@"普通经纪人"];
+        NSArray *roles = @[@"注册为客户随便看看",@"业主经纪人",@"员工经纪人",@"个人经纪人"];
         FSActionSheet *sheet = [[FSActionSheet alloc] initWithTitle:@"身份类型" delegate:self currentButtonTitle:[self.roleType hasText]?self.roleType.text:@"" cancelButtonTitle:@"取消" highlightedButtonTitle:nil otherButtonTitles:roles];
         [sheet showWithSelectedCompletion:^(NSInteger selectedIndex) {
             hx_strongify(weakSelf);
@@ -78,10 +78,14 @@
                 strongSelf.roleType.text = @"客户";
                 strongSelf.linceView.hidden = YES;
                 strongSelf.linceViewHeight.constant = 0;
+            }else if (selectedIndex == 3) {
+                strongSelf.roleType.text = @"个人经纪人";
+                strongSelf.linceView.hidden = YES;
+                strongSelf.linceViewHeight.constant = 0;
             }else{
                 strongSelf.roleType.text = roles[selectedIndex];
                 strongSelf.linceView.hidden = NO;
-                strongSelf.linceViewHeight.constant = 100;
+                strongSelf.linceViewHeight.constant = 50.f;
             }
         }];
     }else if (sender.tag == 2) {
@@ -130,13 +134,14 @@
         }else{
             if ([self.roleType.text isEqualToString:@"业主经纪人"]) {
                 data[@"idType"] = @"1";
+                data[@"idCardCode"] = self.idCode.text;
             }else if ([self.roleType.text isEqualToString:@"员工经纪人"]) {
                 data[@"idType"] = @"2";
+                data[@"idCardCode"] = self.idCode.text;
             }else{
                 data[@"idType"] = @"3";
             }
             data[@"idCardType"] = @"1";
-            data[@"idCardCode"] = self.idCode.text;
         }
 
         parameters[@"data"] = data;

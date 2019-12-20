@@ -80,7 +80,6 @@ static NSString *const HouseDetailInfoCell = @"HouseDetailInfoCell";
 -(void)handleHouseInfo
 {
     UIView *header = [UIView new];
-    header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 60);
     
     UILabel *label = [[UILabel alloc] init];
     label.font = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
@@ -88,14 +87,17 @@ static NSString *const HouseDetailInfoCell = @"HouseDetailInfoCell";
     label.hxn_x = 15.f;
     label.hxn_y = 15.f;
     label.hxn_width = HX_SCREEN_WIDTH - 15*2;
-    [label sizeToFit];
+    CGSize size = [label sizeThatFits:CGSizeZero];
+    label.hxn_height = size.height+5.f;
+    
+    header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, label.hxn_height + 30.f);
     [header addSubview:label];
     
     self.tableView.tableHeaderView = header;
     
     self.houseData = [NSMutableArray array];
     NSArray *titles = @[@"楼盘地址",@"楼盘状态",@"楼盘均价",@"可售面积",@"可售户型",@"开盘时间",@"交房时间",@"装修标准",@"绿化率",@"容积率",@"物业费",@"车位占比",@"规划户数",@"产权年限",@"占地面积",@"开发商",@"物业公司"];
-    NSArray *values = @[self.houseInfo.buldAddr,self.houseInfo.salesState, self.houseInfo.price, self.houseInfo.areaInterval,self.houseInfo.mainHuxingName,self.houseInfo.openTime,self.houseInfo.deliveryTime,self.houseInfo.decorate,self.houseInfo.greenRate,self.houseInfo.volumeRate,[NSString stringWithFormat:@"%@/㎡", self.houseInfo.propertyFee],self.houseInfo.carRate,[NSString stringWithFormat:@"%@户", self.houseInfo.totalUsers],[NSString stringWithFormat:@"%@年", self.houseInfo.buldYears],self.houseInfo.totalAre,self.houseInfo.buldDeveloper,self.houseInfo.propertyCompany];
+    NSArray *values = @[self.houseInfo.buldAddr,(self.houseInfo.salesState && self.houseInfo.salesState.length)?self.houseInfo.salesState:@"暂无", self.houseInfo.price, self.houseInfo.areaInterval,self.houseInfo.mainHuxingName,self.houseInfo.openTime,self.houseInfo.deliveryTime,self.houseInfo.decorate,self.houseInfo.greenRate,self.houseInfo.volumeRate,[NSString stringWithFormat:@"%@/㎡", self.houseInfo.propertyFee],self.houseInfo.carRate,[NSString stringWithFormat:@"%@户", self.houseInfo.totalUsers],[NSString stringWithFormat:@"%@年", self.houseInfo.buldYears],self.houseInfo.totalAre,self.houseInfo.buldDeveloper,self.houseInfo.propertyCompany];
 
     for (int i=0; i<titles.count; i++) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];

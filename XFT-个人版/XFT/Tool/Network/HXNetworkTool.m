@@ -9,8 +9,8 @@
 #import "HXNetworkTool.h"
 #import "AFNetworking.h"
 #import "AFNetworkActivityIndicatorManager.h"
-//#import "BBLoginVC.h"
-//#import "HXNavigationController.h"
+#import "RCLoginVC.h"
+#import "HXNavigationController.h"
 
 #define NSStringFormat(format,...) [NSString stringWithFormat:format,##__VA_ARGS__]
 
@@ -177,12 +177,6 @@ static NSArray *_filtrationCacheKey;
         [_sessionManager.requestSerializer setValue:[MSUserManager sharedInstance].curUserInfo.userAccessStr forHTTPHeaderField:@"UserAccessInfo"];
     }
     [_sessionManager.requestSerializer setValue:[MSUserManager sharedInstance].curUserInfo.token forHTTPHeaderField:@"Authorization"];
-
-    // 61b0c7709cd442dfad0dfa4adcf1f7d2
-    // fba54210f87d4852b83fd57547501b8b
-//    [_sessionManager.requestSerializer setValue:@"{\"domain\":\"agent-app-ios\",\"loginId\":\"fba54210f87d4852b83fd57547501b8b\"}" forHTTPHeaderField:@"UserAccessInfo"];
-//
-//    [_sessionManager.requestSerializer setValue:@"Bearer:eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbklkIjoiNjFiMGM3NzA5Y2Q0NDJkZmFkMGRmYTRhZGNmMWY3ZDIiLCJpc3MiOiJodHRwOi8veWR4cy5zdW5hYy5jb20iLCJleHAiOjE1NzU1MzAyNTIsImlhdCI6MTU3NDkyNTQ1Mn0.WpimsMMSlljYp0ktDCJrVijfNaHSqKl99CqEsamtoPXwHwHXEj7HbwoY8oMrnFeqvYrY44VAgb1hkvAew52w9A" forHTTPHeaderField:@"Authorization"];
     
     //读取缓存
     responseCache!=nil ? responseCache([HXNetworkCache httpCacheForURL:appendUrl parameters:parameters filtrationCacheKey:_filtrationCacheKey]) : nil;
@@ -194,27 +188,27 @@ static NSArray *_filtrationCacheKey;
         if (_isOpenLog) {HXLog(@"responseObject = %@",responseObject);}
         [[self allSessionTask] removeObject:task];
         
-//        if ([responseObject[@"code"] integerValue] == -6 || [responseObject[@"code"] integerValue] == -7) {// 登录状态失效
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"登录状态过期，请重新登录"];
-//            });
-//
-//            [[MSUserManager sharedInstance] logout:nil];//退出
-//
-//            RCLoginVC *lvc = [RCLoginVC new];
-//            HXNavigationController *nav = [[HXNavigationController alloc] initWithRootViewController:lvc];
-//            [UIApplication sharedApplication].keyWindow.rootViewController = nav;
-//
-//            //推出主界面出来
-//            CATransition *ca = [CATransition animation];
-//            ca.type = @"movein";
-//            ca.duration = 0.25;
-//            [[UIApplication sharedApplication].keyWindow.layer addAnimation:ca forKey:nil];
-//        }else{
+        if ([responseObject[@"code"] integerValue] == -6 || [responseObject[@"code"] integerValue] == -7) {// 登录状态失效
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"登录状态过期，请重新登录"];
+            });
+
+            [[MSUserManager sharedInstance] logout:nil];//退出
+
+            RCLoginVC *lvc = [RCLoginVC new];
+            HXNavigationController *nav = [[HXNavigationController alloc] initWithRootViewController:lvc];
+            [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+
+            //推出主界面出来
+            CATransition *ca = [CATransition animation];
+            ca.type = @"movein";
+            ca.duration = 0.25;
+            [[UIApplication sharedApplication].keyWindow.layer addAnimation:ca forKey:nil];
+        }else{
             success ? success(responseObject) : nil;
             //对数据进行异步缓存
             responseCache!=nil ? [HXNetworkCache setHttpCache:responseObject URL:URL parameters:parameters filtrationCacheKey:_filtrationCacheKey] : nil;
-//        }
+        }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

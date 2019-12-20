@@ -30,7 +30,7 @@
     }else{
         self.notName.hidden = YES;
         [self.headPic sd_setImageWithURL:[NSURL URLWithString:_adviser.headpic] placeholderImage:HXGetImage(@"pic_header")];
-           self.name.text = _adviser.accName;
+        self.name.text = [NSString stringWithFormat:@"%@(%@)",_adviser.accName,_adviser.regPhone];
     }
     self.tagImg.image = _adviser.isSelected ? HXGetImage(@"icon_choose_click") : HXGetImage(@"icon_choose");
 }

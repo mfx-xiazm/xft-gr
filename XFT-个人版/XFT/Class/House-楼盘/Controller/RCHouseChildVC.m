@@ -58,7 +58,7 @@ static NSString *const HouseCell = @"HouseCell";
     if (![_countryUuid isEqualToString:countryUuid]) {
         _countryUuid = countryUuid;
         hx_weakify(self);
-        [self getHouseListDataRequest:YES completeCall:^{
+        [self getHouseListDataRequest:YES scrollView:self.tableView completeCall:^{
             [weakSelf.tableView reloadData];
         }];
     }
@@ -68,7 +68,7 @@ static NSString *const HouseCell = @"HouseCell";
     if (![_buldType isEqualToString:buldType]) {
         _buldType = buldType;
         hx_weakify(self);
-        [self getHouseListDataRequest:YES completeCall:^{
+        [self getHouseListDataRequest:YES scrollView:self.tableView completeCall:^{
             [weakSelf.tableView reloadData];
         }];
     }
@@ -78,7 +78,7 @@ static NSString *const HouseCell = @"HouseCell";
     if (![_hxType isEqualToString:hxType]) {
         _hxType = hxType;
         hx_weakify(self);
-        [self getHouseListDataRequest:YES completeCall:^{
+        [self getHouseListDataRequest:YES scrollView:self.tableView completeCall:^{
             [weakSelf.tableView reloadData];
         }];
     }
@@ -88,7 +88,7 @@ static NSString *const HouseCell = @"HouseCell";
     if (![_areaType isEqualToString:areaType]) {
         _areaType = areaType;
         hx_weakify(self);
-        [self getHouseListDataRequest:YES completeCall:^{
+        [self getHouseListDataRequest:YES scrollView:self.tableView completeCall:^{
             [weakSelf.tableView reloadData];
         }];
     }
@@ -138,9 +138,18 @@ static NSString *const HouseCell = @"HouseCell";
     //追加尾部刷新
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         hx_strongify(weakSelf);
-        [strongSelf getHouseListDataRequest:NO completeCall:^{
+        [strongSelf getHouseListDataRequest:NO scrollView:strongSelf.tableView completeCall:^{
             [strongSelf.tableView reloadData];
         }];
+    }];
+}
+-(void)refreshData:(UIScrollView *)table
+{
+    [self.tableView.mj_footer resetNoMoreData];
+    hx_weakify(self);
+    [self getHouseListDataRequest:YES scrollView:table completeCall:^{
+        hx_strongify(weakSelf);
+        [strongSelf.tableView reloadData];
     }];
 }
 #pragma mark -- 通知处理
@@ -223,7 +232,7 @@ static NSString *const HouseCell = @"HouseCell";
     });
     dispatch_group_async(group, queue, ^{
         hx_strongify(weakSelf);
-        [strongSelf getHouseListDataRequest:YES completeCall:^{
+        [strongSelf getHouseListDataRequest:YES scrollView:strongSelf.tableView completeCall:^{
             dispatch_semaphore_signal(semaphore);
         }];
     });
@@ -244,7 +253,7 @@ static NSString *const HouseCell = @"HouseCell";
     });
 }
 /** 房源筛选列表 */
--(void)getHouseListDataRequest:(BOOL)isRefresh completeCall:(void(^)(void))completeCall
+-(void)getHouseListDataRequest:(BOOL)isRefresh scrollView:(UIScrollView *)scrollView completeCall:(void(^)(void))completeCall
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
@@ -272,19 +281,19 @@ static NSString *const HouseCell = @"HouseCell";
         hx_strongify(weakSelf);
         if ([responseObject[@"code"] integerValue] == 0) {
             if (isRefresh) {
-                [strongSelf.tableView.mj_header endRefreshing];
+                [scrollView.mj_header endRefreshing];
                 strongSelf.pagenum = 1;
                 [strongSelf.houses removeAllObjects];
                 NSArray *arrt = [NSArray yy_modelArrayWithClass:[RCHouseList class] json:responseObject[@"data"][@"records"]];
                 [strongSelf.houses addObjectsFromArray:arrt];
             }else{
-                [strongSelf.tableView.mj_footer endRefreshing];
+                [scrollView.mj_footer endRefreshing];
                 strongSelf.pagenum ++;
                 if ([responseObject[@"data"][@"records"] isKindOfClass:[NSArray class]] && ((NSArray *)responseObject[@"data"][@"records"]).count){
                     NSArray *arrt = [NSArray yy_modelArrayWithClass:[RCHouseList class] json:responseObject[@"data"][@"records"]];
                     [strongSelf.houses addObjectsFromArray:arrt];
                 }else{// 提示没有更多数据
-                    [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                    [scrollView.mj_footer endRefreshingWithNoMoreData];
                 }
             }
         }else{
@@ -295,6 +304,8 @@ static NSString *const HouseCell = @"HouseCell";
         }
     } failure:^(NSError *error) {
         [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+        [scrollView.mj_header endRefreshing];
+        [scrollView.mj_footer endRefreshing];
         if (completeCall) {
             completeCall();
         }

@@ -21,6 +21,9 @@
 static NSString *const AddPhoneCell = @"AddPhoneCell";
 
 @interface RCPushClientEditVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UITextViewDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *houseName;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *houseViewHeight;
+@property (weak, nonatomic) IBOutlet UIView *houseView;
 /* 名字 */
 @property (weak, nonatomic) IBOutlet UITextField *name;
 /* 电话 */
@@ -80,7 +83,13 @@ static NSString *const AddPhoneCell = @"AddPhoneCell";
     }
     if (self.isDetailPush) {//从楼盘详情来
         self.reportTarget = [[RCReportTarget alloc] init];
+        self.houseView.hidden = NO;
+        self.houseViewHeight.constant = 50.f;
+        self.houseName.text = self.proName;
     }else{
+        self.houseView.hidden = YES;
+        self.houseViewHeight.constant = 0.f;
+        
         self.name.text = self.reportTarget.cusName;
         self.phone.text = self.reportTarget.cusPhone;
         
@@ -99,7 +108,7 @@ static NSString *const AddPhoneCell = @"AddPhoneCell";
     }else if ([MSUserManager sharedInstance].curUserInfo.uType == 2) {
         self.reporterAccRole.text = @"员工经纪人";
     }else{
-        self.reporterAccRole.text = @"普通经纪人";
+        self.reporterAccRole.text = @"个人经纪人";
     }
 }
 -(void)viewDidLayoutSubviews
@@ -314,7 +323,7 @@ static NSString *const AddPhoneCell = @"AddPhoneCell";
                            @"twoQudaoCode":twoQudaoCode,//拓展方式id或报备人所属渠道id
                            @"teamUuid":self.selectcAdviser?self.selectcAdviser.teamUuid:@"", //归属团队
                            @"groupUuid":self.selectcAdviser?self.selectcAdviser.groupUuid:@"",//归属小组
-                           @"salesAccUuid":self.selectcAdviser?self.selectcAdviser.uuid:@"" //归属顾问id
+                           @"salesAccUuid":self.selectcAdviser?self.selectcAdviser.accUuid:@"" //归属顾问id
     }];//客户信息 必填
      
     data[@"accUuid"] = [MSUserManager sharedInstance].curUserInfo.userinfo.uuid;//报备人id 必填

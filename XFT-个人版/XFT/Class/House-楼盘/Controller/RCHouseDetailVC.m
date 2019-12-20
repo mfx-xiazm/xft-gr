@@ -48,6 +48,7 @@
 #import "RCPushClientEditVC.h"
 #import "RCShowPicVC.h"
 #import "RCRouteManager.h"
+#import <UMShare/UMShare.h>
 
 static NSString *const HouseDetailHotCell = @"HouseDetailHotCell";
 static NSString *const HouseDetailInfoCell = @"HouseDetailInfoCell";
@@ -77,16 +78,21 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
 @property (weak, nonatomic) IBOutlet UITableView *houseInfoTableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *houseInfoTableViewHeight;
 /** 推荐佣金 */
+@property (weak, nonatomic) IBOutlet UIView *recommendRewardView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *recommendRewardViewHeight;
 @property (weak, nonatomic) IBOutlet UILabel *houseRewardLabel;
 /** 楼盘亮点 */
+@property (weak, nonatomic) IBOutlet UIView *houseGoodsView;
 @property (weak, nonatomic) IBOutlet UILabel *houseGoodsLabel;
 @property (weak, nonatomic) IBOutlet UITableView *houseGoodsTableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *houseGoodsViewHeight;
 /** 楼盘动态 */
+@property (weak, nonatomic) IBOutlet UIView *houseNewsView;
 @property (weak, nonatomic) IBOutlet UITableView *houseNewsTableView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *houseNewsTableViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *houseNewsViewHeight;
 /** 产品户型图 */
+@property (weak, nonatomic) IBOutlet UIView *houseStyleView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *houseStyleViewHeight;
 @property (weak, nonatomic) IBOutlet UICollectionView *houseStyleCollectionView;
 /** 周边配套 */
 @property (weak, nonatomic) IBOutlet UIView *mapSuperView;
@@ -125,6 +131,8 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
 @property(nonatomic,assign) NSInteger lastNearbyType;
 /** 周边配套的选中打点 */
 @property(nonatomic,strong) RCCustomAnnotation *nearbyPoint;
+/** 收藏数量 */
+@property(nonatomic,copy) NSString *collectedCount;
 @end
 
 @implementation RCHouseDetailVC
@@ -250,7 +258,8 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
         // 不要自动调整inset
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    self.houseGoodsTableView.rowHeight = UITableViewAutomaticDimension;//预估高度
+    self.houseGoodsTableView.estimatedRowHeight = 0;//预估高度
+//    self.houseGoodsTableView.rowHeight = UITableViewAutomaticDimension;//预估高度
     self.houseGoodsTableView.estimatedSectionHeaderHeight = 0;
     self.houseGoodsTableView.estimatedSectionFooterHeight = 0;
     
@@ -315,26 +324,50 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
 #pragma mark -- 点击事件
 -(IBAction)shareClicked:(UIButton *)sender
 {
-    RCShareView *share = [RCShareView loadXibView];
-    share.hxn_width = HX_SCREEN_WIDTH;
-    share.hxn_height = 260.f;
-    hx_weakify(self);
-    share.shareTypeCall = ^(NSInteger type, NSInteger index) {
-        if (type == 1) {
-            if (index == 1) {
-                HXLog(@"微信好友");
-            }else if (index == 2) {
-                HXLog(@"朋友圈");
-            }else{
-                HXLog(@"链接");
-            }
+    if (![[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]) {
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"未安装微信客户端"];
+    }else{
+        //创建分享消息对象
+        UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+        UMShareMiniProgramObject *shareObject = [UMShareMiniProgramObject shareObjectWithTitle:self.houseDetail.name descr:self.houseDetail.name thumImage:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WechatIMG806" ofType:@"png"]]];
+        NSString *path = [NSString stringWithFormat:@"pages/premisesDetail/premisesDetail?loginid=%@&actType=0&uid=%@",[MSUserManager sharedInstance].curUserInfo.userinfo.uuid,self.uuid];
+        /* 低版本微信网页链接 */
+        shareObject.webpageUrl = path;
+        /* 小程序username */
+        shareObject.userName = @"gh_d2e3f78eca81";
+        /* 小程序页面的路径 */
+        shareObject.path = path;
+        /* 小程序新版本的预览图 128k */
+        shareObject.hdImageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WechatIMG806" ofType:@"png"]];//[NSData dataWithContentsOfURL:[NSURL URLWithString:self.shareInfo[@"thumbData"]]]
+        
+        /* 分享小程序的版本（正式，开发，体验）*/
+        NSInteger miniprogramType = 0;//正式版:0，测试版:1，体验版:2
+        if (miniprogramType == 0) {
+            shareObject.miniProgramType = UShareWXMiniProgramTypeRelease;
+        }else if (miniprogramType == 1) {
+            shareObject.miniProgramType = UShareWXMiniProgramTypeTest;
         }else{
-            [weakSelf.zh_popupController dismissWithDuration:0.25 springAnimated:NO];
+            shareObject.miniProgramType = UShareWXMiniProgramTypePreview;
         }
-    };
-    self.zh_popupController = [[zhPopupController alloc] init];
-    self.zh_popupController.layoutType = zhPopupLayoutTypeBottom;
-    [self.zh_popupController presentContentView:share duration:0.25 springAnimated:NO];
+        messageObject.shareObject = shareObject;
+        //调用分享接口
+        [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_WechatSession messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+            if (error) {
+                UMSocialLogInfo(@"************Share fail with error %@*********",error);
+                [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+            }else{
+                if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                    UMSocialShareResponse *resp = data;
+                    //分享结果消息
+                    UMSocialLogInfo(@"response message is %@",resp.message);
+                    //第三方原始返回的数据
+                    UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                }else{
+                    UMSocialLogInfo(@"response data is %@",data);
+                }
+            }
+        }];
+    }
 }
 - (IBAction)houseCollectClicked:(SPButton *)sender {
     if ([MSUserManager sharedInstance].isLogined) {
@@ -383,6 +416,8 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
                 RCPushClientEditVC *pvc = [RCPushClientEditVC new];
                 /* 是否展示物业类型 0不展示物业，展示顾问 1展示物业，不展示顾问 */
                 pvc.buldTypeIsShows = self.houseDetail.buldTypeIsShows;
+                /* 项目名称 */
+                pvc.proName = self.houseDetail.name;
                 /* 项目id */
                 pvc.proUuid = self.uuid;
                 /* 项目物业类型 */
@@ -547,7 +582,27 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
             dispatch_semaphore_signal(semaphore);
         }];
     });
-
+    // 执行循序3
+    dispatch_group_async(group, queue, ^{
+        hx_strongify(weakSelf);
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        NSMutableDictionary *data = [NSMutableDictionary dictionary];
+        data[@"productUuid"] = self.uuid;
+        data[@"type"] = @"1";//1:楼盘 2:户型 3:新闻资讯 4:营销活动
+        parameters[@"data"] = data;
+        
+        [HXNetworkTool POST:HXRC_M_URL action:@"sys/sys/collection/queryProuuidByCollection" parameters:parameters success:^(id responseObject) {
+            if ([responseObject[@"code"] integerValue] == 0) {
+                strongSelf.collectedCount = [NSString stringWithFormat:@"%@",responseObject[@"data"]];
+            }else{
+                [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
+            }
+            dispatch_semaphore_signal(semaphore);
+        } failure:^(NSError *error) {
+            [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:error.localizedDescription];
+            dispatch_semaphore_signal(semaphore);
+        }];
+    });
     dispatch_group_notify(group, queue, ^{
         hx_strongify(weakSelf);
         // 执行循序4
@@ -555,6 +610,8 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
         // 执行顺序6
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         
         [strongSelf getNearbyDataRequestCompleteCall:^{
@@ -724,17 +781,18 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
         [categoryTitles addObject:@"图片"];
     }
     self.handledHousePics = handledPics;
-    [self.cycleView reloadData];
-
+    
     self.categoryViewWidth.constant = 50.f*categoryTitles.count;
     self.categoryView.titles = categoryTitles;
     [self.categoryView reloadData];
     
+    [self.cycleView reloadData];
     
     // 处理楼盘基础信息
     self.houseName.text = self.houseDetail.name;
     self.housePrice.text = [NSString stringWithFormat:@"%@",self.houseDetail.price];
-    self.huxingName.text = [NSString stringWithFormat:@"%@ %@",self.houseDetail.mainHuxingName,self.houseDetail.mainHuxingBuldArea];
+    //self.huxingName.text = [NSString stringWithFormat:@"%@ %@",self.houseDetail.mainHuxingName,self.houseDetail.mainHuxingBuldArea];
+    self.huxingName.text = @"";
     if (self.houseDetail.buldType && self.houseDetail.buldType.length) {
         NSArray *tagNames = [self.houseDetail.buldType componentsSeparatedByString:@","];
         for (int i=0; i<self.houseTags.count; i++) {
@@ -754,13 +812,13 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
     // 处理楼盘热度
     [self.houseHotCollectionView reloadData];
     self.watchNum.text = [NSString stringWithFormat:@"围观(%@)",self.houseDetail.watchCount];
-    self.collectNum.text = [NSString stringWithFormat:@"收藏(%@)",self.houseDetail.collectionCount];
+    self.collectNum.text = [NSString stringWithFormat:@"收藏(%@)",self.collectedCount];
     self.fanNum.text = [NSString stringWithFormat:@"我的(%@)",self.houseDetail.fanCount];
 
     // 处理楼盘详情
     NSMutableArray *houseInfo = [NSMutableArray array];
     NSArray *titles = @[@"楼盘地址",@"楼盘状态",@"可售面积",@"可售户型",@"开盘时间"];
-    NSArray *values = @[self.houseDetail.buldAddr,self.houseDetail.salesState, self.houseDetail.mainHuxingBuldArea,self.houseDetail.mainHuxingName,self.houseDetail.openTime];
+    NSArray *values = @[self.houseDetail.buldAddr,(self.houseDetail.salesState && self.houseDetail.salesState.length)?self.houseDetail.salesState:@"暂无", self.houseDetail.mainHuxingBuldArea,self.houseDetail.mainHuxingName,self.houseDetail.openTime];
 
     for (int i=0; i<5; i++) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -776,32 +834,54 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
     });
 
     // 处理推荐佣金
-    NSMutableString *ruleStr = [NSMutableString stringWithFormat:@"规则说明:"];
-    if (self.houseDetail.commissionIntr && self.houseDetail.commissionIntr.length) {
+    if (self.houseDetail.commissionIntr && self.houseDetail.commissionIntr.length){
+        self.recommendRewardView.hidden = NO;
+
+        NSMutableString *ruleStr = [NSMutableString stringWithFormat:@"规则说明:"];
         NSArray *intr = [self.houseDetail.commissionIntr componentsSeparatedByString:@","];
         for (int i=0; i<intr.count; i++) {
             [ruleStr appendFormat:@"\n%d.%@",i+1,intr[i]];
         }
+        CGFloat textHeight = [ruleStr textHeightSize:CGSizeMake(HX_SCREEN_WIDTH-15*2, CGFLOAT_MAX) font:[UIFont fontWithName:@"PingFangSC-Medium" size: 14] lineSpacing:5.f];
+        [self.houseRewardLabel setTextWithLineSpace:5.f withString:ruleStr withFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 14]];
+        self.recommendRewardViewHeight.constant = 10.f+44.f+textHeight+18.f;
+    }else{
+        self.recommendRewardView.hidden = YES;
+        self.houseRewardLabel.text = @"";
+        self.recommendRewardViewHeight.constant = CGFLOAT_MIN;
     }
-    CGFloat textHeight = [ruleStr textHeightSize:CGSizeMake(HX_SCREEN_WIDTH-15*2, CGFLOAT_MAX) font:[UIFont fontWithName:@"PingFangSC-Medium" size: 14] lineSpacing:5.f];
-    [self.houseRewardLabel setTextWithLineSpace:5.f withString:ruleStr withFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 14]];
-    self.recommendRewardViewHeight.constant = 10.f+44.f+textHeight+18.f;
     
     // 处理产品户型图
-    [self.houseStyleCollectionView reloadData];
-
-    // 处理楼盘亮点
-    CGFloat textHeight1 = [self.houseDetail.meritsIntr textHeightSize:CGSizeMake(HX_SCREEN_WIDTH-15*2, CGFLOAT_MAX) font:[UIFont fontWithName:@"PingFangSC-Medium" size: 14] lineSpacing:5.f];
-    [self.houseGoodsLabel setTextWithLineSpace:5.f withString:self.houseDetail.meritsIntr withFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 14]];
-    if (self.houseDetail.meritsList && self.houseDetail.meritsList.length) {
-        self.houseGoods = [self.houseDetail.meritsList componentsSeparatedByString:@","];
+    if (self.houseDetail.rhxList.count) {
+        self.houseStyleView.hidden = NO;
+        self.houseStyleViewHeight.constant = 300.f;
     }else{
-        self.houseGoods = [NSArray array];
+        self.houseStyleView.hidden = YES;
+        self.houseStyleViewHeight.constant = CGFLOAT_MIN;
     }
-    [self.houseGoodsTableView reloadData];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        weakSelf.houseGoodsViewHeight.constant = 10.f+44.f+textHeight1+weakSelf.houseGoodsTableView.contentSize.height+30.f;// 多加30，防止滑动
-    });
+    [self.houseStyleCollectionView reloadData];
+    
+    // 处理楼盘亮点
+    if ((self.houseDetail.meritsIntr && self.houseDetail.meritsIntr.length) || (self.houseDetail.meritsList && self.houseDetail.meritsList.length)) {
+        self.houseGoodsView.hidden = NO;
+        CGFloat textHeight1 = [self.houseDetail.meritsIntr textHeightSize:CGSizeMake(HX_SCREEN_WIDTH-15*2, CGFLOAT_MAX) font:[UIFont fontWithName:@"PingFangSC-Medium" size: 14] lineSpacing:5.f];
+        [self.houseGoodsLabel setTextWithLineSpace:5.f withString:self.houseDetail.meritsIntr withFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 14]];
+        if (self.houseDetail.meritsList && self.houseDetail.meritsList.length) {
+            self.houseGoods = [self.houseDetail.meritsList componentsSeparatedByString:@","];
+        }else{
+            self.houseGoods = [NSArray array];
+        }
+        [self.houseGoodsTableView reloadData];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            weakSelf.houseGoodsViewHeight.constant = 10.f+44.f+textHeight1+weakSelf.houseGoodsTableView.contentSize.height;
+        });
+    }else{
+        self.houseGoodsView.hidden = YES;
+        self.houseGoodsLabel.text = @"";
+        self.houseGoods = [NSArray array];
+        [self.houseGoodsTableView reloadData];
+        self.houseGoodsViewHeight.constant = CGFLOAT_MIN;
+    }
 
     // 处理周边配套
     QPointAnnotation *a1 = [[QPointAnnotation alloc] init];
@@ -817,9 +897,15 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
     
     // 处理楼盘动态
     [self.houseNewsTableView reloadData];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        weakSelf.houseNewsTableViewHeight.constant = 10.f+44.f+weakSelf.houseNewsTableView.contentSize.height+64.f;
-    });
+    if (self.houseNews.count) {
+        self.houseNewsView.hidden = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            weakSelf.houseNewsViewHeight.constant = 10.f+44.f+weakSelf.houseNewsTableView.contentSize.height+64.f;
+        });
+    }else{
+        self.houseNewsView.hidden = YES;
+        self.houseNewsViewHeight.constant = CGFLOAT_MIN;
+    }
 }
 -(void)getCollectStateRequest
 {
@@ -854,6 +940,12 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
         if ([responseObject[@"code"] integerValue] == 0) {
             [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
             strongSelf.collectBtn.selected = !strongSelf.collectBtn.isSelected;
+            if (strongSelf.collectBtn.isSelected) {
+                strongSelf.collectedCount = [NSString stringWithFormat:@"%d",[strongSelf.collectedCount integerValue]+1];
+            }else{
+                strongSelf.collectedCount = [NSString stringWithFormat:@"%d",[strongSelf.collectedCount integerValue]-1];
+            }
+            strongSelf.collectNum.text = [NSString stringWithFormat:@"收藏(%@)",self.collectedCount];
         }else{
             [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:responseObject[@"msg"]];
         }
@@ -1052,7 +1144,7 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
     if (collectionView == self.houseHotCollectionView) {
         return CGSizeMake(42.f,42.f);
     }else{
-        return CGSizeMake(150.f,collectionView.hxn_height-15.f*2);
+        return CGSizeMake(200.f,collectionView.hxn_height-10.f*2);
     }
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -1062,7 +1154,7 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
     return collectionView == self.houseHotCollectionView ? 0.f:15.f;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return collectionView == self.houseHotCollectionView ?UIEdgeInsetsMake(10, 15, 10, 15):UIEdgeInsetsMake(15, 15, 15, 15);
+    return collectionView == self.houseHotCollectionView ?UIEdgeInsetsMake(10, 15, 10, 15):UIEdgeInsetsMake(10, 15, 10, 15);
 }
 #pragma mark -- UITableView数据源和代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -1107,7 +1199,6 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
         //无色
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.goodName setTextWithLineSpace:5.f withString:self.houseGoods[indexPath.row] withFont:[UIFont systemFontOfSize:14]];
-
         return cell;
     }else{
         RCHouseNearbyCell *cell = [tableView dequeueReusableCellWithIdentifier:HouseNearbyCell forIndexPath:indexPath];
@@ -1137,7 +1228,8 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
     }else if (tableView == self.houseNewsTableView) {
         return 120.f;
     }else if (tableView == self.houseGoodsTableView) {
-        return UITableViewAutomaticDimension;
+        CGFloat textHeight = 6.f + [self.houseGoods[indexPath.row] textHeightSize:CGSizeMake(HX_SCREEN_WIDTH-25.f-15.f, CGFLOAT_MAX) font:[UIFont systemFontOfSize:14] lineSpacing:5.f] + 6.f;
+        return textHeight;
     }else{
         return 44.f;
     }
@@ -1154,6 +1246,10 @@ static NSString *const HouseNearbyCell = @"HouseNearbyCell";
         RCNewsDetailVC *dvc = [RCNewsDetailVC new];
         RCNews *news = self.houseNews[indexPath.row];
         dvc.uuid = news.uuid;
+        dvc.lookSuccessCall = ^{
+            news.clickNum = [NSString stringWithFormat:@"%zd",[news.clickNum integerValue]+1];
+            [tableView reloadData];
+        };
         [self.navigationController pushViewController:dvc animated:YES];
     }else if (tableView == self.houseNearbyTableView) {
         RCNearbyPOI *nearby = nil;

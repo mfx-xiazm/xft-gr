@@ -108,7 +108,7 @@ static NSString *const AddedClientCell = @"AddedClientCell";
     }else if ([MSUserManager sharedInstance].curUserInfo.uType == 2) {
         self.reporterAccRole.text = @"员工经纪人";
     }else{
-        self.reporterAccRole.text = @"普通经纪人";
+        self.reporterAccRole.text = @"个人经纪人";
     }
     
     [self setUpTableView];
@@ -576,7 +576,7 @@ static NSString *const AddedClientCell = @"AddedClientCell";
                              @"twoQudaoCode":twoQudaoCode,//拓展方式id或报备人所属渠道id
                              @"teamUuid":self.selectcAdviser?self.selectcAdviser.teamUuid:@"", //归属团队
                              @"groupUuid":self.selectcAdviser?self.selectcAdviser.groupUuid:@"",//归属小组
-                             @"salesAccUuid":self.selectcAdviser?self.selectcAdviser.uuid:@"" //归属顾问id
+                             @"salesAccUuid":self.selectcAdviser?self.selectcAdviser.accUuid:@"" //归属顾问id
                              }];
     }
     data[@"cusInfo"] = cusInfo;//客户信息 必填

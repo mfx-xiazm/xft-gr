@@ -72,7 +72,7 @@ static NSString *const NoticeCell = @"NoticeCell";
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // 设置背景色为clear
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = HXGlobalBg;
     
     // 注册cell
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([RCNoticeCell class]) bundle:nil] forCellReuseIdentifier:NoticeCell];

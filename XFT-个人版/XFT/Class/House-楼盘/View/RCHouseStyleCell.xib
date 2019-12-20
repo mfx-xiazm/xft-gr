@@ -11,20 +11,19 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RCHouseStyleCell">
-            <rect key="frame" x="0.0" y="0.0" width="154" height="228"/>
+            <rect key="frame" x="0.0" y="0.0" width="179" height="228"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="154" height="228"/>
+                <rect key="frame" x="0.0" y="0.0" width="179" height="228"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZG-l5-9WA">
-                        <rect key="frame" x="0.0" y="0.0" width="154" height="228"/>
+                        <rect key="frame" x="0.0" y="0.0" width="179" height="228"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T9x-CJ-ExH">
-                                <rect key="frame" x="0.0" y="0.0" width="154" height="154"/>
-                                <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.031372549020000001" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T9x-CJ-ExH">
+                                <rect key="frame" x="0.0" y="0.0" width="179" height="134.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="T9x-CJ-ExH" secondAttribute="height" multiplier="1:1" id="yYX-2W-dwm"/>
+                                    <constraint firstAttribute="width" secondItem="T9x-CJ-ExH" secondAttribute="height" multiplier="4:3" id="yYX-2W-dwm"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="销售中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxO-vm-t0H">
@@ -39,25 +38,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A1户型(1室1厅1卫)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDF-aU-Jyy">
-                                <rect key="frame" x="10" y="164" width="134" height="17"/>
+                                <rect key="frame" x="10" y="144.5" width="159" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-3房 58-128m²" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0RA-gt-yh1">
-                                <rect key="frame" x="10" y="186" width="134" height="14"/>
+                                <rect key="frame" x="10" y="166.5" width="159" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="234.8万" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqv-Jw-nIb">
-                                <rect key="frame" x="10" y="205" width="57" height="18"/>
+                                <rect key="frame" x="10" y="185.5" width="57" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <color key="textColor" red="0.92549019610000005" green="0.078431372550000003" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkQ-9b-lJ6">
-                                <rect key="frame" x="125" y="199" width="24" height="24"/>
+                                <rect key="frame" x="150" y="199" width="24" height="24"/>
                                 <state key="normal" image="icon_calculator_fy"/>
                                 <connections>
                                     <action selector="jisuanClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="dbi-UZ-MlV"/>
@@ -98,7 +97,7 @@
                 <constraint firstAttribute="trailing" secondItem="PZG-l5-9WA" secondAttribute="trailing" id="yY4-l6-YrR"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
-            <size key="customSize" width="154" height="228"/>
+            <size key="customSize" width="179" height="228"/>
             <connections>
                 <outlet property="housePic" destination="T9x-CJ-ExH" id="V2v-IN-6e8"/>
                 <outlet property="price" destination="Eqv-Jw-nIb" id="e9i-1N-jMU"/>
@@ -106,7 +105,7 @@
                 <outlet property="styleName" destination="KDF-aU-Jyy" id="4Nc-z7-hJ2"/>
                 <outlet property="styleTag" destination="cxO-vm-t0H" id="8hy-KZ-UsD"/>
             </connections>
-            <point key="canvasLocation" x="-62.318840579710148" y="66.294642857142861"/>
+            <point key="canvasLocation" x="-44.20289855072464" y="66.294642857142861"/>
         </collectionViewCell>
     </objects>
     <resources>

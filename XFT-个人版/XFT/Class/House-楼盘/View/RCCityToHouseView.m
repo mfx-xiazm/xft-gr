@@ -90,7 +90,7 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
     RCSearchTagCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:SearchTagCell forIndexPath:indexPath];
     RCOpenArea *area = self.citys[indexPath.section];
     RCOpenCity *city = area.list[indexPath.item];
-    cell.contentText.text = indexPath.section?[NSString stringWithFormat:@"%@(%@)",city.cname,city.num]:city.cname;
+    cell.contentText.text = [NSString stringWithFormat:@"%@(%@)",city.cname,city.num];
     cell.contentText.backgroundColor = [UIColor whiteColor];
     cell.contentText.textColor = [UIColor lightGrayColor];
     return cell;
@@ -98,8 +98,12 @@ static NSString *const SearchTagHeader = @"SearchTagHeader";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     RCOpenArea *area = self.citys[indexPath.section];
     RCOpenCity *city = area.list[indexPath.item];
-    if ([self.delegate respondsToSelector:@selector(cityView:didClickedCity:)]) {
-        [self.delegate cityView:self didClickedCity:city];
+    if (city.num && city.num.length) {
+        if ([self.delegate respondsToSelector:@selector(cityView:didClickedCity:)]) {
+            [self.delegate cityView:self didClickedCity:city];
+        }
+    }else{
+        [MBProgressHUD showTitleToView:nil postion:NHHUDPostionCenten title:@"该城市暂无项目"];
     }
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {

@@ -25,6 +25,8 @@ static NSString *const NewsCell = @"NewsCell";
 @property (nonatomic,assign) NSInteger pagenum;
 /* 资讯列表 */
 @property(nonatomic,strong) NSMutableArray *newsList;
+/* 记录上一个城市id */
+@property(nonatomic,copy) NSString *cityID;
 @end
 
 @implementation RCNewsVC
@@ -46,10 +48,34 @@ static NSString *const NewsCell = @"NewsCell";
         }
     }];
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.cityID = [[NSUserDefaults standardUserDefaults] objectForKey:HXCityCode];
+}
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     self.header.frame = CGRectMake(0, 0, HX_SCREEN_WIDTH, 10.f+170.f);
+}
+-(void)setCityID:(NSString *)cityID
+{
+    if (!_cityID) {
+        _cityID = cityID;
+    }
+    if (![_cityID isEqualToString:cityID]) {
+        _cityID = cityID;
+        hx_weakify(self);
+        [self getNewsListDataRequest:YES completeCall:^{
+            hx_strongify(weakSelf);
+            [strongSelf.tableView reloadData];
+            if (strongSelf.newsList.count) {
+                [strongSelf.tableView ly_hideEmptyView];
+            }else{
+                [strongSelf.tableView ly_showEmptyView];
+            }
+        }];
+    }
 }
 -(NSMutableArray *)newsList
 {
@@ -260,6 +286,10 @@ static NSString *const NewsCell = @"NewsCell";
     RCNewsDetailVC *dvc = [RCNewsDetailVC new];
     RCNews *news = self.newsList[indexPath.row];
     dvc.uuid = news.uuid;
+    dvc.lookSuccessCall = ^{
+        news.clickNum = [NSString stringWithFormat:@"%zd",[news.clickNum integerValue]+1];
+        [tableView reloadData];
+    };
     [self.navigationController pushViewController:dvc animated:YES];
 }
 //- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

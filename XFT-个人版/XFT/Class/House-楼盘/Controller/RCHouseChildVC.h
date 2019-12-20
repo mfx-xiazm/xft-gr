@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,weak) RCPageMainTable *mainTable;
 /* 楼盘类型 */
 @property(nonatomic,copy) NSString *proType;
+-(void)refreshData:(UIScrollView *)table;
 @end
 
 NS_ASSUME_NONNULL_END
